@@ -1,4 +1,5 @@
 import http.server
+import os
 
 class CalHandler( http.server.SimpleHTTPRequestHandler ):
 
@@ -14,7 +15,13 @@ class CalHandler( http.server.SimpleHTTPRequestHandler ):
         page = "<html><head><title>t</title></head><body>%s</body></html>" % s.path
         s.wfile.write(page.encode())
 
-def run( host='', port=5000 ):
+def run( host='' ):
+    port = os.getenv("PORT")
+    if port is None:
+        port = 5000
+    else:
+        port = int(port)
+
     httpd = http.server.HTTPServer( ( host, port ), CalHandler )
     try:
         httpd.serve_forever()
