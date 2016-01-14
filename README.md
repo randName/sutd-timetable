@@ -1,2 +1,3 @@
-# sutd-timetable
-.ics generator for timetables
+# SUTD Timetable Helper
+A .ics generator for timetables
+
