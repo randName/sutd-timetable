@@ -39,15 +39,27 @@ class CalHandler( http.server.SimpleHTTPRequestHandler ):
             s.wfile.write(cal)
 
         else:
+            page = None
+            ctype = 'text/html'
+
             if p.path == '/':
                 with open( 'index.html' ) as f: page = f.read()
+
+            elif p.path.startswith('/data/'):
+                try:
+                    with open( p.path[1:] ) as f: page = f.read()
+                    ctype = 'application/json/'
+                except EnvironmentError:
+                    s.send_error(404)
+
             else:
                 s.send_error(404)
 
-            s.send_response(200)
-            s.send_header("Content-type", "text/html")
-            s.end_headers()
-            s.wfile.write(page.encode())
+            if page:
+                s.send_response(200)
+                s.send_header("Content-type", ctype)
+                s.end_headers()
+                s.wfile.write(page.encode())
 
 def run( host='' ):
     port = os.getenv("PORT")
