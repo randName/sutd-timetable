@@ -1,6 +1,5 @@
 import os, http.server
 from urllib.parse import urlsplit, parse_qs
-
 from timetable import get_timetable
 
 def get_params( qs ):
@@ -20,7 +19,9 @@ def get_params( qs ):
 
     return p
 
-class CalHandler( http.server.SimpleHTTPRequestHandler ):
+class CalHandler( http.server.CGIHTTPRequestHandler ):
+
+    cgi_directories = ['/']
 
     def do_HEAD(s):
         s.send_response(200)

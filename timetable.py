@@ -23,7 +23,7 @@ def writejson( js ):
     with open( "%s/%s/%s" % ( modulepath, mod, js['section'] ), 'w' ) as f:
         print( json.dumps( js ), file=f )
 
-def get_location_id( location ):
+def get_location_id( locations, location ):
     for k, v in locations.items():
         if v == location: return k
 
@@ -50,8 +50,14 @@ def parse_html( page ):
 
     table = soup.find('table',id='ACE_STDNT_ENRL_SSV2$0')
 
+    if not table: return None
+
+    processed = []
+
     for mod in table.find_all('table',class_="PSGROUPBOXWBO"):
         schedule = []
+
+        title = mod.td.string
 
         for row in mod.find_all('tr',id=re.compile(r'^trCLASS_MTG_VW')):
             iz = get_row( row )
@@ -65,7 +71,7 @@ def parse_html( page ):
             info = {
                 'section': section, 'description': component,
                 'start': dt + tm[0], 'end': dt + tm[1],
-                'location': get_location_id(iz['LOC']),
+                'location': get_location_id(locations,iz['LOC']),
             }
 
             schedule.append( info )
@@ -74,7 +80,11 @@ def parse_html( page ):
 
         for item in schedule: dd[item['section']].append({ k: item[k] for k in wks })
 
-        for k, v in dd.items(): writejson({ 'title': mod.td.string, 'section': k, 'schedule': v })
+        for k, v in dd.items(): writejson({ 'title': title, 'section': k, 'schedule': v })
+
+        processed.append( ( title, k ) )
+
+    return processed
 
 def get_timetable( subject_codes, name="Timetable", description="" ):
 
