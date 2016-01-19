@@ -29,6 +29,18 @@ def get_location_id( locations, location ):
 
 def parse_html( page ):
 
+    def get_times( tstring ):
+        treg = re.compile(r'([\d]+):([\d]+)(AM|PM)?')
+
+        times = []
+
+        for traw in treg.finditer( tstring ):
+            tm = list(map(int,traw.group(1,2)))
+            if traw.group(3) and traw.group(3) == "PM" and tm[0] < 12: tm[0] += 12
+            times.append(tm)
+
+        return times
+
     def get_row( row ):
         tag = re.compile(r'MTG_([^$]+)')
 
@@ -64,9 +76,8 @@ def parse_html( page ):
 
             if 'SECTION' in iz: section = iz['SECTION']
             if iz['COMP'] != '\xa0': component = iz['COMP']
-
             dt = [ int(i) for i in reversed( iz['DATES'].split(' - ')[0].split('/') ) ]
-            tm = [ list(map(int,t.split(':'))) for t in iz['SCHED'].split(' ') if ':' in t ]
+            tm = get_times( iz['SCHED'] )
 
             info = {
                 'section': section, 'description': component,
@@ -82,12 +93,11 @@ def parse_html( page ):
 
         for k, v in dd.items(): writejson({ 'title': title, 'section': k, 'schedule': v })
 
-        processed.append( ( title, k ) )
+        processed.append( ( title, ', '.join(dd.keys()) ) )
 
     return processed
 
 def get_timetable( subject_codes, name="Timetable", description="" ):
-
 
     def get_event( title, section, l ):
 
@@ -131,7 +141,4 @@ if __name__ == '__main__':
     codes = []
     for root, subdirs, files in os.walk( modulepath ):
         codes.extend([ os.path.join( os.path.basename( root ), f ) for f in files ])
-    timetable = get_timetable( codes )
-    print( timetable )
-
-    #with open( 'schedule.html' ) as f: parse_page( f.read() )
+    print( codes )
