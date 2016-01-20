@@ -1,4 +1,4 @@
-import os, http.server
+import re, os, http.server
 from urllib.parse import urlsplit, parse_qs
 from timetable import get_timetable
 
@@ -19,9 +19,25 @@ def get_params( qs ):
 
     return p
 
+def get_page( path ):
+    try:
+        with open( path, 'rb' ) as f: return f.read()
+    except EnvironmentError:
+        return None
+
 class CalHandler( http.server.CGIHTTPRequestHandler ):
 
     cgi_directories = ['/']
+
+    extensions_map = {
+        '': 'application/octet-stream',
+        'data': 'application/json',
+        'js': 'application/javascript',
+        'png': 'image/png',
+        'css': 'text/css',
+        'html': 'text/html',
+        'ics': 'text/calendar',
+    }
 
     def do_HEAD(s):
         s.send_response(200)
@@ -30,37 +46,30 @@ class CalHandler( http.server.CGIHTTPRequestHandler ):
 
     def do_GET(s):
         p = urlsplit( s.path )
+        page = None
 
-        if p.path == '/ics':
-            s.send_response(200)
-            s.send_header("Content-type", "text/calendar")
-            s.end_headers()
+        if p.path == '/':
+            page =  get_page( 'index.html' )
+            ctype = s.extensions_map['html']
 
-            cal = get_timetable( **get_params( p.query ) )
-            s.wfile.write(cal)
+        elif p.path == '/ics':
+            page = get_timetable( **get_params( p.query ) )
+            ctype = s.extensions_map['ics']
 
         else:
-            page = None
-            ctype = 'text/html'
+            urls = re.match(r'/(js|css|data|png)/', p.path )
+            if urls:
+                page = get_page( p.path[1:] )
+                ctype = s.guess_type( p.path )
+                if p.path[-3:] == 'css': ctype = s.extensions_map['css']
 
-            if p.path == '/':
-                with open( 'index.html' ) as f: page = f.read()
-
-            elif p.path.startswith('/data/'):
-                try:
-                    with open( p.path[1:] ) as f: page = f.read()
-                    ctype = 'application/json/'
-                except EnvironmentError:
-                    s.send_error(404)
-
-            else:
-                s.send_error(404)
-
-            if page:
-                s.send_response(200)
-                s.send_header("Content-type", ctype)
-                s.end_headers()
-                s.wfile.write(page.encode())
+        if page:
+            s.send_response(200)
+            s.send_header("Content-type", ctype)
+            s.end_headers()
+            s.wfile.write(page)
+        else:
+            s.send_error(404, "File not found")
 
 def run( host='' ):
     port = os.getenv("PORT")
