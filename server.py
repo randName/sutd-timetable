@@ -8,12 +8,12 @@ def get_params( qs ):
     q = parse_qs( qs )
 
     if not q:
-        p['subject_codes'] = qs.split(',')
+        p['subject_codes'] = [ c.split('/') for c in qs.split(',') ]
     else:
         if 'codes' in q:
             codes = q['codes']
             if len(codes) == 1: codes = codes[0].split(',')
-            p['subject_codes'] = codes
+            p['subject_codes'] = [ c.split('/') for c in codes ]
         
     if 'subject_codes' not in p: p['subject_codes'] = []
 
