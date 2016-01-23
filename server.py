@@ -1,6 +1,6 @@
 import re, os, http.server
 from urllib.parse import urlsplit, parse_qs
-from timetable import get_timetable
+from timetable import get_timetable, parse_item
 
 def get_params( qs ):
 
@@ -25,9 +25,7 @@ def get_page( path ):
     except EnvironmentError:
         return None
 
-class CalHandler( http.server.CGIHTTPRequestHandler ):
-
-    cgi_directories = ['/']
+class CalHandler( http.server.SimpleHTTPRequestHandler ):
 
     extensions_map = {
         '': 'application/octet-stream',
@@ -55,6 +53,11 @@ class CalHandler( http.server.CGIHTTPRequestHandler ):
         elif p.path == '/ics':
             page = get_timetable( **get_params( p.query ) )
             ctype = s.extensions_map['ics']
+
+        elif p.path == '/upload':
+            parse_item( parse_qs( p.query ) )
+            page = '{"status":"ok"}'.encode()
+            ctype = s.extensions_map['data']
 
         else:
             urls = re.match(r'/(js|css|data|png)/', p.path )

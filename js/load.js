@@ -4,5 +4,13 @@ $.getJSON( "data/modules", function(r){
 	$.each( mc.sort(), function(i,v){
 		$("#modulelist").append($("<div class='panel-group col-sm-6 col-lg-4'/>").attr('id','l'+v));
 	});
-	display_modules( r );
+	localStorage.modules = JSON.stringify( r );
+	displayModules( r );
+});
+
+$.getJSON( "data/SUTD_locations", function(r){ localStorage.locations = JSON.stringify(r); });
+
+$(document).ready(function(){
+    uploadModal();
+    addLoaderEvents();
 });

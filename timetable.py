@@ -3,9 +3,9 @@ import os, re, json
 from icalendar import Calendar, Event
 from collections import defaultdict
 from datetime import datetime
-from bs4 import BeautifulSoup
 
 DATA_DIR = "data"
+TMP_FILE = "tmp"
 MOD_FILE = "modules"
 LOC_FILE = "SUTD_locations"
 
@@ -21,92 +21,43 @@ def writejson( path, js ):
     with open( "%s/%s" % ( DATA_DIR, path ), 'w' ) as f:
         print( json.dumps( js ), file=f )
 
-def writemod( code, section, schedule ):
-    os.makedirs( "%s/%s" % ( DATA_DIR, code ), exist_ok=True )
-    writejson( "%s/%s" % ( code, section ), schedule )
+def add_schedule( modfile, lesson ):
+    with open( "%s/%s" % ( DATA_DIR, TMP_FILE ), 'a' ) as f:
+        print( "%s\t%s" % ( modfile, json.dumps( lesson ) ), file=f )
 
-def get_location_id( locations, location ):
-    for k, v in locations.items():
-        if v == location: return k
-    return location
+def load_schedule():
+    to_write = defaultdict(list)
+    def push(f,l): to_write[f].append(l)
 
-def parse_html( page ):
+    with open( "%s/%s" % ( DATA_DIR, TMP_FILE ) ) as f:
+        for line in f: push(*line.rstrip('\n').split('\t'))
 
-    def get_time( t ):
-        tm = list( map( int, t.group(1,2) ) )
-        if t.group(3) == "PM" and tm[0] < 12: tm[0] += 12
+    for modfile, l in to_write.items():
+        code, section = modfile.split('/')
+        os.makedirs( "%s/%s" % ( DATA_DIR, code ), exist_ok=True )
+        with open( "%s/%s" % ( DATA_DIR, modfile ), 'w' ) as f:
+            print( "[%s]" % ', '.join(l), file=f )
 
-        return tm
+    os.remove( "%s/%s" % ( DATA_DIR, TMP_FILE ) )
 
-    def get_row( row ):
-        tag = re.compile(r'MTG_([^$]+)')
+def parse_item( upload ):
+    for k in upload: upload[k] = upload[k][0]
 
-        iz = {}
+    if 'block' in upload:
+        load_schedule()
 
-        for td in row('td'):
-            try:
-                iz[ tag.search( td.div.get('id') ).group(1) ] = td.div.span.string
-            except:
-                pass
+    elif 'sub' in upload:
+        get_date = lambda x: list(map(int,x.split('.')))
+        dt = [ int(i) for i in reversed( upload['d'].split('.') ) ]
+        item = {
+            'description': upload['c'], 'location': upload['l'],
+            'start': dt + get_date(upload['s']),
+            'end': dt + get_date(upload['e']),
+        }
+        add_schedule( upload['sub'].replace('-','/'), item )
 
-        return iz
-
-    soup = BeautifulSoup( page, 'html.parser' )
-
-    table = soup.find('table',id='ACE_STDNT_ENRL_SSV2$0')
-
-    if not table: return None
-
-    time_str = re.compile(r'([\d]+):([\d]+)(AM|PM)?')
-    locations = readjson( LOC_FILE )
-    modules = readjson( MOD_FILE )
-
-    processed = []
-
-    for mod in table.find_all('table',class_="PSGROUPBOXWBO"):
-        schedule = defaultdict(list)
-
-        title = mod.td.string.split(' - ')
-        code = title[0].replace(' ','')
-        title = title[1]
-
-        for row in mod.find_all('tr',id=re.compile(r'^trCLASS_MTG_VW')):
-            iz = get_row( row )
-
-            if 'SECTION' in iz: section = iz['SECTION']
-            if iz['COMP'] != '\xa0': component = iz['COMP']
-            dt = [ int(i) for i in reversed( iz['DATES'].split(' - ')[0].split('/') ) ]
-            tm = [ get_time( t ) for t in time_str.finditer( iz['SCHED'] ) ]
-
-            info = {
-                'description': component,
-                'start': dt + tm[0], 'end': dt + tm[1],
-                'location': get_location_id(locations,iz['LOC']),
-            }
-
-            schedule[section].append( info )
-
-        for k, v in schedule.items(): writemod( code, k, v )
-
-        nw = "{:%Y/%m/%d}".format( datetime.now() )
-
-        if code not in modules:
-            modules[code] = { 'title': title, 'sections': [] }
-            current_sections = []
-        else:
-            current_sections = [ s[0] for s in modules[code]['sections'] ]
-
-        for section in schedule.keys():
-            if section in current_sections:
-                modules[code]['sections'][current_sections.index(section)][1] = nw
-            else:
-                modules[code]['sections'].append( ( section, nw ) )
-
-        processed.append( ( "%s - %s" % ( code, title ), ', '.join(schedule.keys()) ) )
-
-    writejson( MOD_FILE, modules )
-
-    return processed
+    elif 'module' in upload:
+        print( upload )
 
 def get_timetable( subject_codes, name="Timetable", description="" ):
 

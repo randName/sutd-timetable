@@ -1,4 +1,4 @@
-function display_modules( mods ){
+function displayModules( mods ){
 	$.each( mods, function(k,s){
 		var t=k.split('.');
 		var panel = $("<div class='panel panel-primary'/>");
