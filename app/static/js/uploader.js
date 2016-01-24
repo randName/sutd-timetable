@@ -30,18 +30,15 @@ function handleFile( f )
 		r.onload = function(e){
 			var processed = parseTimetable( e.target.result );
 			if ( processed.length > 0 ){
-				var b=$("<div class='progress-bar' role='progressbar' aria-valuemin='0'>");
-				b.attr({'aria-valuemax':100,'aria-valuenow':0,style:'width: 0%'});
-				var pb = $("<div class='progress'/>").append(b).appendTo("#ubody");
+				var ld = $("<div/>");
+				$("<span id='loading' class='glyphicon glyphicon-upload'/>").appendTo(ld);
+				$("#ubody").append(ld);
 
-				var mx = processed.length;
-				$.each( processed, function(i,s){
-					$.get( "/upload", s, function(r){
-						var pct = Math.round(1000*(i+1)/mx)/10;
-						b.attr({'aria-valuenow':pct,style:'width: '+pct+'%'}).text(pct+'%');
-					});
+				$.ajax( '/upload', {
+					type: 'POST', contentType: 'application/json',
+					data: JSON.stringify( processed ),
+					success: function(r){ $("#loading").attr({'class':'glyphicon glyphicon-ok'}); }
 				});
-
 			} else {
 				var al = $("<div class='alert alert-warning' role='alert'/>");
 				al.html('<strong>Error:</strong> No entries found.').appendTo("#uploadstatus");

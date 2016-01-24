@@ -1,4 +1,4 @@
-$.getJSON( "data/modules", function(r){
+$.getJSON( "modules", function(r){
 	var mc = [];
 	$.each( r, function(k,s){ var t=k.split('.')[0]; if ( mc.indexOf(t) == -1 ) mc.push(t); } );
 	$.each( mc.sort(), function(i,v){
