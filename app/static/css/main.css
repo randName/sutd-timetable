@@ -13,3 +13,5 @@
 		cursor: inherit;
 		display: block;
 }
+
+input[readonly] { background-color: white !important; cursor: text !important; }

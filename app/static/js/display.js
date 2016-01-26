@@ -9,7 +9,7 @@ function displayModules( mods ){
 		var sc = $("<ul class='list-group'/>");
 		$.each( s.sections, function(k,v){
 			var li = $("<li class='list-group-item list-group-item-info'/>");
-			var cb = $("<input type='checkbox'>").attr('value',k+'/'+v[0]);
+			var cb = $("<input type='checkbox'>").attr('value',k);
 			var dt = (new Date(v[1]*1000)).toISOString().slice(0,10);
 			var lz = $("<label/>").text(v[0]+' (Updated: '+dt+')').prepend(cb);
 			sc.append( li.append( $("<div class='checkbox'/>").html(lz) ) );
