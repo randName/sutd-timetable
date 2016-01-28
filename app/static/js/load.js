@@ -11,6 +11,5 @@ $.getJSON( "modules", function(r){
 $.getJSON( "locations", function(r){ localStorage.locations = JSON.stringify(r); });
 
 $(document).ready(function(){
-    uploadModal();
-    addLoaderEvents();
+	attachUploader();
 });

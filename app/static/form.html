@@ -1,0 +1,61 @@
+<style type='text/css' scoped>
+.btn-file { position: relative; overflow: hidden; }
+
+.btn-file input[type=file] {
+	position: absolute; top: 0; right: 0;
+	min-width: 100%; min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity=0); opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
+}
+
+input[readonly] { background-color: white !important; cursor: text !important; }
+</style>
+<div class='modal-dialog'>
+ <div class='modal-content'>
+  <div class='modal-header'>
+   <button type='button' class='close' data-dismiss='modal'>&times;</button>
+   <h4 class='modal-title'>Upload Timetable</h4>
+  </div>
+  <div class='modal-body'>
+   <ol>
+    <li>Login to <a id='sams' target='_blank'></a> with your school login (ignore the warning).</li>
+    <li>Visit <a id='gbl' target='_blank'></a> with the same session and save it.</li>
+    <li>Upload the .html below.</li>
+   </ol>
+   <div id='uploadstatus' role='alert' style='display:none'></div>
+   <div id='uprog' class='progress' style='display:none'>
+    <div id='ubar' class='progress-bar progress-bar-striped active' role='progressbar'></div>
+   </div>
+   <div class='input-group'>
+    <div class='input-group-btn'>
+     <span class='btn btn-primary btn-file'>
+      Browse&hellip; <input type='file' id='loader'>
+     </span>
+    </div>
+    <input type='text' id='fname' class='form-control' readonly>
+    <div class='input-group-btn'>
+     <button type='button' id='ubutt' class='btn btn-primary'>
+      <i id='spinner' style='display:none'></i>
+      <span id='buttext' class='text'>Upload</span>
+     </button>
+    </div>
+   </div>
+  </div>
+  <div class='modal-footer'>
+   <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+  </div>
+ </div>
+</div>
+<script type='text/javascript'>
+ var sams = "https://sams.sutd.edu.sg/";
+ var sams_a = document.getElementById('sams');
+ sams_a.href = sams; sams_a.text = sams;
+ var gbl_a = document.getElementById('gbl');
+ gbl_a.href = sams + "psc/CSPRD/EMPLOYEE/HRMS/c/SA_LEARNER_SERVICES.SSR_SSENRL_LIST.GBL";
+ gbl_a.text = "this page";
+</script>

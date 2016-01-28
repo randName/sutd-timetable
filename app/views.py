@@ -8,6 +8,10 @@ from .models import Module, Section, Lesson
 def index():
     return app.send_static_file("index.html")
 
+@app.route('/form')
+def upload_form():
+    return app.send_static_file("form.html")
+
 @app.route('/locations')
 def get_locations():
     return app.send_static_file("SUTD_locations")
@@ -26,7 +30,7 @@ def get_modules():
 
     return json.jsonify(modulelist)
 
-@app.route('/ics')
+@app.route('/calendar')
 def get_timetable():
 
     def get_location( l ): return "%s (%s)" % ( locations.get(l,"TBD"), l )
