@@ -30,6 +30,26 @@ def get_modules():
 
     return json.jsonify(modulelist)
 
+@app.route('/section/<int:cn>')
+def get_section(cn):
+
+    section = Section.query.get(cn)
+    if not section: return json.jsonify({'status':'error'})
+
+    updated = int(section.last_updated.timestamp())
+    schedule = Lesson.query.filter_by(class_no=cn).all()
+    events = []
+
+    for lesson in schedule:
+        e = {
+            'title': str(section.module),
+            'description': "%s (%s)" % ( lesson.component, section.name ),
+            'start': lesson.start.isoformat(), 'end': lesson.end.isoformat(),
+        }
+        events.append( e )
+
+    return json.jsonify({'status':'ok', 'events':events, 'updated':updated})
+
 @app.route('/calendar')
 def get_timetable():
 

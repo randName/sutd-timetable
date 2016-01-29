@@ -10,6 +10,10 @@ $.getJSON( "modules", function(r){
 
 $.getJSON( "locations", function(r){ localStorage.locations = JSON.stringify(r); });
 
+$(document).on( 'change', ':checkbox', handleCheckbox );
+
 $(document).ready(function(){
+	window.sources = {};
 	attachUploader();
+	attachCalendar();
 });
