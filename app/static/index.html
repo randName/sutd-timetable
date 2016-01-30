@@ -13,7 +13,6 @@
   <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.0/fullcalendar.min.js'></script>
   <script type='text/javascript' src='/static/js/uploader.js' ></script>
   <script type='text/javascript' src='/static/js/calendar.js'></script>
-  <script type='text/javascript' src='/static/js/display.js'></script>
   <script type='text/javascript' src='/static/js/load.js' ></script>
  </head>
  <body data-spy='scroll' data-target='#navbar'>
@@ -35,9 +34,16 @@
   <div class='container' role='main'>
    <div class='nav-pad'></div>
    <div id='modules' class='panel panel-default'>
+    <div class='panel-heading'>Module Listing</div>
     <div class='panel-body'>
      <div id='ualert' class='alert alert-info' role='alert'>Module or Section not available? <a class='alert-link' data-toggle='modal' href='#uploader'>Upload your timetable here.</a></div>
      <div id='modulelist' class='panel-group'></div>
+    </div>
+   </div>
+   <div id='linken' class='panel panel-default'>
+    <div class='panel-heading'>Subscription link (<a href='#howto'>How to add?</a>)</div>
+    <div class='panel-body'>
+	 <pre>http://<span id='absurl'></span>/calendar?<span id='modlink'></span></pre>
     </div>
    </div>
    <div id='calendar'></div>
