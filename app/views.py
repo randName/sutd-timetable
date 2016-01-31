@@ -70,7 +70,12 @@ def get_timetable():
     q = request.query_string.decode()
     if not q: return json.jsonify({'status':'error'})
 
-    locations = json.load( get_locations().response.file )
+    lc = get_locations().response
+    try:
+        lcf = lc.file
+    except AttributeError:
+        lcf = lc.filelike
+    locations = json.load( lcf )
 
     sections = []
     cal = Calendar()
