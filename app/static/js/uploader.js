@@ -110,7 +110,7 @@ function showAlert( style, message ){
 }
 
 function attachUploader(){
-	$("#uploader").load( '/form', '', function(){
+	$("#uploader").load( '/static/form.html', '', function(){
 		$("#loader").on('change',function(e){ loadFile(e.target.files[0]); });
 		$("#ubutt").click(function(e){ sendData( JSON.parse( localStorage.processed ) ); });
 	});

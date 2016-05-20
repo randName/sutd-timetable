@@ -8,10 +8,6 @@ from .models import Module, Section, Lesson
 def index():
     return app.send_static_file("index.html")
 
-@app.route('/form')
-def upload_form():
-    return app.send_static_file("form.html")
-
 @app.route('/locations')
 def get_locations():
     return app.send_static_file("SUTD_locations")
