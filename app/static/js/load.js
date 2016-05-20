@@ -15,4 +15,7 @@ $(document).on( 'change', ':checkbox', handleCheckbox );
 $(document).ready(function(){
 	attachUploader();
 	attachCalendar();
+	$("#howto").load( '/static/howto.html', '', function(){
+		$('#howtotabs a').click(function(e){e.preventDefault();$(this).tab('show');});
+	});
 });

@@ -25,9 +25,13 @@
 	 <a class='navbar-brand' href='#'>SUTD Timetables</a>
 	</div>
     <div id='navbar' class='navbar-collapse collapse'>
-	 <ul class='nav navbar-nav'>
+	 <ul class='nav navbar-nav navbar-left'>
 	  <li class='active'><a href='#modules'>Modules</a></li>
 	  <li><a href='#calendar'>Calendar</a></li>
+	 </ul>
+	 <ul class='nav navbar-nav navbar-right'>
+	  <li><a href='https://github.com/randname/sutd-timetable'>Source</a></li>
+	 </ul>
 	</div>
    </div>
   </nav>
@@ -41,7 +45,7 @@
     </div>
    </div>
    <div id='linken' class='panel panel-default'>
-    <div class='panel-heading'>Subscription link (<a href='#howto'>How to add?</a>)</div>
+    <div class='panel-heading'>Subscription link (<a href='#howto' data-toggle='modal'>How to add?</a>)</div>
     <div class='panel-body'>
 	 <pre>http://<span id='absurl'></span>/calendar?<span id='modlink'></span></pre>
     </div>
@@ -49,5 +53,6 @@
    <div id='calendar'></div>
   </div>
   <div id='uploader' class='modal fade' role='dialog'></div>
+  <div id='howto' class='modal fade' role='dialog'></div>
  </body>
 </html>
