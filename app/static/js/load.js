@@ -4,7 +4,7 @@ $.getJSON( "modules", function(r){
 	$.each( mc.sort(), function(i,v){
 		$("#modulelist").append($("<div class='panel-group col-sm-6 col-lg-4'/>").attr('id','l'+v));
 	});
-	localStorage.modules = JSON.stringify( r );
+	localStorage.modules = JSON.stringify(r);
 	displayModules( r );
 });
 

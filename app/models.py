@@ -27,6 +27,14 @@ class Section(db.Model):
         s.mod_code = mod_code
         s.name = name
 
+    @property
+    def updated(s):
+        return int(s.last_updated.timestamp())
+
+    @property
+    def details(s):
+        return ( s.name, s.updated )
+
     def __str__(s):
         return '%s/%s' % ( s.mod_code, s.name )
 

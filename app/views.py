@@ -1,30 +1,29 @@
 from datetime import datetime
 from icalendar import Calendar, Event
 from flask import request, json
-from app import db, models, app
+from app import rd, db, models, app
 from .models import Module, Section, Lesson
 
 @app.route('/')
 def index():
-    return app.send_static_file("index.html")
+    return app.send_static_file('index.html')
 
 @app.route('/locations')
 def get_locations():
-    return app.send_static_file("SUTD_locations")
+    return json.jsonify( rd.hgetall('locations') )
+
+@app.route('/groups')
+def get_groups():
+    return json.jsonify({ g:tuple(rd.smembers('group:%s'%g)) for g in rd.smembers('groups') })
 
 @app.route('/modules')
 def get_modules():
 
-    modulelist = {}
-    for module in Module.query.all():
-        modulelist[module.code] = { 'title': module.title }
+    def module(m):
+        sections = Section.query.filter_by(mod_code=m.code).all()
+        return { 'title': m.title, 'sections': { s.class_no: s.details for s in sections } }
 
-        sections = {}
-        for section in Section.query.filter_by(mod_code=module.code).all():
-            sections[section.class_no] = ( section.name, int(section.last_updated.timestamp()) )
-        modulelist[module.code]['sections'] = sections
-
-    return json.jsonify(modulelist)
+    return json.jsonify({ m.code: module(m) for m in Module.query.all() })
 
 @app.route('/section/<int:cn>')
 def get_section(cn):
@@ -32,19 +31,16 @@ def get_section(cn):
     section = Section.query.get(cn)
     if not section: return json.jsonify({'status':'error'})
 
-    updated = int(section.last_updated.timestamp())
-    schedule = Lesson.query.filter_by(class_no=cn).all()
-    events = []
-
-    for lesson in schedule:
-        e = {
+    def event(l):
+        return {
             'title': str(section.module),
-            'description': "%s (%s)" % ( lesson.component, section.name ),
-            'start': lesson.start.isoformat(), 'end': lesson.end.isoformat(),
+            'start': l.start.isoformat(), 'end': l.end.isoformat(),
+            'description': "%s (%s)" % ( l.component, section.name ),
         }
-        events.append( e )
 
-    return json.jsonify({'status':'ok', 'events':events, 'updated':updated})
+    schedule = [ event(lesson) for lesson in Lesson.query.filter_by(class_no=cn).all() ]
+
+    return json.jsonify({'status':'ok', 'events':schedule, 'updated':section.updated})
 
 @app.route('/calendar')
 def get_timetable():
@@ -66,17 +62,19 @@ def get_timetable():
     q = request.query_string.decode()
     if not q: return json.jsonify({'status':'error'})
 
-    lc = get_locations().response
-    try:
-        lcf = lc.file
-    except AttributeError:
-        lcf = lc.filelike
-    locations = json.load( lcf )
+    if ',' in q:
+        calds = None
+        codes = q.split(',')
+    else:
+        calds = q
+        codes = rd.smembers('group:%s'%q)
+
+    locations = rd.hgetall('locations')
 
     sections = []
     cal = Calendar()
 
-    for cn in q.split(','):
+    for cn in codes:
         try:
             cn = int(cn)
         except ValueError:
@@ -96,7 +94,7 @@ def get_timetable():
         'calscale': 'GREGORIAN',
         'x-wr-timezone': 'Asia/Singapore',
         'x-wr-calname': 'Timetable',
-        'x-wr-caldesc': 'Timetable for ' + ', '.join( sections ),
+        'x-wr-caldesc': 'Timetable for ' + calds if calds else ', '.join( sections ),
     }
 
     for k, v in caldict.items(): cal.add(k,v)
@@ -128,8 +126,8 @@ def load_data():
 
         sn = 0
         for i in section['schedule']:
-            d = [ int(n) for n in reversed( i['d'].split('.') ) ]
-            dts = [ datetime(*(d+list(map(int,i[l].split('.'))))) for l in ('s','e') ]
+            d = tuple( int(n) for n in reversed( i['d'].split('.') ) )
+            dts = [ datetime(*(d+tuple(map(int,i[l].split('.'))))) for l in 'se' ]
             lesson = {
                 'class_no': cn, 'sn': sn, 'location': i['l'],
                 'start': dts[0], 'end': dts[1], 'component':i['c'],
