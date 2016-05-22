@@ -1,10 +1,10 @@
 function displayModules( mods ){
 	$.each( mods, function(k,s){
-		var t=k.split('.');
+		var t=k.split('.'),l=k.replace('.','-');
 		var panel = $("<div class='panel panel-primary'/>");
 		var phead = $("<div class='panel-heading'/>");
 		var ptitle = $("<h3 class='panel-title'/>");
-		var ahead=$("<a data-toggle='collapse'/>").attr({'data-parent':'#l'+t[0],'href':'#m'+t[1]});
+		var ahead=$("<a data-toggle='collapse'/>").attr({'data-parent':'#l'+t[0],'href':'#m'+l});
 
 		var sc = $("<ul class='list-group'/>");
 		$.each( s.sections, function(k,v){
@@ -16,7 +16,7 @@ function displayModules( mods ){
 		});
 
 		panel.html(phead.html(ptitle.html(ahead.text(k+' - '+s.title))));
-		$("<div class='panel-collapse collapse'/>").attr('id','m'+t[1]).html(sc).appendTo(panel);
+		$("<div class='panel-collapse collapse'/>").attr('id','m'+l).html(sc).appendTo(panel);
 		$('#l'+t[0]).append(panel);
 	});
 }
