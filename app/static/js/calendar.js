@@ -19,6 +19,7 @@ function displayModules( mods ){
 		$("<div class='panel-collapse collapse'/>").attr('id','m'+l).html(sc).appendTo(panel);
 		$('#l'+t[0]).append(panel);
 	});
+	$('#ualert').removeClass('hidden');
 }
 
 function attachCalendar(){
@@ -31,39 +32,39 @@ function attachCalendar(){
 		defaultView: 'agendaWeek',
 		eventRender: handleEventRender,
 	});
+	$.getJSON( 'groups', function(r){
+		window.groups = r;
+		var sl=$("<select/>").append($("<option>None</option>"));
+		$.each( r, function(k,v){ if (k[0]=='F') $("<option>"+k+"</option>").appendTo(sl); });
+		sl.change( function(e){ selectGroup( e.target.value ); } );
+		$("#freshy").append(sl).removeClass('hidden');
+	});
 	window.sources = {};
 	window.checked = [];
-	window.groups = {};
-	window.activeGroups = [];
 	$("#absurl").html( window.location.host );
 }
 
 function handleCheckbox(){
-	var checked = $(this).is(':checked');
-	if ( this.value in window.groups ){
-		toggleGroup( checked, this.value );
-	} else {
-		toggleSection( checked, this.value );
-	}
+	toggleSection( $(this).is(':checked'), this.value );
 }
 
-function toggleGroup( action, group ){
-	if ( group in window.groups ){
-		var gp = $.inArray( group, window.activeGroups );
-		if ( action ){
-			if ( gp == -1 ) window.activeGroups.push( group );
-		} else {
-			if ( gp != -1 ) window.activeGroups.splice( gp, 1 );
-		}
-		var ck = $.map( window.activeGroups, function(g){ return window.groups[g]; });
-		$(":checkbox").each( function(){
-			var kk = ( $.inArray( parseInt(this.value), ck ) != -1 );
-			toggleSection( kk, this.value ); $(this).prop( "checked", kk );
-		});
-	}
+function selectGroup( group ){
+	if ( group in window.groups ){ var ck = window.groups[group]; }
+	$(":checkbox").each( function(){
+		var kk = ck ? ( $.inArray( this.value, ck ) != -1 ) : false;
+		toggleSection( kk, this.value ); $(this).prop( "checked", kk );
+	});
 }
 
 function toggleSection( action, section ){
+	var sc = $.inArray( section, window.checked );
+	if ( action != ( sc == -1 ) ) return;
+	if ( action ){
+		window.checked.push( section );
+	} else {
+		window.checked.splice( sc, 1 );
+	}
+	$("#modlink").html( window.checked.sort().join(',') );
 	if ( section in window.sources ){
 		toggleEventSource( action, section );
 	} else {
@@ -73,17 +74,6 @@ function toggleSection( action, section ){
 			toggleEventSource( action, section );
 		});
 	}
-	updateLink( action, section );
-}
-
-function updateLink( action, section ){
-	var sc = $.inArray( section, window.checked );
-	if ( action ){
-		if ( sc == -1 ) window.checked.push( section );
-	} else {
-		if ( sc != -1 ) window.checked.splice( sc, 1 );
-	}
-	$("#modlink").html( window.checked.sort().join(',') );
 }
 
 function toggleEventSource( action, section ){
