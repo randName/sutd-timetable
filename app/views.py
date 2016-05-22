@@ -12,19 +12,18 @@ def index():
 def get_locations():
     return app.send_static_file("SUTD_locations")
 
+@app.route('/freshmore')
+def get_freshmore():
+    return '{}'
+
 @app.route('/modules')
 def get_modules():
 
-    modulelist = {}
-    for module in Module.query.all():
-        modulelist[module.code] = { 'title': module.title }
+    def module(m):
+        sections = Section.query.filter_by(mod_code=m.code).all()
+        return { 'title': m.title, 'sections': { s.class_no: s.details for s in sections } }
 
-        sections = {}
-        for section in Section.query.filter_by(mod_code=module.code).all():
-            sections[section.class_no] = ( section.name, int(section.last_updated.timestamp()) )
-        modulelist[module.code]['sections'] = sections
-
-    return json.jsonify(modulelist)
+    return json.jsonify({ m.code: module(m) for m in Module.query.all() })
 
 @app.route('/section/<int:cn>')
 def get_section(cn):
@@ -32,19 +31,16 @@ def get_section(cn):
     section = Section.query.get(cn)
     if not section: return json.jsonify({'status':'error'})
 
-    updated = int(section.last_updated.timestamp())
-    schedule = Lesson.query.filter_by(class_no=cn).all()
-    events = []
-
-    for lesson in schedule:
-        e = {
+    def event(l):
+        return {
             'title': str(section.module),
-            'description': "%s (%s)" % ( lesson.component, section.name ),
-            'start': lesson.start.isoformat(), 'end': lesson.end.isoformat(),
+            'start': l.start.isoformat(), 'end': l.end.isoformat(),
+            'description': "%s (%s)" % ( l.component, section.name ),
         }
-        events.append( e )
 
-    return json.jsonify({'status':'ok', 'events':events, 'updated':updated})
+    schedule = [ event(lesson) for lesson in Lesson.query.filter_by(class_no=cn).all() ]
+
+    return json.jsonify({'status':'ok', 'events':schedule, 'updated':section.updated})
 
 @app.route('/calendar')
 def get_timetable():
@@ -66,6 +62,11 @@ def get_timetable():
     q = request.query_string.decode()
     if not q: return json.jsonify({'status':'error'})
 
+    if 'F' in q:
+        codes = []
+    else:
+        codes = q.split(',')
+
     lc = get_locations().response
     try:
         lcf = lc.file
@@ -76,7 +77,7 @@ def get_timetable():
     sections = []
     cal = Calendar()
 
-    for cn in q.split(','):
+    for cn in codes:
         try:
             cn = int(cn)
         except ValueError:
