@@ -46,6 +46,7 @@ function attachCalendar(){
 
 function handleCheckbox(){
 	toggleSection( $(this).is(':checked'), this.value );
+	$("#modlink").html( window.checked.sort().join(',') );
 }
 
 function selectGroup( group ){
@@ -54,6 +55,7 @@ function selectGroup( group ){
 		var kk = ck ? ( $.inArray( this.value, ck ) != -1 ) : false;
 		toggleSection( kk, this.value ); $(this).prop( "checked", kk );
 	});
+	$("#modlink").html( group );
 }
 
 function toggleSection( action, section ){
@@ -64,7 +66,6 @@ function toggleSection( action, section ){
 	} else {
 		window.checked.splice( sc, 1 );
 	}
-	$("#modlink").html( window.checked.sort().join(',') );
 	if ( section in window.sources ){
 		toggleEventSource( action, section );
 	} else {
