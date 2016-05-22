@@ -1,20 +1,20 @@
 from datetime import datetime
 from icalendar import Calendar, Event
 from flask import request, json
-from app import db, models, app
+from app import rd, db, models, app
 from .models import Module, Section, Lesson
 
 @app.route('/')
 def index():
-    return app.send_static_file("index.html")
+    return app.send_static_file('index.html')
 
 @app.route('/locations')
 def get_locations():
-    return app.send_static_file("SUTD_locations")
+    return json.jsonify( rd.hgetall('locations') )
 
-@app.route('/freshmore')
-def get_freshmore():
-    return '{}'
+@app.route('/groups')
+def get_groups():
+    return json.jsonify({ g:tuple(rd.smembers('group:%s'%g)) for g in rd.smembers('groups') })
 
 @app.route('/modules')
 def get_modules():
@@ -62,17 +62,14 @@ def get_timetable():
     q = request.query_string.decode()
     if not q: return json.jsonify({'status':'error'})
 
-    if 'F' in q:
-        codes = []
-    else:
+    if ',' in q:
+        calds = None
         codes = q.split(',')
+    else:
+        calds = q
+        codes = rd.smembers('group:%s'%q)
 
-    lc = get_locations().response
-    try:
-        lcf = lc.file
-    except AttributeError:
-        lcf = lc.filelike
-    locations = json.load( lcf )
+    locations = rd.hgetall('locations')
 
     sections = []
     cal = Calendar()
@@ -97,7 +94,7 @@ def get_timetable():
         'calscale': 'GREGORIAN',
         'x-wr-timezone': 'Asia/Singapore',
         'x-wr-calname': 'Timetable',
-        'x-wr-caldesc': 'Timetable for ' + ', '.join( sections ),
+        'x-wr-caldesc': 'Timetable for ' + calds if calds else ', '.join( sections ),
     }
 
     for k, v in caldict.items(): cal.add(k,v)
@@ -129,8 +126,8 @@ def load_data():
 
         sn = 0
         for i in section['schedule']:
-            d = [ int(n) for n in reversed( i['d'].split('.') ) ]
-            dts = [ datetime(*(d+list(map(int,i[l].split('.'))))) for l in ('s','e') ]
+            d = tuple( int(n) for n in reversed( i['d'].split('.') ) )
+            dts = [ datetime(*(d+tuple(map(int,i[l].split('.'))))) for l in 'se' ]
             lesson = {
                 'class_no': cn, 'sn': sn, 'location': i['l'],
                 'start': dts[0], 'end': dts[1], 'component':i['c'],
