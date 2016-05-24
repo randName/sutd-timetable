@@ -33,9 +33,8 @@ def get_section(cn):
 
     def event(l):
         return {
-            'title': str(section.module),
+            'title': l.title, 'description': str(l),
             'start': l.start.isoformat(), 'end': l.end.isoformat(),
-            'description': "%s (%s)" % ( l.component, section.name ),
         }
 
     schedule = [ event(lesson) for lesson in Lesson.query.filter_by(class_no=cn).all() ]
@@ -47,10 +46,10 @@ def get_timetable():
 
     def get_location( l ): return "%s (%s)" % ( locations.get(l,"TBD"), l )
 
-    def get_event( section, lesson ):
+    def get_event( lesson ):
         e = {
-            'summary': str(section.module),
-            'description': "%s (%s)" % ( lesson.component, section.name ),
+            'summary': lesson.title,
+            'description': str(lesson),
             'location': get_location( lesson.location ),
             'dtstart': lesson.start, 'dtend': lesson.end,
         }
@@ -84,7 +83,7 @@ def get_timetable():
         if not section: continue
 
         schedule = Lesson.query.filter_by(class_no=cn).all()
-        for lesson in schedule: cal.add_component( get_event( section, lesson ) )
+        for lesson in schedule: cal.add_component( get_event( lesson ) )
 
         sections.append( str(section) )
 
@@ -129,8 +128,8 @@ def load_data():
             d = tuple( int(n) for n in reversed( i['d'].split('.') ) )
             dts = [ datetime(*(d+tuple(map(int,i[l].split('.'))))) for l in 'se' ]
             lesson = {
-                'class_no': cn, 'sn': sn, 'location': i['l'],
-                'start': dts[0], 'end': dts[1], 'component':i['c'],
+                'class_no': cn, 'sn': sn, 'dts': dts,
+                'location': i['l'], 'component':i['c'],
             }
             db.session.add( Lesson(**lesson) )
             sn += 1

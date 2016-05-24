@@ -51,16 +51,20 @@ class Lesson(db.Model):
 
     section = db.relationship("Section", foreign_keys=class_no)
 
-    def __init__(s, class_no, sn, start, end, component, location):
+    def __init__(s, class_no, sn, dts, component, location):
         s.class_no = class_no
         s.sn = sn
-        s.start = start
-        s.end = end
+        s.start = dts[0]
+        s.end = dts[1]
         s.component = component
         s.location = location
 
+    @property
+    def title(s):
+        return str(s.section.module)
+
     def __str__(s):
-        return '%s from %s to %s at %s' % ( s.component, s.start, s.end, s.location )
+        return "%s (%s)" % ( s.component, s.section.name )
 
     def __repr__(s):
         return "<Lesson %s #%s>" % ( s.class_no, s.sn )
