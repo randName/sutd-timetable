@@ -50,12 +50,14 @@ function handleCheckbox(){
 }
 
 function selectGroup( group ){
-	if ( group in window.groups ){ var ck = window.groups[group]; }
+	if ( group in window.groups ){
+		var ck = window.groups[group];
+		$("#modlink").html( group );
+	}
 	$(":checkbox").each( function(){
 		var kk = ck ? ( $.inArray( this.value, ck ) != -1 ) : false;
 		toggleSection( kk, this.value ); $(this).prop( "checked", kk );
 	});
-	$("#modlink").html( group );
 }
 
 function toggleSection( action, section ){

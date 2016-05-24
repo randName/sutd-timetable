@@ -8,7 +8,6 @@ Running [on Heroku](http://timetable.sutd.design/). Database will be reset every
 ## Todo
 - Add instructions for subscribing to .ics on various platforms
 - Automatically select sections from the uploaded file
-- Freshmore cohort selector
 - Timetable correction tracker
 
 ## FAQ
