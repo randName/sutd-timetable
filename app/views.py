@@ -1,6 +1,7 @@
 from datetime import datetime
 from icalendar import Calendar, Event
 from flask import request, json
+from time import time
 from app import rd, db, models, app
 from .models import Module, Section, Lesson
 
@@ -14,16 +15,27 @@ def get_locations():
 
 @app.route('/groups')
 def get_groups():
-    return json.jsonify({ g:tuple(rd.smembers('group:%s'%g)) for g in rd.smembers('groups') })
+    return json.jsonify({
+        g:tuple(rd.smembers('group:%s'%g)) for g in rd.smembers('groups')
+    })
+
+@app.route('/tgrp')
+def get_tgrp():
+    return json.jsonify({
+        g:tuple(rd.smembers('tgrp:%s'%g)) for g in rd.smembers('tgrps')
+    })
 
 @app.route('/modules')
 def get_modules():
 
     def module(m):
         sections = Section.query.filter_by(mod_code=m.code).all()
-        return { 'title': m.title, 'sections': { s.class_no: s.details for s in sections } }
+        return {
+            'title': m.title,
+            'sections': {s.class_no: s.details for s in sections}
+        }
 
-    return json.jsonify({ m.code: module(m) for m in Module.query.all() })
+    return json.jsonify({m.code: module(m) for m in Module.query.all()})
 
 @app.route('/section/<int:cn>')
 def get_section(cn):
@@ -37,29 +49,33 @@ def get_section(cn):
             'start': l.start.isoformat(), 'end': l.end.isoformat(),
         }
 
-    schedule = [ event(lesson) for lesson in Lesson.query.filter_by(class_no=cn).all() ]
+    schedule = tuple(
+        event(lesson) for lesson in Lesson.query.filter_by(class_no=cn).all()
+    )
 
-    return json.jsonify({'status':'ok', 'events':schedule, 'updated':section.updated})
+    return json.jsonify({
+        'status': 'ok', 'events': schedule, 'updated': section.updated
+    })
 
 @app.route('/calendar')
 def get_timetable():
 
-    def get_location( l ): return "%s (%s)" % ( locations.get(l,"TBD"), l )
+    def get_location(l): return "%s (%s)" % (locations.get(l, "TBD"), l)
 
-    def get_event( lesson ):
+    def get_event(lesson):
         e = {
             'summary': lesson.title,
             'description': str(lesson),
-            'location': get_location( lesson.location ),
+            'location': get_location(lesson.location),
             'dtstart': lesson.start, 'dtend': lesson.end,
         }
 
         event = Event()
-        for k, v in e.items(): event.add(k,v)
+        for k, v in e.items(): event.add(k, v)
         return event
 
     q = request.query_string.decode()
-    if not q: return json.jsonify({'status':'error'})
+    if not q: return json.jsonify({'status': 'error'})
 
     if ',' in q:
         calds = None
@@ -70,7 +86,7 @@ def get_timetable():
 
     locations = rd.hgetall('locations')
 
-    sections = []
+    sct = []
     cal = Calendar()
 
     for cn in codes:
@@ -83,9 +99,9 @@ def get_timetable():
         if not section: continue
 
         schedule = Lesson.query.filter_by(class_no=cn).all()
-        for lesson in schedule: cal.add_component( get_event( lesson ) )
+        for lesson in schedule: cal.add_component(get_event(lesson))
 
-        sections.append( str(section) )
+        sct.append(str(section))
 
     caldict = {
         'prodid': '-//SUTD Timetable Calendar//randName//EN',
@@ -93,10 +109,10 @@ def get_timetable():
         'calscale': 'GREGORIAN',
         'x-wr-timezone': 'Asia/Singapore',
         'x-wr-calname': 'Timetable',
-        'x-wr-caldesc': 'Timetable for ' + calds if calds else ', '.join( sections ),
+        'x-wr-caldesc': 'Timetable for ' + calds if calds else ', '.join(sct),
     }
 
-    for k, v in caldict.items(): cal.add(k,v)
+    for k, v in caldict.items(): cal.add(k, v)
 
     return cal.to_ical(), 200, {'content-type': 'text/calendar'}
 
@@ -105,35 +121,47 @@ def load_data():
     
     module = request.get_json()
     if not Module.query.get(module['code']):
-        db.session.add( Module(**{'code': module['code'], 'title': module['title']}) )
+        db.session.add(
+            Module(**{'code': module['code'], 'title': module['title']})
+        )
 
     sections = []
+    grp_sect = []
+
     for cn, section in module['sections'].items():
         cn = int(cn)
         sct = Section.query.get(cn)
 
         if not sct:
-            sc = { 'class_no': cn, 'mod_code': module['code'], 'name': section['name'] }
-            db.session.add( Section(**sc) )
+            db.session.add(Section(**{
+                'class_no': cn,
+                'name': section['name'],
+                'mod_code': module['code']
+            }))
             db.session.commit()
-            print( "added %s" % sc )
         else:
             sct.last_updated = datetime.now()
             Lesson.query.filter_by(class_no=cn).delete()
 
-        sections.append( section['name'] )
+        sections.append(section['name'])
+        grp_sect.append(cn)
 
         sn = 0
         for i in section['schedule']:
-            d = tuple( int(n) for n in reversed( i['d'].split('.') ) )
-            dts = [ datetime(*(d+tuple(map(int,i[l].split('.'))))) for l in 'se' ]
-            lesson = {
+            d = tuple(int(n) for n in reversed(i['d'].split('.')))
+            dts = [datetime(*(d+tuple(map(int,i[l].split('.'))))) for l in 'se']
+            db.session.add(Lesson(**{
                 'class_no': cn, 'sn': sn, 'dts': dts,
                 'location': i['l'], 'component':i['c'],
-            }
-            db.session.add( Lesson(**lesson) )
+            }))
             sn += 1
 
         db.session.commit()
 
-    return json.jsonify({'status': 'ok','loaded': (module['code'], ', '.join(sections)) })
+    gtime = int(time())
+    rd.sadd('tgrps', gtime)
+    rd.sadd('tgrp:%s'%gtime, *grp_sect)
+
+    return json.jsonify({
+        'status': 'ok', 'loaded': (module['code'], ', '.join(sections))
+    })

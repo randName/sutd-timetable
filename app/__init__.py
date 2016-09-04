@@ -3,11 +3,13 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.redis import FlaskRedis
 from redis import StrictRedis
 
+
 class DecodedRedis(StrictRedis):
     @classmethod
     def from_url(cls, url, db=None, **kwargs):
         kwargs['decode_responses'] = True
         return StrictRedis.from_url(url, db, **kwargs)
+
 
 app = Flask(__name__)
 app.config.from_object('config')
