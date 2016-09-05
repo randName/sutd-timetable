@@ -21,4 +21,5 @@ $(document).ready(function(){
 	$("#howto").load( '/static/howto.html', '', function(){
 		$('#howtotabs a').click(function(e){e.preventDefault();$(this).tab('show');});
 	});
+	$("#ualert").removeClass("hidden");
 });

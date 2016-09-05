@@ -97,6 +97,7 @@ function sendData( data ){
 		$("#buttext").html(" Done!");
 		showAlert('success','<strong>Success!</strong> Thank you for your submission.');
 		$.getJSON( "modules", loadModules );
+		$("#ualert").addClass("hidden");
 	});
 
 	localStorage.processed = "[]";

@@ -19,7 +19,6 @@ function displayModules( mods ){
 		$("<div class='panel-collapse collapse'/>").attr('id','m'+l).html(sc).appendTo(panel);
 		$('#l'+t[0]).append(panel);
 	});
-	$('#ualert').removeClass('hidden');
 }
 
 function attachCalendar(){
