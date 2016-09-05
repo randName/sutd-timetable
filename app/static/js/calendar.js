@@ -40,7 +40,6 @@ function attachCalendar(){
 	});
 	window.sources = {};
 	window.checked = [];
-	$("#absurl").html( window.location.host );
 }
 
 function handleCheckbox(){

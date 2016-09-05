@@ -9,6 +9,10 @@ from .models import Module, Section, Lesson
 def index():
     return app.send_static_file('index.html')
 
+@app.route('/domain')
+def domain_warning():
+    return app.send_static_file('domain.html')
+
 @app.route('/locations')
 def get_locations():
     return json.jsonify( rd.hgetall('locations') )

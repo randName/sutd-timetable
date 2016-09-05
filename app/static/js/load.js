@@ -22,4 +22,6 @@ $(document).ready(function(){
 		$('#howtotabs a').click(function(e){e.preventDefault();$(this).tab('show');});
 	});
 	$("#ualert").removeClass("hidden");
+	$("#absurl").html( window.location.host );
+	if ( window.location.host == "timetable.sutd.design" ){ $("#dalert").removeClass("hidden"); }
 });
