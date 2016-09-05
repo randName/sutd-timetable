@@ -96,6 +96,7 @@ function sendData( data ){
 		$("#spinner").attr({'class':'fa fa-check-circle-o'});
 		$("#buttext").html(" Done!");
 		showAlert('success','<strong>Success!</strong> Thank you for your submission.');
+		$.getJSON( "modules", loadModules );
 	});
 
 	localStorage.processed = "[]";

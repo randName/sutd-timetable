@@ -1,4 +1,5 @@
-$.getJSON( "modules", function(r){
+function loadModules(r){
+	if ( $.isEmptyObject(r) ){ return; } else { $('#placeholder').hide(); }
 	var mc = [];
 	$.each( r, function(k,s){ var t=k.split('.')[0]; if ( mc.indexOf(t) == -1 ) mc.push(t); } );
 	$.each( mc.sort(), function(i,v){
@@ -6,7 +7,9 @@ $.getJSON( "modules", function(r){
 	});
 	localStorage.modules = JSON.stringify(r);
 	displayModules( r );
-});
+}
+
+$.getJSON( "modules", loadModules );
 
 $.getJSON( "locations", function(r){ localStorage.locations = JSON.stringify(r); });
 
