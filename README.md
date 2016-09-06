@@ -3,11 +3,10 @@ A .ics generator for timetables
 
 Pull requests welcome!
 
-Running [on Heroku](http://timetable.sutd.design/). Database will be reset every term.
+Running [on Heroku](http://sutd-timetable.herokuapp.com/). Database will be reset every term.
 
 ## Todo
 - Add instructions for subscribing to .ics on various platforms
-- Automatically select sections from the uploaded file
 - Timetable correction tracker
 
 ## FAQ
