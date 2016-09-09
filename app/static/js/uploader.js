@@ -1,9 +1,7 @@
 function parseTimetable( soup )
 {
-	var locations = JSON.parse( localStorage.locations );
-
 	function getLoc( loc ){
-		for ( var k in locations ){ if(locations[k]==loc) return k; }
+		for ( var k in window.locations ){ if(window.locations[k]==loc) return k; }
 		return loc;
 	}
 
@@ -14,7 +12,7 @@ function parseTimetable( soup )
 		return time.join('.');
 	}
 
-	window.newsections = [];
+	window.loadchecked = [];
 	var nw = (new Date()).toISOString().slice(0,10).replace(/-/g,"/");
 	var processed=[], pg=$("<div/>").html( soup.replace(/<img[^>]*>/g,"") );
 	$.each( pg.find("div[id^='win0divDERIVED_REGFRM1_DESCR20']"), function(k,s){
@@ -32,7 +30,7 @@ function parseTimetable( soup )
 				class_number = parseInt(cn);
 				if ( iz.MTG_SECTION ) section = iz.MTG_SECTION;
 				module.sections[class_number] = { name:section, schedule:[] };
-				window.newsections.push(cn);
+				window.loadchecked.push(cn);
 			}
 			if ( iz.MTG_COMP != '\xa0' ) comp = iz.MTG_COMP;
 			var item = {
@@ -95,16 +93,9 @@ function sendData( data ){
 
 	$.when.apply(null, promises).done(function(){
 		setTimeout(function(){
+			$.getJSON( "modules", loadModules );
 			$("#uprog").attr({style:'display:none'});
 			$("#ualert").addClass("hidden");
-			$.getJSON( "modules", function(){
-				loadModules();
-				$("#modlink").html( window.newsections.sort().join(',') );
-				$(":checkbox").each( function(){
-					var kk = $.inArray( this.value, window.newsections ) != -1;
-					toggleSection( kk, this.value ); $(this).prop( "checked", kk );
-				});
-			});
 		}, 1000);
 		$("#spinner").attr({'class':'fa fa-check-circle-o'});
 		$("#buttext").html(" Done!");
@@ -123,8 +114,8 @@ function showAlert( style, message ){
 }
 
 function attachUploader(){
-	$("#uploader").load( '/static/form.html', '', function(){
-		$("#loader").on('change',function(e){ loadFile(e.target.files[0]); });
+	$("#uploader").load( "/static/form.html", "", function(){
+		$("#loader").on("change", function(e){ loadFile(e.target.files[0]); });
 		$("#ubutt").click(function(e){ sendData( JSON.parse( localStorage.processed ) ); });
 	});
 }
