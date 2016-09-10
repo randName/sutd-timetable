@@ -7,8 +7,10 @@ function loadModules(r){
 	$.each( mc.sort(), function(i,v){
 		$("#modulelist").append($("<div class='panel-group col-sm-6 col-lg-4'/>").attr('id','l'+v));
 	});
+	var selects = [];
 	$.each( r, function(k,s){
 		var t=k.split('.'),l=k.replace('.','-');
+		var nm = [k, s.title], optg = { text: nm.join(' - '), children: [] };
 		var panel = $("<div class='panel panel-primary'/>");
 		var phead = $("<div class='panel-heading'/>");
 		var ptitle = $("<h3 class='panel-title'/>");
@@ -21,12 +23,28 @@ function loadModules(r){
 			var dt = (new Date(v[1]*1000)).toISOString().slice(0,10);
 			var lz = $("<label/>").text(v[0]+' (Updated: '+dt+')').prepend(cb);
 			sc.append( li.append( $("<div class='checkbox'/>").html(lz) ) );
+			optg.children.push({
+				id: k, section: nm[0]+' ('+v[0]+')', name: nm[1],
+				text: nm.concat([v[0]]).join(' - ')
+			});
 		});
-
-		panel.html(phead.html(ptitle.html(ahead.text(k+' - '+s.title))));
+		panel.html(phead.html(ptitle.html(ahead.text(optg.text))));
 		$("<div class='panel-collapse collapse'/>").attr('id','m'+l).html(sc).appendTo(panel);
 		$('#l'+t[0]).append(panel);
+		selects.push(optg);
 	});
+	$("#modsearch").select2({
+		placeholder: "Search for modules...",
+		data: selects,
+		disabled: false,
+		minimumInputLength: 2,
+		templateResult: function(data){
+			if ( data.loading ) return "Loading...";
+			var t=$("<span/>").text(data.name).attr('class','pull-right');
+			return $("<div/>").text(data.section).append(t);
+		},
+		templateSelection: function(data,c){ return data.section; }
+	}).on("select2:select", handleSearchbox).on("select2:unselect", handleSearchbox);
 	selectMultiple( window.loadchecked );
 }
 
@@ -59,6 +77,7 @@ function toggleSection( action, section ){
 }
 
 function selectMultiple( sections ){
+	$("#modsearch").val( sections ).trigger("change");
 	$(":checkbox").each( function(){
 		var kk = sections ? ( $.inArray( this.value, sections ) != -1 ) : false;
 		toggleSection( kk, this.value ); $(this).prop( "checked", kk );
@@ -66,7 +85,18 @@ function selectMultiple( sections ){
 }
 
 function handleCheckbox(){
+	var vs = $("#modsearch").val();
+	if ( $(this).is(':checked') ){
+		vs.push( this.value );
+	} else {
+		vs.splice( $.inArray( this.value, vs ), 1 );
+	}
+	$("#modsearch").val( vs ).trigger("change");
 	toggleSection( $(this).is(':checked'), this.value );
+}
+
+function handleSearchbox(e){
+	selectMultiple( $("#modsearch").val() );
 }
 
 function selectGroup( group ){

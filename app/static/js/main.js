@@ -6,6 +6,7 @@ window.checked = [];
 
 $(document).on( "change", ":checkbox", handleCheckbox );
 $(document).ready(function(){
+	$("#modsearch").select2({ disabled: true, placeholder: "Loading modules..." });
 	attachUploader();
 	attachCalendar();
 	$("#howto").load( "/static/howto.html", "", function(){
@@ -15,4 +16,5 @@ $(document).ready(function(){
 	$("#absurl").html( window.location.host );
 	if ( window.location.host == "timetable.sutd.design" ){ $("#dalert").removeClass("hidden"); }
 	window.loadchecked = window.location.search.substring(1).split(',');
+	if ( window.loadchecked[0] == "" ){ window.loadchecked = [] };
 });
