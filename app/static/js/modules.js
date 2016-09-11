@@ -6,6 +6,10 @@ function loadModules(r){
 	$.each( r, function(k,s){ var t=k.split(".")[0]; if ( mc.indexOf(t) == -1 ) mc.push(t); } );
 	$.each( mc.sort(), function(i,v){
 		$("#modulelist").append($("<div class='panel-group col-sm-6 col-lg-4'/>").attr('id','l'+v));
+		$("<button class='btn btn-default active'/>").attr('id','b'+v).text(v).click(function(){
+			$(this).toggleClass('active');
+			$("#l"+v).toggle();
+		}).appendTo("#buttrow");
 	});
 	var selects = [];
 	$.each( r, function(k,s){
@@ -46,6 +50,7 @@ function loadModules(r){
 		templateSelection: function(data,c){ return data.section; }
 	}).on("select2:select", handleSearchbox).on("select2:unselect", handleSearchbox);
 	selectMultiple( window.loadchecked );
+	$("#toggles").removeClass('hidden');
 }
 
 function loadGroups(r){
