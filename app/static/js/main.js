@@ -15,6 +15,6 @@ $(document).ready(function(){
 	$("#ualert").removeClass("hidden");
 	$("#absurl").html( window.location.host );
 	if ( window.location.host == "timetable.sutd.design" ){ $("#dalert").removeClass("hidden"); }
-	window.loadchecked = window.location.search.substring(1).split(',');
+	window.loadchecked = window.location.hash.substring(1).split(',');
 	if ( window.loadchecked[0] == "" ){ window.loadchecked = [] };
 });

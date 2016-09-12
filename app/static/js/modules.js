@@ -79,6 +79,7 @@ function toggleSection( action, section ){
 		});
 	}
 	$("#modlink").html( window.checked.sort().join(',') );
+	history.pushState( null, null, "#"+window.checked.sort().join(',') );
 }
 
 function selectMultiple( sections ){
