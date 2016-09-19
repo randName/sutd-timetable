@@ -92,9 +92,10 @@ def get_timetable():
         calds = q
         codes = rd.smembers('group:%s'%q)
 
+    locations = rd.hgetall('locations')
+
     sct = []
     cal = Calendar()
-    locations = rd.hgetall('locations')
 
     def get_location(lesson):
         return "%s (%s)" % (locations.get(lesson, "TBD"), lesson)
