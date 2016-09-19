@@ -41,6 +41,35 @@ def get_modules():
 
     return json.jsonify({m.code: module(m) for m in Module.query.all()})
 
+@app.route('/group_sections/')
+def get_group_sections():
+
+    def event(l):
+        return {
+            'title': l.title, 'description': str(l),
+            'start': l.start.isoformat(), 'end': l.end.isoformat(),
+        }
+
+    q = request.query_string.decode()
+    if not q: return json.jsonify({'status': 'error'})
+    codes = rd.smembers('group:%s'%q)
+
+    schedule = tuple(
+        for cn in codes:
+            try:
+                cn = int(cn)
+            except ValueError:
+                continue
+
+            section = Section.query.get(cn)
+            if not section: continue
+            event(lesson) for lesson in Lesson.query.filter_by(class_no=cn).all()
+    )
+
+    return json.jsonify({
+            'status': 'ok', 'events': schedule
+        })
+
 @app.route('/section/<int:cn>')
 def get_section(cn):
 
