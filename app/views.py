@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from icalendar import Calendar, Event
 from flask import request, json
 from time import time
@@ -56,7 +56,9 @@ def get_group_sections():
             continue
 
     schedule = tuple(
-        format_event(lesson) for lesson in Lesson.query.filter(Lesson.class_no.in_(all_cn)).all()
+        format_event(lesson)
+        for lesson in Lesson.query.filter(Lesson.class_no.in_(all_cn) & (Lesson.start > date.today()))
+        .order_by(Lesson.start).all()
     )
 
     return json.jsonify({
