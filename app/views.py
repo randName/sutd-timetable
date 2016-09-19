@@ -44,12 +44,6 @@ def get_modules():
 @app.route('/group_sections/')
 def get_group_sections():
 
-    def event(l):
-        return {
-            'title': l.title, 'description': str(l),
-            'start': l.start.isoformat(), 'end': l.end.isoformat(),
-        }
-
     q = request.query_string.decode()
     if not q: return json.jsonify({'status': 'error'})
     codes = rd.smembers('group:%s'%q)
@@ -62,7 +56,7 @@ def get_group_sections():
             continue
 
     schedule = tuple(
-        event(lesson) for lesson in Lesson.query.filter(Lesson.class_no.in_(all_cn)).all()
+        format_event(lesson) for lesson in Lesson.query.filter(Lesson.class_no.in_(all_cn)).all()
     )
 
     return json.jsonify({
@@ -75,14 +69,8 @@ def get_section(cn):
     section = Section.query.get(cn)
     if not section: return json.jsonify({'status':'error'})
 
-    def event(l):
-        return {
-            'title': l.title, 'description': str(l),
-            'start': l.start.isoformat(), 'end': l.end.isoformat(),
-        }
-
     schedule = tuple(
-        event(lesson) for lesson in Lesson.query.filter_by(class_no=cn).all()
+        format_event(lesson) for lesson in Lesson.query.filter_by(class_no=cn).all()
     )
 
     return json.jsonify({
@@ -91,20 +79,6 @@ def get_section(cn):
 
 @app.route('/calendar')
 def get_timetable():
-
-    def get_location(l): return "%s (%s)" % (locations.get(l, "TBD"), l)
-
-    def get_event(lesson):
-        e = {
-            'summary': lesson.title,
-            'description': str(lesson),
-            'location': get_location(lesson.location),
-            'dtstart': lesson.start, 'dtend': lesson.end,
-        }
-
-        event = Event()
-        for k, v in e.items(): event.add(k, v)
-        return event
 
     q = request.query_string.decode()
     if not q: return json.jsonify({'status': 'error'})
@@ -116,10 +90,24 @@ def get_timetable():
         calds = q
         codes = rd.smembers('group:%s'%q)
 
-    locations = rd.hgetall('locations')
-
     sct = []
     cal = Calendar()
+
+    def get_location(lesson):
+        locations = rd.hgetall('locations')
+        return "%s (%s)" % (locations.get(lesson, "TBD"), lesson)
+
+    def get_calendar_event(lesson):
+        e = {
+            'summary': lesson.title,
+            'description': str(lesson),
+            'location': get_location(lesson.location),
+            'dtstart': lesson.start, 'dtend': lesson.end,
+        }
+
+        event = Event()
+        for k, v in e.items(): event.add(k, v)
+        return event
 
     for cn in codes:
         try:
@@ -131,7 +119,7 @@ def get_timetable():
         if not section: continue
 
         schedule = Lesson.query.filter_by(class_no=cn).all()
-        for lesson in schedule: cal.add_component(get_event(lesson))
+        for lesson in schedule: cal.add_component(get_calendar_event(lesson))
 
         sct.append(str(section))
 
@@ -150,7 +138,7 @@ def get_timetable():
 
 @app.route('/upload', methods=['POST'])
 def load_data():
-    
+
     module = request.get_json()
     if not Module.query.get(module['code']):
         db.session.add(
@@ -197,3 +185,10 @@ def load_data():
     return json.jsonify({
         'status': 'ok', 'loaded': (module['code'], ', '.join(sections))
     })
+
+# private methods
+def format_event(l):
+    return {
+        'title': l.title, 'description': str(l),
+        'start': l.start.isoformat(), 'end': l.end.isoformat(),
+    }
