@@ -94,9 +94,9 @@ def get_timetable():
 
     sct = []
     cal = Calendar()
+    locations = rd.hgetall('locations')
 
     def get_location(lesson):
-        locations = rd.hgetall('locations')
         return "%s (%s)" % (locations.get(lesson, "TBD"), lesson)
 
     def get_calendar_event(lesson):
