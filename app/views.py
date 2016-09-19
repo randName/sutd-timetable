@@ -53,17 +53,16 @@ def get_group_sections():
     q = request.query_string.decode()
     if not q: return json.jsonify({'status': 'error'})
     codes = rd.smembers('group:%s'%q)
+    all_cn = []
+
+    for cn in codes:
+        try:
+            all_cn.insert(0, int(cn))
+        except ValueError:
+            continue
 
     schedule = tuple(
-        for cn in codes:
-            try:
-                cn = int(cn)
-            except ValueError:
-                continue
-
-            section = Section.query.get(cn)
-            if not section: continue
-            event(lesson) for lesson in Lesson.query.filter_by(class_no=cn).all()
+        event(lesson) for lesson in Lesson.query.filter(Lesson.class_no.in_(all_cn)).all()
     )
 
     return json.jsonify({
