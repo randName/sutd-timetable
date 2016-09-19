@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date
 from icalendar import Calendar, Event
 from flask import request, json
 from time import time
@@ -41,20 +41,38 @@ def get_modules():
 
     return json.jsonify({m.code: module(m) for m in Module.query.all()})
 
+@app.route('/group_sections/')
+def get_group_sections():
+
+    q = request.query_string.decode()
+    if not q: return json.jsonify({'status': 'error'})
+    codes = rd.smembers('group:%s'%q)
+    all_cn = []
+
+    for cn in codes:
+        try:
+            all_cn.insert(0, int(cn))
+        except ValueError:
+            continue
+
+    schedule = tuple(
+        format_event(lesson)
+        for lesson in Lesson.query.filter(Lesson.class_no.in_(all_cn) & (Lesson.start > date.today()))
+        .order_by(Lesson.start).all()
+    )
+
+    return json.jsonify({
+            'status': 'ok', 'events': schedule
+        })
+
 @app.route('/section/<int:cn>')
 def get_section(cn):
 
     section = Section.query.get(cn)
     if not section: return json.jsonify({'status':'error'})
 
-    def event(l):
-        return {
-            'title': l.title, 'description': str(l),
-            'start': l.start.isoformat(), 'end': l.end.isoformat(),
-        }
-
     schedule = tuple(
-        event(lesson) for lesson in Lesson.query.filter_by(class_no=cn).all()
+        format_event(lesson) for lesson in Lesson.query.filter_by(class_no=cn).all()
     )
 
     return json.jsonify({
@@ -63,20 +81,6 @@ def get_section(cn):
 
 @app.route('/calendar')
 def get_timetable():
-
-    def get_location(l): return "%s (%s)" % (locations.get(l, "TBD"), l)
-
-    def get_event(lesson):
-        e = {
-            'summary': lesson.title,
-            'description': str(lesson),
-            'location': get_location(lesson.location),
-            'dtstart': lesson.start, 'dtend': lesson.end,
-        }
-
-        event = Event()
-        for k, v in e.items(): event.add(k, v)
-        return event
 
     q = request.query_string.decode()
     if not q: return json.jsonify({'status': 'error'})
@@ -93,6 +97,21 @@ def get_timetable():
     sct = []
     cal = Calendar()
 
+    def get_location(lesson):
+        return "%s (%s)" % (locations.get(lesson, "TBD"), lesson)
+
+    def get_calendar_event(lesson):
+        e = {
+            'summary': lesson.title,
+            'description': str(lesson),
+            'location': get_location(lesson.location),
+            'dtstart': lesson.start, 'dtend': lesson.end,
+        }
+
+        event = Event()
+        for k, v in e.items(): event.add(k, v)
+        return event
+
     for cn in codes:
         try:
             cn = int(cn)
@@ -103,7 +122,7 @@ def get_timetable():
         if not section: continue
 
         schedule = Lesson.query.filter_by(class_no=cn).all()
-        for lesson in schedule: cal.add_component(get_event(lesson))
+        for lesson in schedule: cal.add_component(get_calendar_event(lesson))
 
         sct.append(str(section))
 
@@ -122,7 +141,7 @@ def get_timetable():
 
 @app.route('/upload', methods=['POST'])
 def load_data():
-    
+
     module = request.get_json()
     if not Module.query.get(module['code']):
         db.session.add(
@@ -169,3 +188,10 @@ def load_data():
     return json.jsonify({
         'status': 'ok', 'loaded': (module['code'], ', '.join(sections))
     })
+
+# private methods
+def format_event(l):
+    return {
+        'title': l.title, 'description': str(l),
+        'start': l.start.isoformat(), 'end': l.end.isoformat(),
+    }
