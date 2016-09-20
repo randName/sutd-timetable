@@ -1,7 +1,11 @@
 function parseTimetable( soup )
 {
 	function getLoc( loc ){
-		for ( var k in window.locations ){ if(window.locations[k]==loc) return k; }
+		for ( var k in window.locations ){
+			if ( window.locations[k].indexOf(loc) !== -1 ) return k;
+			if ( loc.indexOf(window.locations[k]) !== -1 ) return k;
+		}
+		console.log(loc);
 		return loc;
 	}
 
