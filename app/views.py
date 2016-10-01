@@ -57,7 +57,7 @@ def get_group_sections():
 
     schedule = tuple(
         format_event(lesson)
-        for lesson in Lesson.query.filter(Lesson.class_no.in_(all_cn) & (Lesson.start > date.today()))
+        for lesson in Lesson.query.filter(Lesson.class_no.in_(all_cn))
         .order_by(Lesson.start).all()
     )
 
