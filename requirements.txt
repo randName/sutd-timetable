@@ -1,20 +1,19 @@
-decorator==4.0.10
-Flask==0.11.1
+## Base requirements
+Flask==0.12
 Flask-Redis==0.3.0
 Flask-SQLAlchemy==2.1
 gunicorn==19.6.0
-icalendar==3.10
-itsdangerous==0.24
-Jinja2==2.8
-MarkupSafe==0.23
-pbr==1.10.0
 psycopg2==2.6.2
-python-dateutil==2.5.3
-pytz==2016.6.1
+icalendar==3.11.1
+
+## The following requirements were added by pip freeze:
+click==6.6
+itsdangerous==0.24
+Jinja2==2.8.1
+MarkupSafe==0.23
+python-dateutil==2.6.0
+pytz==2016.10
 redis==2.10.5
 six==1.10.0
-SQLAlchemy==1.0.15
-sqlalchemy-migrate==0.10.0
-sqlparse==0.2.1
-Tempita==0.5.2
-Werkzeug==0.11.11
+SQLAlchemy==1.1.4
+Werkzeug==0.11.15

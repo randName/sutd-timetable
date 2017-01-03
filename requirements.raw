@@ -1,0 +1,8 @@
+## Base requirements
+Flask
+Flask-Redis
+Flask-SQLAlchemy
+gunicorn
+psycopg2
+icalendar
+
