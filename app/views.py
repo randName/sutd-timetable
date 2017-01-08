@@ -9,10 +9,6 @@ from .models import Module, Section, Lesson
 def index():
     return app.send_static_file('index.html')
 
-@app.route('/domain')
-def domain_warning():
-    return app.send_static_file('domain.html')
-
 @app.route('/locations')
 def get_locations():
     return json.jsonify( rd.hgetall('locations') )
@@ -56,7 +52,7 @@ def get_group_sections():
             continue
 
     schedule = tuple(
-        format_event(lesson)
+        lesson.details
         for lesson in Lesson.query.filter(Lesson.class_no.in_(all_cn))
         .order_by(Lesson.start).all()
     )
@@ -72,7 +68,7 @@ def get_section(cn):
     if not section: return json.jsonify({'status':'error'})
 
     schedule = tuple(
-        format_event(lesson) for lesson in Lesson.query.filter_by(class_no=cn).all()
+        lesson.details for lesson in Lesson.query.filter_by(class_no=cn).all()
     )
 
     return json.jsonify({
@@ -101,12 +97,8 @@ def get_timetable():
         return "%s (%s)" % (locations.get(lesson, "TBD"), lesson)
 
     def get_calendar_event(lesson):
-        e = {
-            'summary': lesson.title,
-            'description': str(lesson),
-            'location': get_location(lesson.location),
-            'dtstart': lesson.start, 'dtend': lesson.end,
-        }
+        e = lesson.event
+        e['location'] = get_location(e['location'])
 
         event = Event()
         for k, v in e.items(): event.add(k, v)
@@ -188,10 +180,3 @@ def load_data():
     return json.jsonify({
         'status': 'ok', 'loaded': (module['code'], ', '.join(sections))
     })
-
-# private methods
-def format_event(l):
-    return {
-        'title': l.title, 'description': str(l),
-        'start': l.start.isoformat(), 'end': l.end.isoformat(),
-    }

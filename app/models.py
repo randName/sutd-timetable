@@ -67,6 +67,25 @@ class Lesson(db.Model):
     def title(s):
         return str(s.section.module)
 
+    @property
+    def details(s):
+        return {
+            'title': s.title,
+            'description': str(s),
+            'start': s.start.isoformat(),
+            'end': s.end.isoformat(),
+        }
+
+    @property
+    def event(s):
+        return {
+            'summary': s.title,
+            'description': str(s),
+            'location': s.location,
+            'dtstart': s.start,
+            'dtend': s.end,
+        }
+
     def __str__(s):
         return "%s (%s)" % (s.component, s.section.name)
 
