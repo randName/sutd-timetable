@@ -45,6 +45,17 @@ class Section(db.Model):
         return "<Section %s>" % s.class_no
 
 
+class Location(db.Model):
+    code = db.Column(db.String(10), primary_key=True)
+    name = db.Column(db.String(50))
+
+    def __str__(s):
+        return "%s (%s)" % (s.name, s.code)
+
+    def __repr__(s):
+        return "<Location %s>" % (s.code)
+
+
 class Lesson(db.Model):
     class_no = db.Column(
         db.Integer, db.ForeignKey(Section.class_no), primary_key=True)
@@ -52,16 +63,17 @@ class Lesson(db.Model):
     start = db.Column(db.DateTime)
     end = db.Column(db.DateTime)
     component = db.Column(db.String(20))
-    location = db.Column(db.String(10))
+    loc_code = db.Column(db.String(10), db.ForeignKey(Location.code))
 
     section = db.relationship("Section", foreign_keys=class_no)
+    location = db.relationship("Location", foreign_keys=loc_code)
 
     def __init__(s, class_no, sn, dts, component, location):
         s.class_no = class_no
         s.sn = sn
         s.start, s.end = dts
         s.component = component
-        s.location = location
+        s.loc_code = location
 
     @property
     def title(s):
@@ -81,7 +93,7 @@ class Lesson(db.Model):
         return {
             'summary': s.title,
             'description': str(s),
-            'location': s.location,
+            'location': str(s.location),
             'dtstart': s.start,
             'dtend': s.end,
         }

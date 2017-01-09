@@ -2,8 +2,8 @@ from datetime import datetime, date
 from icalendar import Calendar, Event
 from flask import request, json
 from time import time
-from app import rd, db, models, app
-from .models import Module, Section, Lesson
+from app import rd, db, app
+from .models import *
 
 @app.route('/')
 def index():
@@ -11,7 +11,7 @@ def index():
 
 @app.route('/locations')
 def get_locations():
-    return json.jsonify( rd.hgetall('locations') )
+    return json.jsonify({ l.code: l.name for l in Location.query.all() })
 
 @app.route('/groups')
 def get_groups():
@@ -88,21 +88,14 @@ def get_timetable():
         calds = q
         codes = rd.smembers('group:%s'%q)
 
-    locations = rd.hgetall('locations')
-
     sct = []
-    cal = Calendar()
-
-    def get_location(lesson):
-        return "%s (%s)" % (locations.get(lesson, "TBD"), lesson)
-
-    def get_calendar_event(lesson):
-        e = lesson.event
-        e['location'] = get_location(e['location'])
-
-        event = Event()
-        for k, v in e.items(): event.add(k, v)
-        return event
+    cal = Calendar(**{
+        'prodid': '-//SUTD Timetable Calendar//randName//EN',
+        'version': '2.0',
+        'calscale': 'GREGORIAN',
+        'x-wr-timezone': 'Asia/Singapore',
+        'x-wr-calname': 'Timetable',
+    })
 
     for cn in codes:
         try:
@@ -114,20 +107,12 @@ def get_timetable():
         if not section: continue
 
         schedule = Lesson.query.filter_by(class_no=cn).all()
-        for lesson in schedule: cal.add_component(get_calendar_event(lesson))
+        for lesson in schedule: cal.add_component(Event(**lesson.event))
 
         sct.append(str(section))
 
-    caldict = {
-        'prodid': '-//SUTD Timetable Calendar//randName//EN',
-        'version': '2.0',
-        'calscale': 'GREGORIAN',
-        'x-wr-timezone': 'Asia/Singapore',
-        'x-wr-calname': 'Timetable',
-        'x-wr-caldesc': 'Timetable for ' + calds if calds else ', '.join(sct),
-    }
-
-    for k, v in caldict.items(): cal.add(k, v)
+    if calds is None: calds = ', '.join(sct)
+    cal.add('x-wr-caldesc', 'Timetable for %s' % calds)
 
     return cal.to_ical(), 200, {'content-type': 'text/calendar'}
 
