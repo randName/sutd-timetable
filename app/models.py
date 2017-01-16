@@ -3,7 +3,7 @@ from app import db
 
 class Module(db.Model):
     code = db.Column(db.String(6), primary_key=True)
-    title = db.Column(db.String(30))
+    title = db.Column(db.String(50))
 
     def __init__(s, code, title):
         s.code = code
@@ -46,7 +46,7 @@ class Section(db.Model):
 
 
 class Location(db.Model):
-    code = db.Column(db.String(10), primary_key=True)
+    code = db.Column(db.String(20), primary_key=True)
     name = db.Column(db.String(50))
 
     def __str__(s):
@@ -63,7 +63,7 @@ class Lesson(db.Model):
     start = db.Column(db.DateTime)
     end = db.Column(db.DateTime)
     component = db.Column(db.String(20))
-    loc_code = db.Column(db.String(10), db.ForeignKey(Location.code))
+    loc_code = db.Column(db.String(20), db.ForeignKey(Location.code))
 
     section = db.relationship("Section", foreign_keys=class_no)
     location = db.relationship("Location", foreign_keys=loc_code)
@@ -94,8 +94,8 @@ class Lesson(db.Model):
             'summary': s.title,
             'description': str(s),
             'location': str(s.location),
-            'dtstart': s.start,
-            'dtend': s.end,
+            'dtstart': s.start.isoformat(),
+            'dtend': s.end.isoformat(),
         }
 
     def __str__(s):
