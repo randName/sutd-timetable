@@ -19,12 +19,6 @@ def get_groups():
         g:tuple(rd.smembers('group:%s'%g)) for g in rd.smembers('groups')
     })
 
-@app.route('/tgrp')
-def get_tgrp():
-    return json.jsonify({
-        g:tuple(rd.smembers('tgrp:%s'%g)) for g in rd.smembers('tgrps')
-    })
-
 @app.route('/modules')
 def get_modules():
 
@@ -79,7 +73,7 @@ def get_section(cn):
 def get_timetable():
 
     q = request.query_string.decode()
-    if not q: return json.jsonify({'status': 'error'})
+    if not q: return '', 200, {'content-type': 'text/calendar'}
 
     if ',' in q:
         calds = None
@@ -89,13 +83,7 @@ def get_timetable():
         codes = rd.smembers('group:%s'%q)
 
     sct = []
-    cal = Calendar(**{
-        'prodid': '-//SUTD Timetable Calendar//randName//EN',
-        'version': '2.0',
-        'calscale': 'GREGORIAN',
-        'x-wr-timezone': 'Asia/Singapore',
-        'x-wr-calname': 'Timetable',
-    })
+    all_cn = []
 
     for cn in codes:
         try:
@@ -106,13 +94,22 @@ def get_timetable():
         section = Section.query.get(cn)
         if not section: continue
 
-        schedule = Lesson.query.filter_by(class_no=cn).all()
-        for lesson in schedule: cal.add_component(Event(**lesson.event))
-
+        all_cn.append(cn)
         sct.append(str(section))
 
     if calds is None: calds = ', '.join(sct)
-    cal.add('x-wr-caldesc', 'Timetable for %s' % calds)
+
+    cal = Calendar(**{
+        'prodid': '-//SUTD Timetable Calendar//randName//EN',
+        'version': '2.0',
+        'calscale': 'GREGORIAN',
+        'x-wr-timezone': 'Asia/Singapore',
+        'x-wr-calname': 'Timetable',
+        'x-wr-caldesc': 'Timetable for %s' % calds,
+    })
+
+    for lesson in Lesson.query.filter(Lesson.class_no.in_(all_cn)).all():
+        cal.add_component(Event(**lesson.event))
 
     return cal.to_ical(), 200, {'content-type': 'text/calendar'}
 

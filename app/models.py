@@ -1,4 +1,5 @@
 from app import db
+from icalendar.prop import vDDDTypes
 
 
 class Module(db.Model):
@@ -94,8 +95,8 @@ class Lesson(db.Model):
             'summary': s.title,
             'description': str(s),
             'location': str(s.location),
-            'dtstart': s.start.isoformat(),
-            'dtend': s.end.isoformat(),
+            'dtstart': vDDDTypes(s.start),
+            'dtend': vDDDTypes(s.end),
         }
 
     def __str__(s):
