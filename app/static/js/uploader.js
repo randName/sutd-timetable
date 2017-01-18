@@ -46,7 +46,7 @@ function parseTimetable( soup )
 			var dates = iz.MTG_DATES.split(' - ').map(function(d){return moment(d, 'DD/MM/YYYY')});
 			if( dates[0].day() != wd ) dates[0].day(wd);
 			for( d=dates[0]; d <= dates[1]; d.add(7,'d') ){
-				module.sections[class_number].schedule.push($.extend({d:d.format('DD.MM.YYYY')}, item));
+				module.sections[class_number].schedule.push($.extend({d:d.format('YYYY.MM.DD')}, item));
 			}
 		});
 		processed.push( module )

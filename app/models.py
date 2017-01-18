@@ -1,4 +1,5 @@
 from app import db
+from icalendar import Event
 from icalendar.prop import vDDDTypes
 
 
@@ -6,7 +7,7 @@ class Module(db.Model):
     code = db.Column(db.String(6), primary_key=True)
     title = db.Column(db.String(50))
 
-    def __init__(s, code, title):
+    def __init__(s, code, title, **kwargs):
         s.code = code
         s.title = title
 
@@ -91,13 +92,13 @@ class Lesson(db.Model):
 
     @property
     def event(s):
-        return {
+        return Event(**{
             'summary': s.title,
             'description': str(s),
             'location': str(s.location),
             'dtstart': vDDDTypes(s.start),
             'dtend': vDDDTypes(s.end),
-        }
+        })
 
     def __str__(s):
         return "%s (%s)" % (s.component, s.section.name)

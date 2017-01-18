@@ -108,8 +108,9 @@ def get_timetable():
         'x-wr-caldesc': 'Timetable for %s' % calds,
     })
 
-    for lesson in Lesson.query.filter(Lesson.class_no.in_(all_cn)).all():
-        cal.add_component(Event(**lesson.event))
+    cal.subcomponents = tuple(
+        l.event for l in Lesson.query.filter(Lesson.class_no.in_(all_cn)).all()
+    )
 
     return cal.to_ical(), 200, {'content-type': 'text/calendar'}
 
@@ -118,9 +119,7 @@ def load_data():
 
     module = request.get_json()
     if not Module.query.get(module['code']):
-        db.session.add(
-            Module(**{'code': module['code'], 'title': module['title']})
-        )
+        db.session.add(Module(**module))
 
     sections = []
     grp_sect = []
@@ -143,15 +142,13 @@ def load_data():
         sections.append(section['name'])
         grp_sect.append(cn)
 
-        sn = 0
-        for i in section['schedule']:
-            d = tuple(int(n) for n in reversed(i['d'].split('.')))
-            dts = [datetime(*(d+tuple(map(int,i[l].split('.'))))) for l in 'se']
+        for sn, i in enumerate(section['schedule']):
+            d = get_int(i['d'])
+            dts = tuple(datetime(*(d+get_int(i[l]))) for l in 'se')
             db.session.add(Lesson(**{
                 'class_no': cn, 'sn': sn, 'dts': dts,
                 'location': i['l'], 'component':i['c'],
             }))
-            sn += 1
 
         db.session.commit()
 
@@ -162,3 +159,6 @@ def load_data():
     return json.jsonify({
         'status': 'ok', 'loaded': (module['code'], ', '.join(sections))
     })
+
+def get_int(dt):
+    return tuple(int(n) for n in dt.split('.'))
