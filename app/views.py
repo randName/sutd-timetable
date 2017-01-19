@@ -118,6 +118,16 @@ def get_timetable():
 def load_data():
 
     module = request.get_json()
+
+    if 'group' in module:
+        gtime = int(time())
+        rd.sadd('tgrps', gtime)
+        rd.sadd('tgrp:%s'%gtime, *module['group'])
+
+        return json.jsonify({
+            'status': 'ok', 'loaded': ('Grouping', '')
+        })
+
     if not Module.query.get(module['code']):
         db.session.add(Module(**module))
 
@@ -151,10 +161,6 @@ def load_data():
             }))
 
         db.session.commit()
-
-    gtime = int(time())
-    rd.sadd('tgrps', gtime)
-    rd.sadd('tgrp:%s'%gtime, *grp_sect)
 
     return json.jsonify({
         'status': 'ok', 'loaded': (module['code'], ', '.join(sections))

@@ -68,6 +68,7 @@ function loadFile( f ){
 			r.onload = function(e){
 				var processed = parseTimetable( e.target.result );
 				if ( processed.length > 0 ){
+					processed.push({ group: window.loadchecked });
 					console.log( processed );
 					localStorage.processed = JSON.stringify( processed );
 				} else {
