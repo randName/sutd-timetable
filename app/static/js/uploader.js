@@ -3,7 +3,8 @@ function parseTimetable( soup )
 	function getLoc( loc ){
 		for ( var k in window.locations ){
 			if ( window.locations[k].indexOf(loc) !== -1 ) return k;
-			if ( loc.indexOf(window.locations[k]) !== -1 ) return k;
+			var locb = new RegExp('\\b'+window.locations[k]+'\\b');
+			if ( loc.search(locb) !== -1 ) return k;
 		}
 		console.log(loc);
 		return loc;
