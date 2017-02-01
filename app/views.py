@@ -124,6 +124,11 @@ def load_data():
         rd.sadd('tgrps', gtime)
         rd.sadd('tgrp:%s'%gtime, *module['group'])
 
+        hsh = hash(frozenset(int(i) for i in module['group'])) % 100000
+        hstr = '%05d' % hsh
+        rd.sadd('hgrps', hstr)
+        rd.sadd('hgrp:%s'%hstr, *module['group'])
+
         return json.jsonify({
             'status': 'ok', 'loaded': ('Grouping', '')
         })
