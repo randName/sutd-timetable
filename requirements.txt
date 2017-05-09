@@ -1,19 +1,20 @@
 ## Base requirements
-Flask==0.12
+## To generate full list, run `pip freeze -r requirements.raw`
+Flask==0.12.1
 Flask-Redis==0.3.0
-Flask-SQLAlchemy==2.1
-gunicorn==19.6.0
-psycopg2==2.6.2
-icalendar==3.11.1
+Flask-SQLAlchemy==2.2
+gunicorn==19.7.1
+psycopg2==2.7.1
+icalendar==3.11.3
 
 ## The following requirements were added by pip freeze:
-click==6.6
+click==6.7
 itsdangerous==0.24
-Jinja2==2.8.1
-MarkupSafe==0.23
+Jinja2==2.9.6
+MarkupSafe==1.0
 python-dateutil==2.6.0
-pytz==2016.10
+pytz==2017.2
 redis==2.10.5
 six==1.10.0
-SQLAlchemy==1.1.4
-Werkzeug==0.11.15
+SQLAlchemy==1.1.9
+Werkzeug==0.12.1
