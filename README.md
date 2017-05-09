@@ -6,8 +6,10 @@ Pull requests welcome!
 Running [on Heroku](http://sutd-timetable.herokuapp.com/). Database will be reset every term.
 
 ## Todo
+- Automate Freshmore cohort tracking
 - Add instructions for subscribing to .ics on various platforms
 - Timetable correction tracker
+- Migrate to Bootstrap v4
 
 ## FAQ
 - [Where is my timetable?](#where-is-my-timetable)
