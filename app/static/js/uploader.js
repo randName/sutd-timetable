@@ -17,6 +17,7 @@ function parseTimetable( soup )
 		return time.join('.');
 	}
 
+	window.cohort = {};
 	window.loadchecked = [];
 	var nw = (new Date()).toISOString().slice(0,10).replace(/-/g,"/");
 	var processed=[], pg=$("<div/>").html( soup.replace(/<img[^>]*>/g,"") );
@@ -36,6 +37,14 @@ function parseTimetable( soup )
 				class_number = parseInt(cn);
 				if ( iz.MTG_SECTION ) section = iz.MTG_SECTION;
 				module.sections[class_number] = { name:section, schedule:[] };
+				if ( code.startsWith('10.') && section.startsWith('SC') ) {
+					var coh = section.replace('SC','F');
+					if ( window.cohort.hasOwnProperty(coh) ){
+						window.cohort[coh]++;
+					} else {
+						window.cohort[coh] = 1;
+					}
+				}
 				window.loadchecked.push(cn);
 			}
 			if ( iz.MTG_COMP != '\xa0' ) comp = iz.MTG_COMP;
@@ -69,7 +78,7 @@ function loadFile( f ){
 			r.onload = function(e){
 				var processed = parseTimetable( e.target.result );
 				if ( processed.length > 0 ){
-					processed.push({ group: window.loadchecked });
+					askCohort();
 					console.log( processed );
 					localStorage.processed = JSON.stringify( processed );
 				} else {
@@ -79,6 +88,33 @@ function loadFile( f ){
 			r.readAsText( f.slice(0,1024*1024) );
 		}
 	}
+}
+
+function askCohort() {
+	if ( ! $.isEmptyObject(window.cohort) ) {
+		var c = Object.keys(window.cohort)[0];
+		$('#cohortno').text(c);
+		$('#cohortcheck').attr({style:''});
+		$('#cohortyes').on('click', function(e){
+			$('#cohortcheck').attr({style:'display:none'});
+			if ( !window.groups.hasOwnProperty(c) ){
+				sendGroup({ group: window.loadchecked, cohort: c });
+				window.groups[c] = window.loadchecked;
+			}
+			selectGroup(c);
+		});
+		$('#cohortnon').on('click', function(e){
+			$('#cohortcheck').attr({style:'display:none'});
+		});
+	}
+}
+
+function sendGroup( data ) {
+	$.ajax( '/upload', {
+		type: 'POST', contentType: 'application/json',
+		data: JSON.stringify( data ),
+		success: function(r){ console.log(r); }
+	});
 }
 
 function sendData( data ){
@@ -108,6 +144,7 @@ function sendData( data ){
 			$.getJSON( "modules", loadModules );
 			$("#uprog").attr({style:'display:none'});
 			$("#ualert").addClass("hidden");
+			$('#cohortcheck').attr({style:'display:none'});
 		}, 1000);
 		$("#spinner").attr({'class':'fa fa-check-circle-o'});
 		$("#buttext").html(" Done!");
@@ -128,6 +165,9 @@ function showAlert( style, message ){
 function attachUploader(){
 	$("#uploader").load( "/static/form.html", "", function(){
 		$("#loader").on("change", function(e){ loadFile(e.target.files[0]); });
-		$("#ubutt").click(function(e){ sendData( JSON.parse( localStorage.processed ) ); });
+		$("#ubutt").click(function(e){
+            sendGroup({ group: window.loadchecked });
+            sendData( JSON.parse( localStorage.processed ) );
+        });
 	});
 }

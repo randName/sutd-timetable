@@ -120,17 +120,19 @@ def load_data():
     module = request.get_json()
 
     if 'group' in module:
-        gtime = int(time())
-        rd.sadd('tgrps', gtime)
-        rd.sadd('tgrp:%s'%gtime, *module['group'])
 
-        hsh = hash(frozenset(int(i) for i in module['group'])) % 100000
-        hstr = '%05d' % hsh
-        rd.sadd('hgrps', hstr)
-        rd.sadd('hgrp:%s'%hstr, *module['group'])
+        try:
+            gt = 'group'
+            ch = module['cohort']
+        except (KeyError, ValueError):
+            gt = 'hgrp'
+            ch = '%05d' % (hash(frozenset(int(i) for i in module['group'])) % 100000)
+
+        rd.sadd('{}s'.format(gt), ch)
+        rd.sadd('%s:%s' % (gt, ch), *module['group'])
 
         return json.jsonify({
-            'status': 'ok', 'loaded': ('Grouping', '')
+            'status': 'ok', 'loaded': ('Grouping', ch)
         })
 
     if not Module.query.get(module['code']):
