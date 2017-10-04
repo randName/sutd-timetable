@@ -71,6 +71,7 @@ locations = {
   "2.514": "Think Tank 26", 
   "2.518": "Studio 3", 
   "2.519": "Studio 4", 
+  "2.520": "Git Room", 
   "2.605": "iDIA Lab", 
   "2.606": "Cohort Classroom 15", 
   "2.607": "Cohort Classroom 16", 
