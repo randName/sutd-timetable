@@ -34,7 +34,7 @@ def get_modules():
 @app.route('/group_sections/')
 def get_group_sections():
 
-    q = request.query_string.decode()
+    q = request.query_string.decode().upper()
     if not q: return json.jsonify({'status': 'error'})
     codes = rd.smembers('group:%s'%q)
     all_cn = []
