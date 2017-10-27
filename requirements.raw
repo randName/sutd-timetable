@@ -1,9 +1,0 @@
-## Base requirements
-## To generate full list, run `pip freeze -r requirements.raw`
-Flask
-Flask-Redis
-Flask-SQLAlchemy
-gunicorn
-psycopg2
-icalendar
-
