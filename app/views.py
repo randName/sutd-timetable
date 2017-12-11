@@ -1,23 +1,28 @@
-from datetime import datetime, date
-from icalendar import Calendar, Event
+from datetime import datetime
+
+from icalendar import Calendar
 from flask import request, json
-from time import time
+
 from app import rd, db, app
-from .models import *
+from .models import Module, Section, Lesson, Location
+
 
 @app.route('/')
 def index():
     return app.send_static_file('index.html')
 
+
 @app.route('/locations')
 def get_locations():
-    return json.jsonify({ l.code: l.name for l in Location.query.all() })
+    return json.jsonify({l.code: l.name for l in Location.query.all()})
+
 
 @app.route('/groups')
 def get_groups():
     return json.jsonify({
-        g:tuple(rd.smembers('group:%s'%g)) for g in rd.smembers('groups')
+        g: tuple(rd.smembers('group:%s' % g)) for g in rd.smembers('groups')
     })
+
 
 @app.route('/modules')
 def get_modules():
@@ -31,15 +36,15 @@ def get_modules():
 
     return json.jsonify({m.code: module(m) for m in Module.query.all()})
 
+
 @app.route('/group_sections/')
 def get_group_sections():
-
     q = request.query_string.decode()
-    if not q: return json.jsonify({'status': 'error'})
-    codes = rd.smembers('group:%s'%q)
-    all_cn = []
+    if not q:
+        return json.jsonify({'status': 'error'})
 
-    for cn in codes:
+    all_cn = []
+    for cn in rd.smembers('group:%s' % q):
         try:
             all_cn.insert(0, int(cn))
         except ValueError:
@@ -52,35 +57,40 @@ def get_group_sections():
     )
 
     return json.jsonify({
-            'status': 'ok', 'events': schedule
-        })
+        'status': 'ok',
+        'events': schedule,
+    })
+
 
 @app.route('/section/<int:cn>')
 def get_section(cn):
-
     section = Section.query.get(cn)
-    if not section: return json.jsonify({'status':'error'})
+    if not section:
+        return json.jsonify({'status': 'error'})
 
     schedule = tuple(
         lesson.details for lesson in Lesson.query.filter_by(class_no=cn).all()
     )
 
     return json.jsonify({
-        'status': 'ok', 'events': schedule, 'updated': section.updated
+        'status': 'ok',
+        'events': schedule,
+        'updated': section.updated,
     })
+
 
 @app.route('/calendar')
 def get_timetable():
-
     q = request.query_string.decode()
-    if not q: return '', 200, {'content-type': 'text/calendar'}
+    if not q:
+        return '', 200, {'content-type': 'text/calendar'}
 
     if ',' in q:
         calds = None
         codes = q.split(',')
     else:
         calds = q
-        codes = rd.smembers('group:%s'%q)
+        codes = rd.smembers('group:%s' % q)
 
     sct = []
     all_cn = []
@@ -92,12 +102,14 @@ def get_timetable():
             continue
 
         section = Section.query.get(cn)
-        if not section: continue
+        if not section:
+            continue
 
         all_cn.append(cn)
         sct.append(str(section))
 
-    if calds is None: calds = ', '.join(sct)
+    if calds is None:
+        calds = ', '.join(sct)
 
     cal = Calendar(**{
         'prodid': '-//SUTD Timetable Calendar//randName//EN',
@@ -114,25 +126,26 @@ def get_timetable():
 
     return cal.to_ical(), 200, {'content-type': 'text/calendar'}
 
+
 @app.route('/upload', methods=['POST'])
 def load_data():
-
     module = request.get_json()
 
     if 'group' in module:
-
         try:
             gt = 'group'
             ch = module['cohort']
         except (KeyError, ValueError):
+            h = hash(frozenset(int(i) for i in module['group']))
             gt = 'hgrp'
-            ch = '%05d' % (hash(frozenset(int(i) for i in module['group'])) % 100000)
+            ch = '%05d' % (h % 100000)
 
         rd.sadd('{}s'.format(gt), ch)
         rd.sadd('%s:%s' % (gt, ch), *module['group'])
 
         return json.jsonify({
-            'status': 'ok', 'loaded': ('Grouping', ch)
+            'status': 'ok',
+            'loaded': ('Grouping', ch),
         })
 
     if not Module.query.get(module['code']):
@@ -163,15 +176,20 @@ def load_data():
             d = get_int(i['d'])
             dts = tuple(datetime(*(d+get_int(i[l]))) for l in 'se')
             db.session.add(Lesson(**{
-                'class_no': cn, 'sn': sn, 'dts': dts,
-                'location': i['l'], 'component':i['c'],
+                'class_no': cn,
+                'dts': dts,
+                'sn': sn,
+                'location': i['l'],
+                'component': i['c'],
             }))
 
         db.session.commit()
 
     return json.jsonify({
-        'status': 'ok', 'loaded': (module['code'], ', '.join(sections))
+        'status': 'ok',
+        'loaded': (module['code'], ', '.join(sections)),
     })
+
 
 def get_int(dt):
     return tuple(int(n) for n in dt.split('.'))
