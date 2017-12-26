@@ -7,6 +7,13 @@ from app import rd, db, app
 from .models import Module, Section, Lesson, Location
 
 
+@app.after_request
+def after_request(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    return response
+
+
 @app.route('/')
 def index():
     return app.send_static_file('index.html')
