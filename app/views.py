@@ -179,13 +179,12 @@ def load_data():
         sections.append(section['name'])
         grp_sect.append(cn)
 
-        for sn, i in enumerate(section['schedule']):
+        for i in section['schedule']:
             d = get_int(i['d'])
             dts = tuple(datetime(*(d+get_int(i[l]))) for l in 'se')
             db.session.add(Lesson(**{
                 'class_no': cn,
                 'dts': dts,
-                'sn': sn,
                 'location': i['l'],
                 'component': i['c'],
             }))

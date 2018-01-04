@@ -7,9 +7,19 @@ class Module(db.Model):
     code = db.Column(db.String(6), primary_key=True)
     title = db.Column(db.String(50))
 
+    sections = db.relationship('Section')
+
     def __init__(s, code, title, **kwargs):
         s.code = code
         s.title = title
+
+    @property
+    def detail(s):
+        return {
+            'code': s.code,
+            'title': s.title,
+            'sections': tuple(section.detail for section in s.sections),
+        }
 
     def __str__(s):
         return '%s - %s' % (s.code, s.title)
@@ -22,10 +32,14 @@ class Section(db.Model):
     class_no = db.Column(db.Integer, primary_key=True, autoincrement=False)
     mod_code = db.Column(db.String(6), db.ForeignKey(Module.code))
     name = db.Column(db.String(5))
-    last_updated = db.Column(
-        db.DateTime, server_default=db.func.now(), onupdate=db.func.now())
+    year = db.Column(db.Integer)
+    term = db.Column(db.Integer)
+    last_updated = db.Column(db.DateTime,
+                             server_default=db.func.now(),
+                             onupdate=db.func.now())
 
     module = db.relationship("Module", foreign_keys=mod_code)
+    lessons = db.relationship('Lesson')
 
     def __init__(s, class_no, mod_code, name):
         s.class_no = class_no
@@ -40,6 +54,18 @@ class Section(db.Model):
     def details(s):
         return (s.name, s.updated)
 
+    @property
+    def detail(s):
+        return {
+            'name': s.name,
+            'cn': s.class_no,
+            'updated': s.updated,
+        }
+
+    @property
+    def schedule(s):
+        return tuple(l.details for l in s.lessons)
+
     def __str__(s):
         return '%s/%s' % (s.mod_code, s.name)
 
@@ -51,6 +77,13 @@ class Location(db.Model):
     code = db.Column(db.String(20), primary_key=True)
     name = db.Column(db.String(50))
 
+    @property
+    def detail(s):
+        return {
+            'code': s.code,
+            'name': s.name,
+        }
+
     def __str__(s):
         return "%s (%s)" % (s.name, s.code)
 
@@ -61,8 +94,7 @@ class Location(db.Model):
 class Lesson(db.Model):
     class_no = db.Column(
         db.Integer, db.ForeignKey(Section.class_no), primary_key=True)
-    sn = db.Column(db.Integer, primary_key=True)
-    start = db.Column(db.DateTime)
+    start = db.Column(db.DateTime, primary_key=True)
     end = db.Column(db.DateTime)
     component = db.Column(db.String(20))
     loc_code = db.Column(db.String(20), db.ForeignKey(Location.code))
@@ -70,9 +102,8 @@ class Lesson(db.Model):
     section = db.relationship("Section", foreign_keys=class_no)
     location = db.relationship("Location", foreign_keys=loc_code)
 
-    def __init__(s, class_no, sn, dts, component, location):
+    def __init__(s, class_no, dts, component, location):
         s.class_no = class_no
-        s.sn = sn
         s.start, s.end = dts
         s.component = component
         s.loc_code = location
@@ -104,4 +135,4 @@ class Lesson(db.Model):
         return "%s (%s)" % (s.component, s.section.name)
 
     def __repr__(s):
-        return "<Lesson %s #%s>" % (s.class_no, s.sn)
+        return "<Lesson %s @ %s>" % (s.class_no, s.start)
