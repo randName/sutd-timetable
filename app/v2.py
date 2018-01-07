@@ -34,8 +34,10 @@ def get_section(cn):
         abort(404)
 
     return json.jsonify({
+        'name': section.name,
         'updated': section.updated,
         'schedule': section.schedule,
+        'module': section.module.summary,
     })
 
 

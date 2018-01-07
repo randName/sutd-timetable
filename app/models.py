@@ -21,6 +21,13 @@ class Module(db.Model):
             'sections': tuple(section.detail for section in s.sections),
         }
 
+    @property
+    def summary(s):
+        return {
+            'code': s.code,
+            'title': s.title,
+        }
+
     def __str__(s):
         return '%s - %s' % (s.code, s.title)
 
@@ -64,7 +71,7 @@ class Section(db.Model):
 
     @property
     def schedule(s):
-        return tuple(l.details for l in s.lessons)
+        return tuple(l.summary for l in s.lessons)
 
     def __str__(s):
         return '%s/%s' % (s.mod_code, s.name)
@@ -119,6 +126,15 @@ class Lesson(db.Model):
             'description': str(s),
             'start': s.start.isoformat(),
             'end': s.end.isoformat(),
+        }
+
+    @property
+    def summary(s):
+        return {
+            'start': s.start.isoformat(),
+            'end': s.end.isoformat(),
+            'component': s.component,
+            'location': s.loc_code,
         }
 
     @property
