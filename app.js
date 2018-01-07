@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 141);
+/******/ 	return __webpack_require__(__webpack_require__.s = 139);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1911,7 +1911,7 @@ function loadLocale(name) {
         try {
             oldLocale = globalLocale._abbr;
             var aliasedRequire = require;
-            __webpack_require__(181)("./" + name);
+            __webpack_require__(180)("./" + name);
             getSetGlobalLocale(oldLocale);
         } catch (e) {}
     }
@@ -4603,7 +4603,7 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(180)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(179)(module)))
 
 /***/ }),
 /* 1 */
@@ -4613,7 +4613,7 @@ return hooks;
 
 
 var bind = __webpack_require__(9);
-var isBuffer = __webpack_require__(150);
+var isBuffer = __webpack_require__(148);
 
 /*global toString:true*/
 
@@ -5384,12 +5384,12 @@ var config = ({
   /**
    * Show production mode tip message on boot?
    */
-  productionTip: Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production',
+  productionTip: Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production',
 
   /**
    * Whether to enable devtools
    */
-  devtools: Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production',
+  devtools: Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production',
 
   /**
    * Whether to record perf
@@ -5593,7 +5593,7 @@ var tip = noop;
 var generateComponentTrace = (noop); // work around flow check
 var formatComponentName = (noop);
 
-if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
   var hasConsole = typeof console !== 'undefined';
   var classifyRE = /(?:^|[-_])(\w)/g;
   var classify = function (str) { return str
@@ -6028,7 +6028,7 @@ function defineReactive (
         return
       }
       /* eslint-enable no-self-compare */
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && customSetter) {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && customSetter) {
         customSetter();
       }
       if (setter) {
@@ -6059,7 +6059,7 @@ function set (target, key, val) {
   }
   var ob = (target).__ob__;
   if (target._isVue || (ob && ob.vmCount)) {
-    Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+    Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
       'Avoid adding reactive properties to a Vue instance or its root $data ' +
       'at runtime - declare it upfront in the data option.'
     );
@@ -6084,7 +6084,7 @@ function del (target, key) {
   }
   var ob = (target).__ob__;
   if (target._isVue || (ob && ob.vmCount)) {
-    Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+    Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
       'Avoid deleting properties on a Vue instance or its root $data ' +
       '- just set it to null.'
     );
@@ -6126,7 +6126,7 @@ var strats = config.optionMergeStrategies;
 /**
  * Options with restrictions
  */
-if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
   strats.el = strats.propsData = function (parent, child, vm, key) {
     if (!vm) {
       warn(
@@ -6210,7 +6210,7 @@ strats.data = function (
 ) {
   if (!vm) {
     if (childVal && typeof childVal !== 'function') {
-      Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+      Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
         'The "data" option should be a function ' +
         'that returns a per-instance value in component ' +
         'definitions.',
@@ -6260,7 +6260,7 @@ function mergeAssets (
 ) {
   var res = Object.create(parentVal || null);
   if (childVal) {
-    Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && assertObjectType(key, childVal, vm);
+    Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && assertObjectType(key, childVal, vm);
     return extend(res, childVal)
   } else {
     return res
@@ -6288,7 +6288,7 @@ strats.watch = function (
   if (childVal === nativeWatch) { childVal = undefined; }
   /* istanbul ignore if */
   if (!childVal) { return Object.create(parentVal || null) }
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     assertObjectType(key, childVal, vm);
   }
   if (!parentVal) { return childVal }
@@ -6319,7 +6319,7 @@ strats.computed = function (
   vm,
   key
 ) {
-  if (childVal && Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (childVal && Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     assertObjectType(key, childVal, vm);
   }
   if (!parentVal) { return childVal }
@@ -6380,7 +6380,7 @@ function normalizeProps (options, vm) {
       if (typeof val === 'string') {
         name = camelize(val);
         res[name] = { type: null };
-      } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         warn('props must be strings when using array syntax.');
       }
     }
@@ -6392,7 +6392,7 @@ function normalizeProps (options, vm) {
         ? val
         : { type: val };
     }
-  } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     warn(
       "Invalid value for option \"props\": expected an Array or an Object, " +
       "but got " + (toRawType(props)) + ".",
@@ -6420,7 +6420,7 @@ function normalizeInject (options, vm) {
         ? extend({ from: key }, val)
         : { from: val };
     }
-  } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     warn(
       "Invalid value for option \"inject\": expected an Array or an Object, " +
       "but got " + (toRawType(inject)) + ".",
@@ -6463,7 +6463,7 @@ function mergeOptions (
   child,
   vm
 ) {
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     checkComponents(child);
   }
 
@@ -6524,7 +6524,7 @@ function resolveAsset (
   if (hasOwn(assets, PascalCaseId)) { return assets[PascalCaseId] }
   // fallback to prototype chain
   var res = assets[id] || assets[camelizedId] || assets[PascalCaseId];
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warnMissing && !res) {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warnMissing && !res) {
     warn(
       'Failed to resolve ' + type.slice(0, -1) + ': ' + id,
       options
@@ -6563,7 +6563,7 @@ function validateProp (
     observerState.shouldConvert = prevShouldConvert;
   }
   if (
-    Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
+    Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
     // skip validation for weex recycle-list child component props
     !(false && isObject(value) && ('@binding' in value))
   ) {
@@ -6582,7 +6582,7 @@ function getPropDefaultValue (vm, prop, key) {
   }
   var def = prop.default;
   // warn against non-factory defaults for Object & Array
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && isObject(def)) {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && isObject(def)) {
     warn(
       'Invalid default value for prop "' + key + '": ' +
       'Props with type Object/Array must use a factory function ' +
@@ -6740,7 +6740,7 @@ function globalHandleError (err, vm, info) {
 }
 
 function logError (err, vm, info) {
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     warn(("Error in " + info + ": \"" + (err.toString()) + "\""), vm);
   }
   /* istanbul ignore else */
@@ -6870,7 +6870,7 @@ function nextTick (cb, ctx) {
 var mark;
 var measure;
 
-if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
   var perf = inBrowser && window.performance;
   /* istanbul ignore if */
   if (
@@ -6894,7 +6894,7 @@ if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== '
 
 var initProxy;
 
-if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
   var allowedGlobals = makeMap(
     'Infinity,undefined,NaN,isFinite,isNaN,' +
     'parseFloat,parseInt,decodeURI,decodeURIComponent,encodeURI,encodeURIComponent,' +
@@ -7053,7 +7053,7 @@ function updateListeners (
     event = normalizeEvent(name);
     /* istanbul ignore if */
     if (isUndef(cur)) {
-      Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+      Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
         "Invalid handler for event \"" + (event.name) + "\": got " + String(cur),
         vm
       );
@@ -7130,7 +7130,7 @@ function extractPropsFromVNodeData (
   if (isDef(attrs) || isDef(props)) {
     for (var key in propOptions) {
       var altKey = hyphenate(key);
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         var keyInLowerCase = key.toLowerCase();
         if (
           key !== keyInLowerCase &&
@@ -7333,7 +7333,7 @@ function resolveAsyncComponent (
     });
 
     var reject = once(function (reason) {
-      Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+      Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
         "Failed to resolve async component: " + (String(factory)) +
         (reason ? ("\nReason: " + reason) : '')
       );
@@ -7376,7 +7376,7 @@ function resolveAsyncComponent (
           setTimeout(function () {
             if (isUndef(factory.resolved)) {
               reject(
-                Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production'
+                Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production'
                   ? ("timeout (" + (res.timeout) + "ms)")
                   : null
               );
@@ -7525,7 +7525,7 @@ function eventsMixin (Vue) {
 
   Vue.prototype.$emit = function (event) {
     var vm = this;
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       var lowerCaseEvent = event.toLowerCase();
       if (lowerCaseEvent !== event && vm._events[lowerCaseEvent]) {
         tip(
@@ -7752,7 +7752,7 @@ function mountComponent (
   vm.$el = el;
   if (!vm.$options.render) {
     vm.$options.render = createEmptyVNode;
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       /* istanbul ignore if */
       if ((vm.$options.template && vm.$options.template.charAt(0) !== '#') ||
         vm.$options.el || el) {
@@ -7774,7 +7774,7 @@ function mountComponent (
 
   var updateComponent;
   /* istanbul ignore if */
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && config.performance && mark) {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && config.performance && mark) {
     updateComponent = function () {
       var name = vm._name;
       var id = vm._uid;
@@ -7819,7 +7819,7 @@ function updateChildComponent (
   parentVnode,
   renderChildren
 ) {
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     isUpdatingChildComponent = true;
   }
 
@@ -7872,7 +7872,7 @@ function updateChildComponent (
     vm.$forceUpdate();
   }
 
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     isUpdatingChildComponent = false;
   }
 }
@@ -7953,7 +7953,7 @@ var index = 0;
 function resetSchedulerState () {
   index = queue.length = activatedChildren.length = 0;
   has = {};
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     circular = {};
   }
   waiting = flushing = false;
@@ -7984,7 +7984,7 @@ function flushSchedulerQueue () {
     has[id] = null;
     watcher.run();
     // in dev build, check and stop circular updates.
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && has[id] != null) {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && has[id] != null) {
       circular[id] = (circular[id] || 0) + 1;
       if (circular[id] > MAX_UPDATE_COUNT) {
         warn(
@@ -8112,7 +8112,7 @@ var Watcher = function Watcher (
   this.newDeps = [];
   this.depIds = new _Set();
   this.newDepIds = new _Set();
-  this.expression = Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production'
+  this.expression = Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production'
     ? expOrFn.toString()
     : '';
   // parse expression for getter
@@ -8122,7 +8122,7 @@ var Watcher = function Watcher (
     this.getter = parsePath(expOrFn);
     if (!this.getter) {
       this.getter = function () {};
-      Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+      Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
         "Failed watching path: \"" + expOrFn + "\" " +
         'Watcher only accepts simple dot-delimited paths. ' +
         'For full control, use a function instead.',
@@ -8335,7 +8335,7 @@ function initProps (vm, propsOptions) {
     keys.push(key);
     var value = validateProp(key, propsOptions, propsData, vm);
     /* istanbul ignore else */
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       var hyphenatedKey = hyphenate(key);
       if (isReservedAttribute(hyphenatedKey) ||
           config.isReservedAttr(hyphenatedKey)) {
@@ -8377,7 +8377,7 @@ function initData (vm) {
     : data || {};
   if (!isPlainObject(data)) {
     data = {};
-    Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+    Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
       'data functions should return an object:\n' +
       'https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function',
       vm
@@ -8390,7 +8390,7 @@ function initData (vm) {
   var i = keys.length;
   while (i--) {
     var key = keys[i];
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       if (methods && hasOwn(methods, key)) {
         warn(
           ("Method \"" + key + "\" has already been defined as a data property."),
@@ -8399,7 +8399,7 @@ function initData (vm) {
       }
     }
     if (props && hasOwn(props, key)) {
-      Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+      Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
         "The data property \"" + key + "\" is already declared as a prop. " +
         "Use prop default value instead.",
         vm
@@ -8432,7 +8432,7 @@ function initComputed (vm, computed) {
   for (var key in computed) {
     var userDef = computed[key];
     var getter = typeof userDef === 'function' ? userDef : userDef.get;
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && getter == null) {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && getter == null) {
       warn(
         ("Getter is missing for computed property \"" + key + "\"."),
         vm
@@ -8454,7 +8454,7 @@ function initComputed (vm, computed) {
     // at instantiation here.
     if (!(key in vm)) {
       defineComputed(vm, key, userDef);
-    } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       if (key in vm.$data) {
         warn(("The computed property \"" + key + "\" is already defined in data."), vm);
       } else if (vm.$options.props && key in vm.$options.props) {
@@ -8485,7 +8485,7 @@ function defineComputed (
       ? userDef.set
       : noop;
   }
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
       sharedPropertyDefinition.set === noop) {
     sharedPropertyDefinition.set = function () {
       warn(
@@ -8515,7 +8515,7 @@ function createComputedGetter (key) {
 function initMethods (vm, methods) {
   var props = vm.$options.props;
   for (var key in methods) {
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       if (methods[key] == null) {
         warn(
           "Method \"" + key + "\" has an undefined value in the component definition. " +
@@ -8577,7 +8577,7 @@ function stateMixin (Vue) {
   dataDef.get = function () { return this._data };
   var propsDef = {};
   propsDef.get = function () { return this._props };
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     dataDef.set = function (newData) {
       warn(
         'Avoid replacing instance root $data. ' +
@@ -8633,7 +8633,7 @@ function initInjections (vm) {
     observerState.shouldConvert = false;
     Object.keys(result).forEach(function (key) {
       /* istanbul ignore else */
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         defineReactive(vm, key, result[key], function () {
           warn(
             "Avoid mutating an injected value directly since the changes will be " +
@@ -8678,7 +8678,7 @@ function resolveInject (inject, vm) {
           result[key] = typeof provideDefault === 'function'
             ? provideDefault.call(vm)
             : provideDefault;
-        } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+        } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
           warn(("Injection \"" + key + "\" not found"), vm);
         }
       }
@@ -8737,7 +8737,7 @@ function renderSlot (
   if (scopedSlotFn) { // scoped slot
     props = props || {};
     if (bindObject) {
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && !isObject(bindObject)) {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && !isObject(bindObject)) {
         warn(
           'slot v-bind without argument expects an Object',
           this
@@ -8750,7 +8750,7 @@ function renderSlot (
     var slotNodes = this.$slots[name];
     // warn duplicate slot usage
     if (slotNodes) {
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && slotNodes._rendered) {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && slotNodes._rendered) {
         warn(
           "Duplicate presence of slot \"" + name + "\" found in the same render tree " +
           "- this will likely cause render errors.",
@@ -8818,7 +8818,7 @@ function bindObjectProps (
 ) {
   if (value) {
     if (!isObject(value)) {
-      Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+      Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
         'v-bind without argument expects an Object or Array value',
         this
       );
@@ -8926,7 +8926,7 @@ function markStaticNode (node, key, isOnce) {
 function bindObjectListeners (data, value) {
   if (value) {
     if (!isPlainObject(value)) {
-      Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+      Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
         'v-on without argument expects an Object value',
         this
       );
@@ -9169,7 +9169,7 @@ function createComponent (
   // if at this stage it's not a constructor or an async component factory,
   // reject.
   if (typeof Ctor !== 'function') {
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       warn(("Invalid Component definition: " + (String(Ctor))), context);
     }
     return
@@ -9339,7 +9339,7 @@ function _createElement (
   normalizationType
 ) {
   if (isDef(data) && isDef((data).__ob__)) {
-    Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+    Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
       "Avoid using observed data object as vnode data: " + (JSON.stringify(data)) + "\n" +
       'Always create fresh vnode data objects in each render!',
       context
@@ -9355,7 +9355,7 @@ function _createElement (
     return createEmptyVNode()
   }
   // warn against non-primitive key
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
     isDef(data) && isDef(data.key) && !isPrimitive(data.key)
   ) {
     {
@@ -9454,7 +9454,7 @@ function initRender (vm) {
   var parentData = parentVnode && parentVnode.data;
 
   /* istanbul ignore else */
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     defineReactive(vm, '$attrs', parentData && parentData.attrs || emptyObject, function () {
       !isUpdatingChildComponent && warn("$attrs is readonly.", vm);
     }, true);
@@ -9508,7 +9508,7 @@ function renderMixin (Vue) {
       // return error render result,
       // or previous vnode to prevent render error causing blank component
       /* istanbul ignore else */
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         if (vm.$options.renderError) {
           try {
             vnode = vm.$options.renderError.call(vm._renderProxy, vm.$createElement, e);
@@ -9525,7 +9525,7 @@ function renderMixin (Vue) {
     }
     // return empty vnode in case the render function errored out
     if (!(vnode instanceof VNode)) {
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && Array.isArray(vnode)) {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && Array.isArray(vnode)) {
         warn(
           'Multiple root nodes returned from render function. Render function ' +
           'should return a single root node.',
@@ -9552,7 +9552,7 @@ function initMixin (Vue) {
 
     var startTag, endTag;
     /* istanbul ignore if */
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && config.performance && mark) {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && config.performance && mark) {
       startTag = "vue-perf-start:" + (vm._uid);
       endTag = "vue-perf-end:" + (vm._uid);
       mark(startTag);
@@ -9574,7 +9574,7 @@ function initMixin (Vue) {
       );
     }
     /* istanbul ignore else */
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       initProxy(vm);
     } else {
       vm._renderProxy = vm;
@@ -9591,7 +9591,7 @@ function initMixin (Vue) {
     callHook(vm, 'created');
 
     /* istanbul ignore if */
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && config.performance && mark) {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && config.performance && mark) {
       vm._name = formatComponentName(vm, false);
       mark(endTag);
       measure(("vue " + (vm._name) + " init"), startTag, endTag);
@@ -9682,7 +9682,7 @@ function dedupe (latest, extended, sealed) {
 }
 
 function Vue$3 (options) {
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
     !(this instanceof Vue$3)
   ) {
     warn('Vue is a constructor and should be called with the `new` keyword');
@@ -9751,7 +9751,7 @@ function initExtend (Vue) {
     }
 
     var name = extendOptions.name || Super.options.name;
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && name) {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && name) {
       validateComponentName(name);
     }
 
@@ -9834,7 +9834,7 @@ function initAssetRegisters (Vue) {
         return this.options[type + 's'][id]
       } else {
         /* istanbul ignore if */
-        if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && type === 'component') {
+        if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && type === 'component') {
           validateComponentName(id);
         }
         if (type === 'component' && isPlainObject(definition)) {
@@ -9989,7 +9989,7 @@ function initGlobalAPI (Vue) {
   // config
   var configDef = {};
   configDef.get = function () { return config; };
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     configDef.set = function () {
       warn(
         'Do not replace the Vue.config object, set individual fields instead.'
@@ -10251,7 +10251,7 @@ function query (el) {
   if (typeof el === 'string') {
     var selected = document.querySelector(el);
     if (!selected) {
-      Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+      Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
         'Cannot find element: ' + el
       );
       return document.createElement('div')
@@ -10496,7 +10496,7 @@ function createPatchFunction (backend) {
     var children = vnode.children;
     var tag = vnode.tag;
     if (isDef(tag)) {
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         if (data && data.pre) {
           creatingElmInVPre++;
         }
@@ -10523,7 +10523,7 @@ function createPatchFunction (backend) {
         insert(parentElm, vnode.elm, refElm);
       }
 
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && data && data.pre) {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && data && data.pre) {
         creatingElmInVPre--;
       }
     } else if (isTrue(vnode.isComment)) {
@@ -10610,7 +10610,7 @@ function createPatchFunction (backend) {
 
   function createChildren (vnode, children, insertedVnodeQueue) {
     if (Array.isArray(children)) {
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         checkDuplicateKeys(children);
       }
       for (var i = 0; i < children.length; ++i) {
@@ -10744,7 +10744,7 @@ function createPatchFunction (backend) {
     // during leaving transitions
     var canMove = !removeOnly;
 
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       checkDuplicateKeys(newCh);
     }
 
@@ -10918,7 +10918,7 @@ function createPatchFunction (backend) {
       return true
     }
     // assert node match
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       if (!assertNodeMatch(elm, vnode, inVPre)) {
         return false
       }
@@ -10941,7 +10941,7 @@ function createPatchFunction (backend) {
           if (isDef(i = data) && isDef(i = i.domProps) && isDef(i = i.innerHTML)) {
             if (i !== elm.innerHTML) {
               /* istanbul ignore if */
-              if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
+              if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
                 typeof console !== 'undefined' &&
                 !hydrationBailed
               ) {
@@ -10967,7 +10967,7 @@ function createPatchFunction (backend) {
             // longer than the virtual children list.
             if (!childrenMatch || childNode) {
               /* istanbul ignore if */
-              if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
+              if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
                 typeof console !== 'undefined' &&
                 !hydrationBailed
               ) {
@@ -11042,7 +11042,7 @@ function createPatchFunction (backend) {
             if (hydrate(oldVnode, vnode, insertedVnodeQueue)) {
               invokeInsertHook(vnode, insertedVnodeQueue, true);
               return oldVnode
-            } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+            } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
               warn(
                 'The client-side rendered virtual DOM tree is not matching ' +
                 'server-rendered content. This is likely caused by incorrect ' +
@@ -11524,7 +11524,7 @@ function addHandler (
   // warn prevent and passive modifier
   /* istanbul ignore if */
   if (
-    Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn &&
+    Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn &&
     modifiers.prevent && modifiers.passive
   ) {
     warn(
@@ -11799,7 +11799,7 @@ function model (
   var tag = el.tag;
   var type = el.attrsMap.type;
 
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     // inputs with type="file" are read only and setting the input's
     // value will throw an error.
     if (tag === 'input' && type === 'file') {
@@ -11826,7 +11826,7 @@ function model (
     genComponentModel(el, value, modifiers);
     // component v-model doesn't need extra runtime
     return false
-  } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     warn$1(
       "<" + (el.tag) + " v-model=\"" + value + "\">: " +
       "v-model is not supported on this element type. " +
@@ -11907,7 +11907,7 @@ function genDefaultModel (
   var type = el.attrsMap.type;
 
   // warn if v-bind:value conflicts with v-model
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     var value$1 = el.attrsMap['v-bind:value'] || el.attrsMap[':value'];
     if (value$1) {
       var binding = el.attrsMap['v-bind:value'] ? 'v-bind:value' : ':value';
@@ -12614,7 +12614,7 @@ function enter (vnode, toggleDisplay) {
       : duration
   );
 
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && explicitEnterDuration != null) {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && explicitEnterDuration != null) {
     checkDuration(explicitEnterDuration, 'enter', vnode);
   }
 
@@ -12720,7 +12720,7 @@ function leave (vnode, rm) {
       : duration
   );
 
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && isDef(explicitLeaveDuration)) {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && isDef(explicitLeaveDuration)) {
     checkDuration(explicitLeaveDuration, 'leave', vnode);
   }
 
@@ -12947,7 +12947,7 @@ function actuallySetSelected (el, binding, vm) {
   var value = binding.value;
   var isMultiple = el.multiple;
   if (isMultiple && !Array.isArray(value)) {
-    Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+    Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
       "<select multiple v-model=\"" + (binding.expression) + "\"> " +
       "expects an Array value for its binding, but got " + (Object.prototype.toString.call(value).slice(8, -1)),
       vm
@@ -13163,7 +13163,7 @@ var Transition = {
     }
 
     // warn multiple elements
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && children.length > 1) {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && children.length > 1) {
       warn(
         '<transition> can only be used on a single element. Use ' +
         '<transition-group> for lists.',
@@ -13174,7 +13174,7 @@ var Transition = {
     var mode = this.mode;
 
     // warn invalid mode
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
       mode && mode !== 'in-out' && mode !== 'out-in'
     ) {
       warn(
@@ -13299,7 +13299,7 @@ var TransitionGroup = {
           children.push(c);
           map[c.key] = c
           ;(c.data || (c.data = {})).transition = transitionData;
-        } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+        } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
           var opts = c.componentOptions;
           var name = opts ? (opts.Ctor.options.name || opts.tag || '') : c.tag;
           warn(("<transition-group> children must be keyed: <" + name + ">"));
@@ -13466,14 +13466,14 @@ Vue$3.nextTick(function () {
   if (config.devtools) {
     if (devtools) {
       devtools.emit('init', Vue$3);
-    } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && isChrome) {
+    } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && isChrome) {
       console[console.info ? 'info' : 'log'](
         'Download the Vue Devtools extension for a better development experience:\n' +
         'https://github.com/vuejs/vue-devtools'
       );
     }
   }
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
     config.productionTip !== false &&
     inBrowser && typeof console !== 'undefined'
   ) {
@@ -13538,7 +13538,7 @@ function parseText (
 function transformNode (el, options) {
   var warn = options.warn || baseWarn;
   var staticClass = getAndRemoveAttr(el, 'class');
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && staticClass) {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && staticClass) {
     var res = parseText(staticClass, options.delimiters);
     if (res) {
       warn(
@@ -13582,7 +13582,7 @@ function transformNode$1 (el, options) {
   var staticStyle = getAndRemoveAttr(el, 'style');
   if (staticStyle) {
     /* istanbul ignore if */
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       var res = parseText(staticStyle, options.delimiters);
       if (res) {
         warn(
@@ -13823,7 +13823,7 @@ function parseHTML (html, options) {
 
     if (html === last) {
       options.chars && options.chars(html);
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && !stack.length && options.warn) {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && !stack.length && options.warn) {
         options.warn(("Mal-formatted tag at end of template: \"" + html + "\""));
       }
       break
@@ -13930,7 +13930,7 @@ function parseHTML (html, options) {
     if (pos >= 0) {
       // Close all the open elements, up the stack
       for (var i = stack.length - 1; i >= pos; i--) {
-        if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
+        if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
           (i > pos || !tagName) &&
           options.warn
         ) {
@@ -14076,7 +14076,7 @@ function parse (
 
       if (isForbiddenTag(element) && !isServerRendering()) {
         element.forbidden = true;
-        Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn$2(
+        Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn$2(
           'Templates should only be responsible for mapping the state to the ' +
           'UI. Avoid placing tags with side-effects in your templates, such as ' +
           "<" + tag + ">" + ', as they will not be parsed.'
@@ -14109,7 +14109,7 @@ function parse (
       }
 
       function checkRootConstraints (el) {
-        if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+        if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
           if (el.tag === 'slot' || el.tag === 'template') {
             warnOnce(
               "Cannot use <" + (el.tag) + "> as component root element because it may " +
@@ -14137,7 +14137,7 @@ function parse (
             exp: element.elseif,
             block: element
           });
-        } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+        } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
           warnOnce(
             "Component template should contain exactly one root element. " +
             "If you are using v-if on multiple elements, " +
@@ -14179,7 +14179,7 @@ function parse (
 
     chars: function chars (text) {
       if (!currentParent) {
-        if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+        if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
           if (text === template) {
             warnOnce(
               'Component template requires a root element, rather than just text.'
@@ -14274,7 +14274,7 @@ function processElement (element, options) {
 function processKey (el) {
   var exp = getBindingAttr(el, 'key');
   if (exp) {
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && el.tag === 'template') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && el.tag === 'template') {
       warn$2("<template> cannot be keyed. Place the key on real elements instead.");
     }
     el.key = exp;
@@ -14295,7 +14295,7 @@ function processFor (el) {
     var res = parseFor(exp);
     if (res) {
       extend(el, res);
-    } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       warn$2(
         ("Invalid v-for expression: " + exp)
       );
@@ -14348,7 +14348,7 @@ function processIfConditions (el, parent) {
       exp: el.elseif,
       block: el
     });
-  } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     warn$2(
       "v-" + (el.elseif ? ('else-if="' + el.elseif + '"') : 'else') + " " +
       "used on element <" + (el.tag) + "> without corresponding v-if."
@@ -14362,7 +14362,7 @@ function findPrevElement (children) {
     if (children[i].type === 1) {
       return children[i]
     } else {
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && children[i].text !== ' ') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && children[i].text !== ' ') {
         warn$2(
           "text \"" + (children[i].text.trim()) + "\" between v-if and v-else(-if) " +
           "will be ignored."
@@ -14390,7 +14390,7 @@ function processOnce (el) {
 function processSlot (el) {
   if (el.tag === 'slot') {
     el.slotName = getBindingAttr(el, 'name');
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && el.key) {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && el.key) {
       warn$2(
         "`key` does not work on <slot> because slots are abstract outlets " +
         "and can possibly expand into multiple elements. " +
@@ -14402,7 +14402,7 @@ function processSlot (el) {
     if (el.tag === 'template') {
       slotScope = getAndRemoveAttr(el, 'scope');
       /* istanbul ignore if */
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && slotScope) {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && slotScope) {
         warn$2(
           "the \"scope\" attribute for scoped slots have been deprecated and " +
           "replaced by \"slot-scope\" since 2.5. The new \"slot-scope\" attribute " +
@@ -14414,7 +14414,7 @@ function processSlot (el) {
       el.slotScope = slotScope || getAndRemoveAttr(el, 'slot-scope');
     } else if ((slotScope = getAndRemoveAttr(el, 'slot-scope'))) {
       /* istanbul ignore if */
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && el.attrsMap['v-for']) {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && el.attrsMap['v-for']) {
         warn$2(
           "Ambiguous combined usage of slot-scope and v-for on <" + (el.tag) + "> " +
           "(v-for takes higher priority). Use a wrapper <template> for the " +
@@ -14500,13 +14500,13 @@ function processAttrs (el) {
           name = name.slice(0, -(arg.length + 1));
         }
         addDirective(el, name, rawName, value, arg, modifiers);
-        if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && name === 'model') {
+        if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && name === 'model') {
           checkForAliasModel(el, value);
         }
       }
     } else {
       // literal attribute
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         var res = parseText(value, delimiters);
         if (res) {
           warn$2(
@@ -14553,7 +14553,7 @@ function makeAttrsMap (attrs) {
   var map = {};
   for (var i = 0, l = attrs.length; i < l; i++) {
     if (
-      Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
+      Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
       map[attrs[i].name] && !isIE && !isEdge
     ) {
       warn$2('duplicate attribute: ' + attrs[i].name);
@@ -14981,7 +14981,7 @@ function genFilterCode (key) {
 /*  */
 
 function on (el, dir) {
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && dir.modifiers) {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && dir.modifiers) {
     warn("v-on without argument does not support modifiers.");
   }
   el.wrapListeners = function (code) { return ("_g(" + code + "," + (dir.value) + ")"); };
@@ -15086,7 +15086,7 @@ function genOnce (el, state) {
       parent = parent.parent;
     }
     if (!key) {
-      Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && state.warn(
+      Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && state.warn(
         "v-once can only be used inside v-for that is keyed. "
       );
       return genElement(el, state)
@@ -15145,7 +15145,7 @@ function genFor (
   var iterator1 = el.iterator1 ? ("," + (el.iterator1)) : '';
   var iterator2 = el.iterator2 ? ("," + (el.iterator2)) : '';
 
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' &&
     state.maybeComponent(el) &&
     el.tag !== 'slot' &&
     el.tag !== 'template' &&
@@ -15271,7 +15271,7 @@ function genDirectives (el, state) {
 
 function genInlineTemplate (el, state) {
   var ast = el.children[0];
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && (
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && (
     el.children.length !== 1 || ast.type !== 1
   )) {
     state.warn('Inline-template components must have exactly one child element.');
@@ -15579,7 +15579,7 @@ function createCompileToFunctionFn (compile) {
     delete options.warn;
 
     /* istanbul ignore if */
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       // detect possible CSP restriction
       try {
         new Function('return 1');
@@ -15608,7 +15608,7 @@ function createCompileToFunctionFn (compile) {
     var compiled = compile(template, options);
 
     // check compilation errors/tips
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       if (compiled.errors && compiled.errors.length) {
         warn$$1(
           "Error compiling template:\n\n" + template + "\n\n" +
@@ -15633,7 +15633,7 @@ function createCompileToFunctionFn (compile) {
     // this should only happen if there is a bug in the compiler itself.
     // mostly for codegen development use
     /* istanbul ignore if */
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       if ((!compiled.errors || !compiled.errors.length) && fnGenErrors.length) {
         warn$$1(
           "Failed to generate render function:\n\n" +
@@ -15689,7 +15689,7 @@ function createCompilerCreator (baseCompile) {
       }
 
       var compiled = baseCompile(template, finalOptions);
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         errors.push.apply(errors, detectErrors(compiled.ast));
       }
       compiled.errors = errors;
@@ -15761,7 +15761,7 @@ Vue$3.prototype.$mount = function (
 
   /* istanbul ignore if */
   if (el === document.body || el === document.documentElement) {
-    Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
+    Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(
       "Do not mount Vue to <html> or <body> - mount to normal elements instead."
     );
     return this
@@ -15776,7 +15776,7 @@ Vue$3.prototype.$mount = function (
         if (template.charAt(0) === '#') {
           template = idToTemplate(template);
           /* istanbul ignore if */
-          if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && !template) {
+          if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && !template) {
             warn(
               ("Template element not found or is empty: " + (options.template)),
               this
@@ -15786,7 +15786,7 @@ Vue$3.prototype.$mount = function (
       } else if (template.nodeType) {
         template = template.innerHTML;
       } else {
-        if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+        if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
           warn('invalid template option:' + template, this);
         }
         return this
@@ -15796,7 +15796,7 @@ Vue$3.prototype.$mount = function (
     }
     if (template) {
       /* istanbul ignore if */
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && config.performance && mark) {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && config.performance && mark) {
         mark('compile');
       }
 
@@ -15812,7 +15812,7 @@ Vue$3.prototype.$mount = function (
       options.staticRenderFns = staticRenderFns;
 
       /* istanbul ignore if */
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && config.performance && mark) {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && config.performance && mark) {
         mark('compile end');
         measure(("vue " + (this._name) + " compile"), 'compile', 'compile end');
       }
@@ -15839,99 +15839,17 @@ Vue$3.compile = compileToFunctions;
 
 /* harmony default export */ __webpack_exports__["a"] = (Vue$3);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(6), __webpack_require__(142).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5), __webpack_require__(140).setImmediate))
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(1);
-var normalizeHeaderName = __webpack_require__(152);
+var normalizeHeaderName = __webpack_require__(150);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -16021,10 +15939,10 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 var g;
@@ -16051,7 +15969,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -16241,10 +16159,92 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(149);
+module.exports = __webpack_require__(147);
 
 /***/ }),
 /* 9 */
@@ -16272,12 +16272,12 @@ module.exports = function bind(fn, thisArg) {
 
 
 var utils = __webpack_require__(1);
-var settle = __webpack_require__(153);
-var buildURL = __webpack_require__(155);
-var parseHeaders = __webpack_require__(156);
-var isURLSameOrigin = __webpack_require__(157);
+var settle = __webpack_require__(151);
+var buildURL = __webpack_require__(153);
+var parseHeaders = __webpack_require__(154);
+var isURLSameOrigin = __webpack_require__(155);
 var createError = __webpack_require__(11);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(158);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(156);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -16295,7 +16295,7 @@ module.exports = function xhrAdapter(config) {
     // For IE 8/9 CORS support
     // Only supports POST and GET calls and doesn't returns the response headers.
     // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'test' &&
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'test' &&
         typeof window !== 'undefined' &&
         window.XDomainRequest && !('withCredentials' in request) &&
         !isURLSameOrigin(config.url)) {
@@ -16374,7 +16374,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(159);
+      var cookies = __webpack_require__(157);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -16458,7 +16458,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(154);
+var enhanceError = __webpack_require__(152);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -16519,7 +16519,7 @@ module.exports = Cancel;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_NavBar_vue__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_NavBar_vue__ = __webpack_require__(166);
 //
 //
 //
@@ -16672,10 +16672,24 @@ module.exports = Cancel;
         text: '',
         show: false
       },
-      calURL: 'http://sutd-timetable.herokuapp.com/calendar?'
+      calURL: 'https://sutd-timetable.herokuapp.com/calendar?'
     }
   },
   computed: {
+    items () {
+      return [].concat(...this.$tm.modules.map((m) => {
+        const header = `${m.code} - ${m.title}`
+        return [
+          {header},
+          ...m.sections.map((s) => ({
+            text: `${s.name} (${header})`,
+            chip: `${m.code}: ${s.name}`,
+            value: s.cn
+          })),
+          {divider: true}
+        ]
+      }))
+    },
     calQS () {
       if (this.$tm.selected.length > 0) {
         return this.$tm.selected.sort().join(',')
@@ -16701,231 +16715,10 @@ module.exports = Cancel;
 
 /***/ }),
 /* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-  Modified by Evan You @yyx990803
-*/
-
-var hasDocument = typeof document !== 'undefined'
-
-if (typeof DEBUG !== 'undefined' && DEBUG) {
-  if (!hasDocument) {
-    throw new Error(
-    'vue-style-loader cannot be used in a non-browser environment. ' +
-    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
-  ) }
-}
-
-var listToStyles = __webpack_require__(178)
-
-/*
-type StyleObject = {
-  id: number;
-  parts: Array<StyleObjectPart>
-}
-
-type StyleObjectPart = {
-  css: string;
-  media: string;
-  sourceMap: ?string
-}
-*/
-
-var stylesInDom = {/*
-  [id: number]: {
-    id: number,
-    refs: number,
-    parts: Array<(obj?: StyleObjectPart) => void>
-  }
-*/}
-
-var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
-var singletonElement = null
-var singletonCounter = 0
-var isProduction = false
-var noop = function () {}
-
-// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-// tags it will allow on a page
-var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
-
-module.exports = function (parentId, list, _isProduction) {
-  isProduction = _isProduction
-
-  var styles = listToStyles(parentId, list)
-  addStylesToDom(styles)
-
-  return function update (newList) {
-    var mayRemove = []
-    for (var i = 0; i < styles.length; i++) {
-      var item = styles[i]
-      var domStyle = stylesInDom[item.id]
-      domStyle.refs--
-      mayRemove.push(domStyle)
-    }
-    if (newList) {
-      styles = listToStyles(parentId, newList)
-      addStylesToDom(styles)
-    } else {
-      styles = []
-    }
-    for (var i = 0; i < mayRemove.length; i++) {
-      var domStyle = mayRemove[i]
-      if (domStyle.refs === 0) {
-        for (var j = 0; j < domStyle.parts.length; j++) {
-          domStyle.parts[j]()
-        }
-        delete stylesInDom[domStyle.id]
-      }
-    }
-  }
-}
-
-function addStylesToDom (styles /* Array<StyleObject> */) {
-  for (var i = 0; i < styles.length; i++) {
-    var item = styles[i]
-    var domStyle = stylesInDom[item.id]
-    if (domStyle) {
-      domStyle.refs++
-      for (var j = 0; j < domStyle.parts.length; j++) {
-        domStyle.parts[j](item.parts[j])
-      }
-      for (; j < item.parts.length; j++) {
-        domStyle.parts.push(addStyle(item.parts[j]))
-      }
-      if (domStyle.parts.length > item.parts.length) {
-        domStyle.parts.length = item.parts.length
-      }
-    } else {
-      var parts = []
-      for (var j = 0; j < item.parts.length; j++) {
-        parts.push(addStyle(item.parts[j]))
-      }
-      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
-    }
-  }
-}
-
-function createStyleElement () {
-  var styleElement = document.createElement('style')
-  styleElement.type = 'text/css'
-  head.appendChild(styleElement)
-  return styleElement
-}
-
-function addStyle (obj /* StyleObjectPart */) {
-  var update, remove
-  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
-
-  if (styleElement) {
-    if (isProduction) {
-      // has SSR styles and in production mode.
-      // simply do nothing.
-      return noop
-    } else {
-      // has SSR styles but in dev mode.
-      // for some reason Chrome can't handle source map in server-rendered
-      // style tags - source maps in <style> only works if the style tag is
-      // created and inserted dynamically. So we remove the server rendered
-      // styles and inject new ones.
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  if (isOldIE) {
-    // use singleton mode for IE9.
-    var styleIndex = singletonCounter++
-    styleElement = singletonElement || (singletonElement = createStyleElement())
-    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
-    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
-  } else {
-    // use multi-style-tag mode in all other cases
-    styleElement = createStyleElement()
-    update = applyToTag.bind(null, styleElement)
-    remove = function () {
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  update(obj)
-
-  return function updateStyle (newObj /* StyleObjectPart */) {
-    if (newObj) {
-      if (newObj.css === obj.css &&
-          newObj.media === obj.media &&
-          newObj.sourceMap === obj.sourceMap) {
-        return
-      }
-      update(obj = newObj)
-    } else {
-      remove()
-    }
-  }
-}
-
-var replaceText = (function () {
-  var textStore = []
-
-  return function (index, replacement) {
-    textStore[index] = replacement
-    return textStore.filter(Boolean).join('\n')
-  }
-})()
-
-function applyToSingletonTag (styleElement, index, remove, obj) {
-  var css = remove ? '' : obj.css
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = replaceText(index, css)
-  } else {
-    var cssNode = document.createTextNode(css)
-    var childNodes = styleElement.childNodes
-    if (childNodes[index]) styleElement.removeChild(childNodes[index])
-    if (childNodes.length) {
-      styleElement.insertBefore(cssNode, childNodes[index])
-    } else {
-      styleElement.appendChild(cssNode)
-    }
-  }
-}
-
-function applyToTag (styleElement, obj) {
-  var css = obj.css
-  var media = obj.media
-  var sourceMap = obj.sourceMap
-
-  if (media) {
-    styleElement.setAttribute('media', media)
-  }
-
-  if (sourceMap) {
-    // https://developer.chrome.com/devtools/docs/javascript-debugging
-    // this makes source maps inside style tags work properly in Chrome
-    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
-    // http://stackoverflow.com/a/26603875
-    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
-  }
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild)
-    }
-    styleElement.appendChild(document.createTextNode(css))
-  }
-}
-
-
-/***/ }),
-/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parser__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parser__ = __webpack_require__(178);
 //
 //
 //
@@ -17115,7 +16908,7 @@ const GBL = 'psc/CSPRD/EMPLOYEE/HRMS/c/SA_LEARNER_SERVICES.SSR_SSENRL_LIST.GBL'
     },
     send (data) {
       this.$set(data, 'sent', 0)
-      const p = this.$http.post("http://sutd-timetable.herokuapp.com/v2/" + 'upload', data)
+      const p = this.$http.post("https://sutd-timetable.herokuapp.com/v2/" + 'upload', data)
       return p.then(() => (data.sent = 2), () => (data.sent = 1))
     },
     handleFile (e) {
@@ -17147,7 +16940,7 @@ const GBL = 'psc/CSPRD/EMPLOYEE/HRMS/c/SA_LEARNER_SERVICES.SSR_SSENRL_LIST.GBL'
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17226,7 +17019,7 @@ return af;
 
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17374,7 +17167,7 @@ return ar;
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17439,7 +17232,7 @@ return arDz;
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17504,7 +17297,7 @@ return arKw;
 
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17636,7 +17429,7 @@ return arLy;
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17702,7 +17495,7 @@ return arMa;
 
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17813,7 +17606,7 @@ return arSa;
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17878,7 +17671,7 @@ return arTn;
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -17989,7 +17782,7 @@ return az;
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18129,7 +17922,7 @@ return be;
 
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18225,7 +18018,7 @@ return bg;
 
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18290,7 +18083,7 @@ return bm;
 
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18415,7 +18208,7 @@ return bn;
 
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18540,7 +18333,7 @@ return bo;
 
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18654,7 +18447,7 @@ return br;
 
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18812,7 +18605,7 @@ return bs;
 
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -18906,7 +18699,7 @@ return ca;
 
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19091,7 +18884,7 @@ return cs;
 
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19160,7 +18953,7 @@ return cv;
 
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19247,7 +19040,7 @@ return cy;
 
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19313,7 +19106,7 @@ return da;
 
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19397,7 +19190,7 @@ return de;
 
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19482,7 +19275,7 @@ return deAt;
 
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19566,7 +19359,7 @@ return deCh;
 
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19672,7 +19465,7 @@ return dv;
 
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19778,7 +19571,7 @@ return el;
 
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19851,7 +19644,7 @@ return enAu;
 
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19920,7 +19713,7 @@ return enCa;
 
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -19993,7 +19786,7 @@ return enGb;
 
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20066,7 +19859,7 @@ return enIe;
 
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20139,7 +19932,7 @@ return enNz;
 
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20218,7 +20011,7 @@ return eo;
 
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20316,7 +20109,7 @@ return es;
 
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20413,7 +20206,7 @@ return esDo;
 
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20502,7 +20295,7 @@ return esUs;
 
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20589,7 +20382,7 @@ return et;
 
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20661,7 +20454,7 @@ return eu;
 
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20774,7 +20567,7 @@ return fa;
 
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20889,7 +20682,7 @@ return fi;
 
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -20955,7 +20748,7 @@ return fo;
 
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21044,7 +20837,7 @@ return fr;
 
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21124,7 +20917,7 @@ return frCa;
 
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21208,7 +21001,7 @@ return frCh;
 
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21289,7 +21082,7 @@ return fy;
 
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21371,7 +21164,7 @@ return gd;
 
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21454,7 +21247,7 @@ return gl;
 
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21583,7 +21376,7 @@ return gomLatn;
 
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21713,7 +21506,7 @@ return gu;
 
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21818,7 +21611,7 @@ return he;
 
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -21948,7 +21741,7 @@ return hi;
 
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22108,7 +21901,7 @@ return hr;
 
 
 /***/ }),
-/* 70 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22224,7 +22017,7 @@ return hu;
 
 
 /***/ }),
-/* 71 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22325,7 +22118,7 @@ return hyAm;
 
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22414,7 +22207,7 @@ return id;
 
 
 /***/ }),
-/* 73 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22552,7 +22345,7 @@ return is;
 
 
 /***/ }),
-/* 74 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22628,7 +22421,7 @@ return it;
 
 
 /***/ }),
-/* 75 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22714,7 +22507,7 @@ return ja;
 
 
 /***/ }),
-/* 76 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22803,7 +22596,7 @@ return jv;
 
 
 /***/ }),
-/* 77 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22898,7 +22691,7 @@ return ka;
 
 
 /***/ }),
-/* 78 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -22991,7 +22784,7 @@ return kk;
 
 
 /***/ }),
-/* 79 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23055,7 +22848,7 @@ return km;
 
 
 /***/ }),
-/* 80 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23187,7 +22980,7 @@ return kn;
 
 
 /***/ }),
-/* 81 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23275,7 +23068,7 @@ return ko;
 
 
 /***/ }),
-/* 82 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23369,7 +23162,7 @@ return ky;
 
 
 /***/ }),
-/* 83 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23512,7 +23305,7 @@ return lb;
 
 
 /***/ }),
-/* 84 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23588,7 +23381,7 @@ return lo;
 
 
 /***/ }),
-/* 85 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23712,7 +23505,7 @@ return lt;
 
 
 /***/ }),
-/* 86 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23816,7 +23609,7 @@ return lv;
 
 
 /***/ }),
-/* 87 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -23934,7 +23727,7 @@ return me;
 
 
 /***/ }),
-/* 88 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24004,7 +23797,7 @@ return mi;
 
 
 /***/ }),
-/* 89 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24100,7 +23893,7 @@ return mk;
 
 
 /***/ }),
-/* 90 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24187,7 +23980,7 @@ return ml;
 
 
 /***/ }),
-/* 91 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24354,7 +24147,7 @@ return mr;
 
 
 /***/ }),
-/* 92 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24442,7 +24235,7 @@ return ms;
 
 
 /***/ }),
-/* 93 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24531,7 +24324,7 @@ return msMy;
 
 
 /***/ }),
-/* 94 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24597,7 +24390,7 @@ return mt;
 
 
 /***/ }),
-/* 95 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24699,7 +24492,7 @@ return my;
 
 
 /***/ }),
-/* 96 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24768,7 +24561,7 @@ return nb;
 
 
 /***/ }),
-/* 97 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24897,7 +24690,7 @@ return ne;
 
 
 /***/ }),
-/* 98 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -24991,7 +24784,7 @@ return nl;
 
 
 /***/ }),
-/* 99 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25085,7 +24878,7 @@ return nlBe;
 
 
 /***/ }),
-/* 100 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25151,7 +24944,7 @@ return nn;
 
 
 /***/ }),
-/* 101 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25281,7 +25074,7 @@ return paIn;
 
 
 /***/ }),
-/* 102 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25413,7 +25206,7 @@ return pl;
 
 
 /***/ }),
-/* 103 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25484,7 +25277,7 @@ return pt;
 
 
 /***/ }),
-/* 104 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25551,7 +25344,7 @@ return ptBr;
 
 
 /***/ }),
-/* 105 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25633,7 +25426,7 @@ return ro;
 
 
 /***/ }),
-/* 106 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25823,7 +25616,7 @@ return ru;
 
 
 /***/ }),
-/* 107 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25927,7 +25720,7 @@ return sd;
 
 
 /***/ }),
-/* 108 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -25994,7 +25787,7 @@ return se;
 
 
 /***/ }),
-/* 109 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26071,7 +25864,7 @@ return si;
 
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26234,7 +26027,7 @@ return sk;
 
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26413,7 +26206,7 @@ return sl;
 
 
 /***/ }),
-/* 112 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26489,7 +26282,7 @@ return sq;
 
 
 /***/ }),
-/* 113 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26606,7 +26399,7 @@ return sr;
 
 
 /***/ }),
-/* 114 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26723,7 +26516,7 @@ return srCyrl;
 
 
 /***/ }),
-/* 115 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26818,7 +26611,7 @@ return ss;
 
 
 /***/ }),
-/* 116 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26893,7 +26686,7 @@ return sv;
 
 
 /***/ }),
-/* 117 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -26958,7 +26751,7 @@ return sw;
 
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -27094,7 +26887,7 @@ return ta;
 
 
 /***/ }),
-/* 119 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -27189,7 +26982,7 @@ return te;
 
 
 /***/ }),
-/* 120 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -27263,7 +27056,7 @@ return tet;
 
 
 /***/ }),
-/* 121 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -27336,7 +27129,7 @@ return th;
 
 
 /***/ }),
-/* 122 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -27404,7 +27197,7 @@ return tlPh;
 
 
 /***/ }),
-/* 123 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -27532,7 +27325,7 @@ return tlh;
 
 
 /***/ }),
-/* 124 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -27628,7 +27421,7 @@ return tr;
 
 
 /***/ }),
-/* 125 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -27726,7 +27519,7 @@ return tzl;
 
 
 /***/ }),
-/* 126 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -27790,7 +27583,7 @@ return tzm;
 
 
 /***/ }),
-/* 127 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -27854,7 +27647,7 @@ return tzmLatn;
 
 
 /***/ }),
-/* 128 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -28012,7 +27805,7 @@ return uk;
 
 
 /***/ }),
-/* 129 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -28117,7 +27910,7 @@ return ur;
 
 
 /***/ }),
-/* 130 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -28181,7 +27974,7 @@ return uz;
 
 
 /***/ }),
-/* 131 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -28245,7 +28038,7 @@ return uzLatn;
 
 
 /***/ }),
-/* 132 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -28330,7 +28123,7 @@ return vi;
 
 
 /***/ }),
-/* 133 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -28404,7 +28197,7 @@ return xPseudo;
 
 
 /***/ }),
-/* 134 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -28470,7 +28263,7 @@ return yo;
 
 
 /***/ }),
-/* 135 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -28587,7 +28380,7 @@ return zhCn;
 
 
 /***/ }),
-/* 136 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -28698,7 +28491,7 @@ return zhHk;
 
 
 /***/ }),
-/* 137 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -28808,7 +28601,7 @@ return zhTw;
 
 
 /***/ }),
-/* 138 */
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28819,20 +28612,10 @@ return zhTw;
 
 
 const API = __WEBPACK_IMPORTED_MODULE_1_axios___default.a.create({
-  baseURL: "http://sutd-timetable.herokuapp.com/v2/"
+  baseURL: "https://sutd-timetable.herokuapp.com/v2/"
 })
 
 const VERSION = '0.1'
-
-const MOD_GROUPS = [
-  ['01', 'General'],
-  ['02', 'HASS'],
-  ['10', 'Freshmore'],
-  ['20', 'ASD'],
-  ['30', 'EPD'],
-  ['40', 'ESD'],
-  ['50', 'ISTD']
-]
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
   data () {
@@ -28843,31 +28626,6 @@ const MOD_GROUPS = [
       sections: {},
       selected: [],
       locations: []
-    }
-  },
-  computed: {
-    visible () {
-      return this.selected.map((cn) => this.sections[cn])
-    },
-    selectItems () {
-      return [].concat(...this.modules.map((m) => {
-        const header = `${m.code} - ${m.title}`
-        return [
-          {header},
-          ...m.sections.map((s) => ({
-            text: `${s.name} (${header})`,
-            chip: `${m.code}: ${s.name}`,
-            value: s.cn
-          })),
-          {divider: true}
-        ]
-      }))
-    },
-    modGroups () {
-      return MOD_GROUPS.map(([group, title]) => {
-        const modules = this.modules.filter((k) => k.code.startsWith(group))
-        return {group, title, modules, show: true, active: false}
-      })
     }
   },
   watch: {
@@ -28949,7 +28707,7 @@ const MOD_GROUPS = [
 
 
 /***/ }),
-/* 139 */
+/* 138 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29005,6 +28763,16 @@ const MOD_GROUPS = [
 //
 //
 
+const MOD_GROUPS = [
+  [/^01/, 'General'],
+  [/^02/, 'HASS'],
+  [/^(03|10)/, 'Freshmore'],
+  [/^20/, 'ASD'],
+  [/^30/, 'EPD'],
+  [/^40/, 'ESD'],
+  [/^50/, 'ISTD']
+]
+
 /* harmony default export */ __webpack_exports__["a"] = ({
   data () {
     return {
@@ -29015,7 +28783,10 @@ const MOD_GROUPS = [
       return this.$tm.selected
     },
     modGroups () {
-      return this.$tm.modGroups
+      return MOD_GROUPS.map(([start, title], group) => {
+        const modules = this.$tm.modules.filter((k) => start.test(k.code))
+        return {group, title, modules, show: true, active: false}
+      })
     }
   },
   methods: {
@@ -29032,23 +28803,22 @@ const MOD_GROUPS = [
 
 
 /***/ }),
-/* 140 */,
-/* 141 */
+/* 139 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuetify__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuetify__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuetify___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuetify__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuetify_dist_vuetify_css__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuetify_dist_vuetify_css__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuetify_dist_vuetify_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vuetify_dist_vuetify_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__App__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__router__ = __webpack_require__(171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__filters__ = __webpack_require__(189);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__timetable__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__App__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__router__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__filters__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__timetable__ = __webpack_require__(137);
 
 
 
@@ -29076,7 +28846,7 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
 
 
 /***/ }),
-/* 142 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -29129,13 +28899,13 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(143);
+__webpack_require__(141);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 143 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -29325,10 +29095,10 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(7)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(6)))
 
 /***/ }),
-/* 144 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -46325,13 +46095,13 @@ function unbind(el, binding) {
 //# sourceMappingURL=vuetify.js.map
 
 /***/ }),
-/* 145 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(146);
+var content = __webpack_require__(144);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -46339,7 +46109,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(147)(content, options);
+var update = __webpack_require__(145)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -46356,10 +46126,10 @@ if(false) {
 }
 
 /***/ }),
-/* 146 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(7)(undefined);
 // imports
 
 
@@ -46370,7 +46140,7 @@ exports.push([module.i, ".black {\n  background-color: #000 !important;\n  borde
 
 
 /***/ }),
-/* 147 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -46426,7 +46196,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(148);
+var	fixUrls = __webpack_require__(146);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -46742,7 +46512,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 148 */
+/* 146 */
 /***/ (function(module, exports) {
 
 
@@ -46837,7 +46607,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 149 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46845,8 +46615,8 @@ module.exports = function (css) {
 
 var utils = __webpack_require__(1);
 var bind = __webpack_require__(9);
-var Axios = __webpack_require__(151);
-var defaults = __webpack_require__(5);
+var Axios = __webpack_require__(149);
+var defaults = __webpack_require__(4);
 
 /**
  * Create an instance of Axios
@@ -46880,14 +46650,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(13);
-axios.CancelToken = __webpack_require__(165);
+axios.CancelToken = __webpack_require__(163);
 axios.isCancel = __webpack_require__(12);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(166);
+axios.spread = __webpack_require__(164);
 
 module.exports = axios;
 
@@ -46896,7 +46666,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 150 */
+/* 148 */
 /***/ (function(module, exports) {
 
 /*!
@@ -46923,16 +46693,16 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 151 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(5);
+var defaults = __webpack_require__(4);
 var utils = __webpack_require__(1);
-var InterceptorManager = __webpack_require__(160);
-var dispatchRequest = __webpack_require__(161);
+var InterceptorManager = __webpack_require__(158);
+var dispatchRequest = __webpack_require__(159);
 
 /**
  * Create a new instance of Axios
@@ -47009,7 +46779,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 152 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47028,7 +46798,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 153 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47061,7 +46831,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 154 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47089,7 +46859,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 155 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47164,7 +46934,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 156 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47224,7 +46994,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 157 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47299,7 +47069,7 @@ module.exports = (
 
 
 /***/ }),
-/* 158 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47342,7 +47112,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 159 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47402,7 +47172,7 @@ module.exports = (
 
 
 /***/ }),
-/* 160 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47461,18 +47231,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 161 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(1);
-var transformData = __webpack_require__(162);
+var transformData = __webpack_require__(160);
 var isCancel = __webpack_require__(12);
-var defaults = __webpack_require__(5);
-var isAbsoluteURL = __webpack_require__(163);
-var combineURLs = __webpack_require__(164);
+var defaults = __webpack_require__(4);
+var isAbsoluteURL = __webpack_require__(161);
+var combineURLs = __webpack_require__(162);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -47554,7 +47324,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 162 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47581,7 +47351,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 163 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47602,7 +47372,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 164 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47623,7 +47393,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 165 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47687,7 +47457,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 166 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47721,13 +47491,13 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 167 */
+/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_App_vue__ = __webpack_require__(14);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7ba5bd90_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_App_vue__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7ba5bd90_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_App_vue__ = __webpack_require__(168);
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
@@ -47773,13 +47543,13 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 168 */
+/* 166 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_NavBar_vue__ = __webpack_require__(15);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4295d220_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_NavBar_vue__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4295d220_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_NavBar_vue__ = __webpack_require__(167);
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
@@ -47825,7 +47595,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 169 */
+/* 167 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47949,7 +47719,7 @@ if (false) {
 }
 
 /***/ }),
-/* 170 */
+/* 168 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47997,15 +47767,15 @@ if (false) {
 }
 
 /***/ }),
-/* 171 */
+/* 169 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Main__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Upload__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Modules__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Main__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Upload__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Modules__ = __webpack_require__(182);
 
 
 
@@ -48045,7 +47815,7 @@ const routes = [
 
 
 /***/ }),
-/* 172 */
+/* 170 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48063,7 +47833,7 @@ function assert (condition, message) {
 }
 
 function warn (condition, message) {
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && !condition) {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && !condition) {
     typeof console !== 'undefined' && console.warn(("[vue-router] " + message));
   }
 }
@@ -48174,7 +47944,7 @@ function resolveProps (route, config) {
     case 'boolean':
       return config ? route.params : undefined
     default:
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         warn(
           false,
           "props in \"" + (route.path) + "\" is a " + (typeof config) + ", " +
@@ -48218,7 +47988,7 @@ function resolveQuery (
   try {
     parsedQuery = parse(query || '');
   } catch (e) {
-    Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(false, e.message);
+    Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(false, e.message);
     parsedQuery = {};
   }
   for (var key in extraQuery) {
@@ -49141,7 +48911,7 @@ function fillParams (
       (regexpCompileCache[path] = pathToRegexp_1.compile(path));
     return filler(params || {}, { pretty: true })
   } catch (e) {
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       warn(false, ("missing param for " + routeMsg + ": " + (e.message)));
     }
     return ''
@@ -49193,7 +48963,7 @@ function addRouteRecord (
 ) {
   var path = route.path;
   var name = route.name;
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     assert(path != null, "\"path\" is required in a route configuration.");
     assert(
       typeof route.component !== 'string',
@@ -49235,7 +49005,7 @@ function addRouteRecord (
     // Warn if route is named, does not redirect and has a default child route.
     // If users navigate to this route by name, the default child will
     // not be rendered (GH Issue #629)
-    if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       if (route.name && !route.redirect && route.children.some(function (child) { return /^\/?$/.test(child.path); })) {
         warn(
           false,
@@ -49284,7 +49054,7 @@ function addRouteRecord (
   if (name) {
     if (!nameMap[name]) {
       nameMap[name] = record;
-    } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && !matchAs) {
+    } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && !matchAs) {
       warn(
         false,
         "Duplicate named routes definition: " +
@@ -49296,7 +49066,7 @@ function addRouteRecord (
 
 function compileRouteRegex (path, pathToRegexpOptions) {
   var regex = pathToRegexp_1(path, [], pathToRegexpOptions);
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     var keys = Object.create(null);
     regex.keys.forEach(function (key) {
       warn(!keys[key.name], ("Duplicate param keys in route with path: \"" + path + "\""));
@@ -49339,7 +49109,7 @@ function normalizeLocation (
     } else if (current.matched.length) {
       var rawPath = current.matched[current.matched.length - 1].path;
       next.path = fillParams(rawPath, params, ("path " + (current.path)));
-    } else if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+    } else if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
       warn(false, "relative params navigation requires a current route.");
     }
     return next
@@ -49403,7 +49173,7 @@ function createMatcher (
 
     if (name) {
       var record = nameMap[name];
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         warn(record, ("Route with name '" + name + "' does not exist"));
       }
       if (!record) { return _createRoute(null, location) }
@@ -49455,7 +49225,7 @@ function createMatcher (
     }
 
     if (!redirect || typeof redirect !== 'object') {
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         warn(
           false, ("invalid redirect option: " + (JSON.stringify(redirect)))
         );
@@ -49476,7 +49246,7 @@ function createMatcher (
     if (name) {
       // resolved named direct
       var targetRecord = nameMap[name];
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         assert(targetRecord, ("redirect failed: named route \"" + name + "\" not found."));
       }
       return match({
@@ -49499,7 +49269,7 @@ function createMatcher (
         hash: hash
       }, undefined, location)
     } else {
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         warn(false, ("invalid redirect option: " + (JSON.stringify(redirect))));
       }
       return _createRoute(null, location)
@@ -49604,7 +49374,7 @@ function handleScroll (
     return
   }
 
-  if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+  if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
     assert(typeof behavior === 'function', "scrollBehavior must be a function");
   }
 
@@ -49621,7 +49391,7 @@ function handleScroll (
       shouldScroll.then(function (shouldScroll) {
         scrollToPosition((shouldScroll), position);
       }).catch(function (err) {
-        if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+        if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
           assert(false, err.toString());
         }
       });
@@ -49811,7 +49581,7 @@ function resolveAsyncComponents (matched) {
 
         var reject = once(function (reason) {
           var msg = "Failed to resolve async component " + key + ": " + reason;
-          Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(false, msg);
+          Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && warn(false, msg);
           if (!error) {
             error = isError(reason)
               ? reason
@@ -50501,7 +50271,7 @@ var VueRouter = function VueRouter (options) {
       this.history = new AbstractHistory(this, options.base);
       break
     default:
-      if (Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
+      if (Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production') {
         assert(false, ("invalid mode: " + mode));
       }
   }
@@ -50524,7 +50294,7 @@ prototypeAccessors.currentRoute.get = function () {
 VueRouter.prototype.init = function init (app /* Vue component instance */) {
     var this$1 = this;
 
-  Object({"API_URL":"http://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && assert(
+  Object({"API_URL":"https://sutd-timetable.herokuapp.com/v2/"}).NODE_ENV !== 'production' && assert(
     install.installed,
     "not installed. Make sure to call `Vue.use(VueRouter)` " +
     "before creating root instance."
@@ -50675,13 +50445,13 @@ if (inBrowser && window.Vue) {
 
 
 /***/ }),
-/* 173 */
+/* 171 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Main_vue__ = __webpack_require__(16);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_54d3a52e_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Main_vue__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_54d3a52e_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Main_vue__ = __webpack_require__(172);
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
@@ -50727,7 +50497,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 174 */
+/* 172 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50798,7 +50568,7 @@ var render = function() {
                           multiple: "",
                           autocomplete: "",
                           label: "Find sections",
-                          items: _vm.$tm.selectItems
+                          items: _vm.items
                         },
                         scopedSlots: _vm._u([
                           {
@@ -50939,17 +50709,17 @@ if (false) {
 }
 
 /***/ }),
-/* 175 */
+/* 173 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Upload_vue__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Upload_vue__ = __webpack_require__(17);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_44fc689e_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Upload_vue__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_44fc689e_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Upload_vue__ = __webpack_require__(181);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(176)
+  __webpack_require__(174)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
@@ -50995,17 +50765,17 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 176 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(177);
+var content = __webpack_require__(175);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(17)("30d9ecb8", content, false);
+var update = __webpack_require__(176)("30d9ecb8", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -51021,10 +50791,10 @@ if(false) {
 }
 
 /***/ }),
-/* 177 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(undefined);
+exports = module.exports = __webpack_require__(7)(undefined);
 // imports
 
 
@@ -51035,7 +50805,228 @@ exports.push([module.i, "\ninput[type=\"file\"][data-v-44fc689e] {\n  display: n
 
 
 /***/ }),
-/* 178 */
+/* 176 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(177)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction) {
+  isProduction = _isProduction
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 177 */
 /***/ (function(module, exports) {
 
 /**
@@ -51068,13 +51059,13 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 179 */
+/* 178 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__timetable__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__timetable__ = __webpack_require__(137);
 
 
 
@@ -51156,7 +51147,7 @@ function getLocation (loc) {
 
 
 /***/ }),
-/* 180 */
+/* 179 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -51184,248 +51175,248 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 181 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 19,
-	"./af.js": 19,
-	"./ar": 20,
-	"./ar-dz": 21,
-	"./ar-dz.js": 21,
-	"./ar-kw": 22,
-	"./ar-kw.js": 22,
-	"./ar-ly": 23,
-	"./ar-ly.js": 23,
-	"./ar-ma": 24,
-	"./ar-ma.js": 24,
-	"./ar-sa": 25,
-	"./ar-sa.js": 25,
-	"./ar-tn": 26,
-	"./ar-tn.js": 26,
-	"./ar.js": 20,
-	"./az": 27,
-	"./az.js": 27,
-	"./be": 28,
-	"./be.js": 28,
-	"./bg": 29,
-	"./bg.js": 29,
-	"./bm": 30,
-	"./bm.js": 30,
-	"./bn": 31,
-	"./bn.js": 31,
-	"./bo": 32,
-	"./bo.js": 32,
-	"./br": 33,
-	"./br.js": 33,
-	"./bs": 34,
-	"./bs.js": 34,
-	"./ca": 35,
-	"./ca.js": 35,
-	"./cs": 36,
-	"./cs.js": 36,
-	"./cv": 37,
-	"./cv.js": 37,
-	"./cy": 38,
-	"./cy.js": 38,
-	"./da": 39,
-	"./da.js": 39,
-	"./de": 40,
-	"./de-at": 41,
-	"./de-at.js": 41,
-	"./de-ch": 42,
-	"./de-ch.js": 42,
-	"./de.js": 40,
-	"./dv": 43,
-	"./dv.js": 43,
-	"./el": 44,
-	"./el.js": 44,
-	"./en-au": 45,
-	"./en-au.js": 45,
-	"./en-ca": 46,
-	"./en-ca.js": 46,
-	"./en-gb": 47,
-	"./en-gb.js": 47,
-	"./en-ie": 48,
-	"./en-ie.js": 48,
-	"./en-nz": 49,
-	"./en-nz.js": 49,
-	"./eo": 50,
-	"./eo.js": 50,
-	"./es": 51,
-	"./es-do": 52,
-	"./es-do.js": 52,
-	"./es-us": 53,
-	"./es-us.js": 53,
-	"./es.js": 51,
-	"./et": 54,
-	"./et.js": 54,
-	"./eu": 55,
-	"./eu.js": 55,
-	"./fa": 56,
-	"./fa.js": 56,
-	"./fi": 57,
-	"./fi.js": 57,
-	"./fo": 58,
-	"./fo.js": 58,
-	"./fr": 59,
-	"./fr-ca": 60,
-	"./fr-ca.js": 60,
-	"./fr-ch": 61,
-	"./fr-ch.js": 61,
-	"./fr.js": 59,
-	"./fy": 62,
-	"./fy.js": 62,
-	"./gd": 63,
-	"./gd.js": 63,
-	"./gl": 64,
-	"./gl.js": 64,
-	"./gom-latn": 65,
-	"./gom-latn.js": 65,
-	"./gu": 66,
-	"./gu.js": 66,
-	"./he": 67,
-	"./he.js": 67,
-	"./hi": 68,
-	"./hi.js": 68,
-	"./hr": 69,
-	"./hr.js": 69,
-	"./hu": 70,
-	"./hu.js": 70,
-	"./hy-am": 71,
-	"./hy-am.js": 71,
-	"./id": 72,
-	"./id.js": 72,
-	"./is": 73,
-	"./is.js": 73,
-	"./it": 74,
-	"./it.js": 74,
-	"./ja": 75,
-	"./ja.js": 75,
-	"./jv": 76,
-	"./jv.js": 76,
-	"./ka": 77,
-	"./ka.js": 77,
-	"./kk": 78,
-	"./kk.js": 78,
-	"./km": 79,
-	"./km.js": 79,
-	"./kn": 80,
-	"./kn.js": 80,
-	"./ko": 81,
-	"./ko.js": 81,
-	"./ky": 82,
-	"./ky.js": 82,
-	"./lb": 83,
-	"./lb.js": 83,
-	"./lo": 84,
-	"./lo.js": 84,
-	"./lt": 85,
-	"./lt.js": 85,
-	"./lv": 86,
-	"./lv.js": 86,
-	"./me": 87,
-	"./me.js": 87,
-	"./mi": 88,
-	"./mi.js": 88,
-	"./mk": 89,
-	"./mk.js": 89,
-	"./ml": 90,
-	"./ml.js": 90,
-	"./mr": 91,
-	"./mr.js": 91,
-	"./ms": 92,
-	"./ms-my": 93,
-	"./ms-my.js": 93,
-	"./ms.js": 92,
-	"./mt": 94,
-	"./mt.js": 94,
-	"./my": 95,
-	"./my.js": 95,
-	"./nb": 96,
-	"./nb.js": 96,
-	"./ne": 97,
-	"./ne.js": 97,
-	"./nl": 98,
-	"./nl-be": 99,
-	"./nl-be.js": 99,
-	"./nl.js": 98,
-	"./nn": 100,
-	"./nn.js": 100,
-	"./pa-in": 101,
-	"./pa-in.js": 101,
-	"./pl": 102,
-	"./pl.js": 102,
-	"./pt": 103,
-	"./pt-br": 104,
-	"./pt-br.js": 104,
-	"./pt.js": 103,
-	"./ro": 105,
-	"./ro.js": 105,
-	"./ru": 106,
-	"./ru.js": 106,
-	"./sd": 107,
-	"./sd.js": 107,
-	"./se": 108,
-	"./se.js": 108,
-	"./si": 109,
-	"./si.js": 109,
-	"./sk": 110,
-	"./sk.js": 110,
-	"./sl": 111,
-	"./sl.js": 111,
-	"./sq": 112,
-	"./sq.js": 112,
-	"./sr": 113,
-	"./sr-cyrl": 114,
-	"./sr-cyrl.js": 114,
-	"./sr.js": 113,
-	"./ss": 115,
-	"./ss.js": 115,
-	"./sv": 116,
-	"./sv.js": 116,
-	"./sw": 117,
-	"./sw.js": 117,
-	"./ta": 118,
-	"./ta.js": 118,
-	"./te": 119,
-	"./te.js": 119,
-	"./tet": 120,
-	"./tet.js": 120,
-	"./th": 121,
-	"./th.js": 121,
-	"./tl-ph": 122,
-	"./tl-ph.js": 122,
-	"./tlh": 123,
-	"./tlh.js": 123,
-	"./tr": 124,
-	"./tr.js": 124,
-	"./tzl": 125,
-	"./tzl.js": 125,
-	"./tzm": 126,
-	"./tzm-latn": 127,
-	"./tzm-latn.js": 127,
-	"./tzm.js": 126,
-	"./uk": 128,
-	"./uk.js": 128,
-	"./ur": 129,
-	"./ur.js": 129,
-	"./uz": 130,
-	"./uz-latn": 131,
-	"./uz-latn.js": 131,
-	"./uz.js": 130,
-	"./vi": 132,
-	"./vi.js": 132,
-	"./x-pseudo": 133,
-	"./x-pseudo.js": 133,
-	"./yo": 134,
-	"./yo.js": 134,
-	"./zh-cn": 135,
-	"./zh-cn.js": 135,
-	"./zh-hk": 136,
-	"./zh-hk.js": 136,
-	"./zh-tw": 137,
-	"./zh-tw.js": 137
+	"./af": 18,
+	"./af.js": 18,
+	"./ar": 19,
+	"./ar-dz": 20,
+	"./ar-dz.js": 20,
+	"./ar-kw": 21,
+	"./ar-kw.js": 21,
+	"./ar-ly": 22,
+	"./ar-ly.js": 22,
+	"./ar-ma": 23,
+	"./ar-ma.js": 23,
+	"./ar-sa": 24,
+	"./ar-sa.js": 24,
+	"./ar-tn": 25,
+	"./ar-tn.js": 25,
+	"./ar.js": 19,
+	"./az": 26,
+	"./az.js": 26,
+	"./be": 27,
+	"./be.js": 27,
+	"./bg": 28,
+	"./bg.js": 28,
+	"./bm": 29,
+	"./bm.js": 29,
+	"./bn": 30,
+	"./bn.js": 30,
+	"./bo": 31,
+	"./bo.js": 31,
+	"./br": 32,
+	"./br.js": 32,
+	"./bs": 33,
+	"./bs.js": 33,
+	"./ca": 34,
+	"./ca.js": 34,
+	"./cs": 35,
+	"./cs.js": 35,
+	"./cv": 36,
+	"./cv.js": 36,
+	"./cy": 37,
+	"./cy.js": 37,
+	"./da": 38,
+	"./da.js": 38,
+	"./de": 39,
+	"./de-at": 40,
+	"./de-at.js": 40,
+	"./de-ch": 41,
+	"./de-ch.js": 41,
+	"./de.js": 39,
+	"./dv": 42,
+	"./dv.js": 42,
+	"./el": 43,
+	"./el.js": 43,
+	"./en-au": 44,
+	"./en-au.js": 44,
+	"./en-ca": 45,
+	"./en-ca.js": 45,
+	"./en-gb": 46,
+	"./en-gb.js": 46,
+	"./en-ie": 47,
+	"./en-ie.js": 47,
+	"./en-nz": 48,
+	"./en-nz.js": 48,
+	"./eo": 49,
+	"./eo.js": 49,
+	"./es": 50,
+	"./es-do": 51,
+	"./es-do.js": 51,
+	"./es-us": 52,
+	"./es-us.js": 52,
+	"./es.js": 50,
+	"./et": 53,
+	"./et.js": 53,
+	"./eu": 54,
+	"./eu.js": 54,
+	"./fa": 55,
+	"./fa.js": 55,
+	"./fi": 56,
+	"./fi.js": 56,
+	"./fo": 57,
+	"./fo.js": 57,
+	"./fr": 58,
+	"./fr-ca": 59,
+	"./fr-ca.js": 59,
+	"./fr-ch": 60,
+	"./fr-ch.js": 60,
+	"./fr.js": 58,
+	"./fy": 61,
+	"./fy.js": 61,
+	"./gd": 62,
+	"./gd.js": 62,
+	"./gl": 63,
+	"./gl.js": 63,
+	"./gom-latn": 64,
+	"./gom-latn.js": 64,
+	"./gu": 65,
+	"./gu.js": 65,
+	"./he": 66,
+	"./he.js": 66,
+	"./hi": 67,
+	"./hi.js": 67,
+	"./hr": 68,
+	"./hr.js": 68,
+	"./hu": 69,
+	"./hu.js": 69,
+	"./hy-am": 70,
+	"./hy-am.js": 70,
+	"./id": 71,
+	"./id.js": 71,
+	"./is": 72,
+	"./is.js": 72,
+	"./it": 73,
+	"./it.js": 73,
+	"./ja": 74,
+	"./ja.js": 74,
+	"./jv": 75,
+	"./jv.js": 75,
+	"./ka": 76,
+	"./ka.js": 76,
+	"./kk": 77,
+	"./kk.js": 77,
+	"./km": 78,
+	"./km.js": 78,
+	"./kn": 79,
+	"./kn.js": 79,
+	"./ko": 80,
+	"./ko.js": 80,
+	"./ky": 81,
+	"./ky.js": 81,
+	"./lb": 82,
+	"./lb.js": 82,
+	"./lo": 83,
+	"./lo.js": 83,
+	"./lt": 84,
+	"./lt.js": 84,
+	"./lv": 85,
+	"./lv.js": 85,
+	"./me": 86,
+	"./me.js": 86,
+	"./mi": 87,
+	"./mi.js": 87,
+	"./mk": 88,
+	"./mk.js": 88,
+	"./ml": 89,
+	"./ml.js": 89,
+	"./mr": 90,
+	"./mr.js": 90,
+	"./ms": 91,
+	"./ms-my": 92,
+	"./ms-my.js": 92,
+	"./ms.js": 91,
+	"./mt": 93,
+	"./mt.js": 93,
+	"./my": 94,
+	"./my.js": 94,
+	"./nb": 95,
+	"./nb.js": 95,
+	"./ne": 96,
+	"./ne.js": 96,
+	"./nl": 97,
+	"./nl-be": 98,
+	"./nl-be.js": 98,
+	"./nl.js": 97,
+	"./nn": 99,
+	"./nn.js": 99,
+	"./pa-in": 100,
+	"./pa-in.js": 100,
+	"./pl": 101,
+	"./pl.js": 101,
+	"./pt": 102,
+	"./pt-br": 103,
+	"./pt-br.js": 103,
+	"./pt.js": 102,
+	"./ro": 104,
+	"./ro.js": 104,
+	"./ru": 105,
+	"./ru.js": 105,
+	"./sd": 106,
+	"./sd.js": 106,
+	"./se": 107,
+	"./se.js": 107,
+	"./si": 108,
+	"./si.js": 108,
+	"./sk": 109,
+	"./sk.js": 109,
+	"./sl": 110,
+	"./sl.js": 110,
+	"./sq": 111,
+	"./sq.js": 111,
+	"./sr": 112,
+	"./sr-cyrl": 113,
+	"./sr-cyrl.js": 113,
+	"./sr.js": 112,
+	"./ss": 114,
+	"./ss.js": 114,
+	"./sv": 115,
+	"./sv.js": 115,
+	"./sw": 116,
+	"./sw.js": 116,
+	"./ta": 117,
+	"./ta.js": 117,
+	"./te": 118,
+	"./te.js": 118,
+	"./tet": 119,
+	"./tet.js": 119,
+	"./th": 120,
+	"./th.js": 120,
+	"./tl-ph": 121,
+	"./tl-ph.js": 121,
+	"./tlh": 122,
+	"./tlh.js": 122,
+	"./tr": 123,
+	"./tr.js": 123,
+	"./tzl": 124,
+	"./tzl.js": 124,
+	"./tzm": 125,
+	"./tzm-latn": 126,
+	"./tzm-latn.js": 126,
+	"./tzm.js": 125,
+	"./uk": 127,
+	"./uk.js": 127,
+	"./ur": 128,
+	"./ur.js": 128,
+	"./uz": 129,
+	"./uz-latn": 130,
+	"./uz-latn.js": 130,
+	"./uz.js": 129,
+	"./vi": 131,
+	"./vi.js": 131,
+	"./x-pseudo": 132,
+	"./x-pseudo.js": 132,
+	"./yo": 133,
+	"./yo.js": 133,
+	"./zh-cn": 134,
+	"./zh-cn.js": 134,
+	"./zh-hk": 135,
+	"./zh-hk.js": 135,
+	"./zh-tw": 136,
+	"./zh-tw.js": 136
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -51441,10 +51432,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 181;
+webpackContext.id = 180;
 
 /***/ }),
-/* 182 */
+/* 181 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51973,13 +51964,13 @@ if (false) {
 }
 
 /***/ }),
-/* 183 */
+/* 182 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Modules_vue__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Modules_vue__ = __webpack_require__(138);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4fb13e07_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Modules_vue__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4fb13e07_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Modules_vue__ = __webpack_require__(183);
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
@@ -52025,7 +52016,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 184 */
+/* 183 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52204,11 +52195,7 @@ if (false) {
 }
 
 /***/ }),
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */
+/* 184 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
