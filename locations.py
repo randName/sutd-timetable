@@ -1,5 +1,5 @@
 locations = {
-  "TBA": "TBA",
+  "TBC": "TBC",
   "1.102": "Lecture Theatre 1",
   "1.203": "Lecture Theatre 2",
   "1.308": "Think Tank 1",
