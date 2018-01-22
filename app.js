@@ -17142,7 +17142,10 @@ const GBL = 'psc/CSPRD/EMPLOYEE/HRMS/c/SA_LEARNER_SERVICES.SSR_SSENRL_LIST.GBL'
         this.checkCohort.show = false
       }
       this.clicks += 1
-      if (this.clicks === 2) { this.step = 3 }
+      if (this.clicks === 2) {
+        this.step = 3
+        this.$tm.loadData()
+      }
     },
     send (data) {
       this.$set(data, 'sent', 0)
@@ -17154,7 +17157,7 @@ const GBL = 'psc/CSPRD/EMPLOYEE/HRMS/c/SA_LEARNER_SERVICES.SSR_SSENRL_LIST.GBL'
       const f = e.target.files[0]
       if (!f) {
         return
-      } else if (f.type !== 'text/html') {
+      } else if (f.type && f.type !== 'text/html') {
         this.snackBar('The file is not a HTML file.')
         return
       } else if (f.size > 1000000) {
@@ -28867,6 +28870,15 @@ const VERSION = '0.1'
     }
   },
   watch: {
+    modules (v) {
+      v.forEach((m) => m.sections.forEach((s) => {
+        const section = this.getFromStore('section:' + s.cn, '{}')
+        this.$set(this.sections, s.cn, section)
+        if (section.updated && section.updated < s.updated) {
+          this.getSection(s.cn, true)
+        }
+      }))
+    },
     selected (v) {
       v.forEach((cn) => this.getSection(cn))
       this.writeStore('selected', v)
@@ -28878,31 +28890,23 @@ const VERSION = '0.1'
       this.modules = this.getFromStore('modules')
       this.selected = this.getFromStore('selected')
       this.locations = this.getFromStore('locations')
-      this.loadModules()
     }
-    API.get('groups').then((r) => {
-      this.groups = r.data.groups
-      this.writeStore('groups', this.groups)
-    })
-    API.get('modules').then((r) => {
-      this.modules = r.data.modules
-      this.writeStore('modules', this.modules)
-      this.loadModules()
-    })
-    API.get('locations').then((r) => {
-      this.locations = r.data.locations
-      this.writeStore('locations', this.locations)
-    })
+    this.loadData()
   },
   methods: {
-    loadModules () {
-      this.modules.forEach((m) => m.sections.forEach((s) => {
-        const section = this.getFromStore('section:' + s.cn, '{}')
-        this.$set(this.sections, s.cn, section)
-        if (section.updated && section.updated < s.updated) {
-          this.getSection(s.cn, true)
-        }
-      }))
+    loadData () {
+      API.get('groups').then((r) => {
+        this.groups = r.data.groups
+        this.writeStore('groups', this.groups)
+      })
+      API.get('modules').then((r) => {
+        this.modules = r.data.modules
+        this.writeStore('modules', this.modules)
+      })
+      API.get('locations').then((r) => {
+        this.locations = r.data.locations
+        this.writeStore('locations', this.locations)
+      })
     },
     getSection (cn, force = false) {
       if (force || this.sections[cn].schedule === undefined) {
