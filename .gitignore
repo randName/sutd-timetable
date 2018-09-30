@@ -1,6 +1,8 @@
 .env
 
 .firebaserc
-firebase-debug.log
+firebase-debug.log*
 
+/dist
+npm-debug.log*
 node_modules/
