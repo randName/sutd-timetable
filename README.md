@@ -18,7 +18,7 @@ Pull requests welcome!
 Borrowing the often used analogy of functions as factories (and timetables as the products), this is not a factory or the output of the factory; this is merely the blueprint for building a factory.
 
 ### That's so dumb! I just want my timetable!
-Ok.
+Ok can.
 
 ### Can I request for new features?
 Yes, please check if it's not already in my [todo](#todo), then submit an issue. That is not a guarantee that I will eventually implement it. If you do not have a GitHub account, you will have to find some other way to contact me.
