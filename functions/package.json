@@ -1,22 +1,14 @@
 {
-  "name": "functions",
+  "name": "sutd-timetable",
   "description": "Cloud Functions for SUTD Timetable",
   "scripts": {
     "lint": "eslint .",
-    "serve": "firebase serve --only functions",
-    "shell": "firebase functions:shell",
-    "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "deploy": "firebase deploy --only functions"
   },
   "dependencies": {
     "firebase-admin": "~6.0.0",
     "firebase-functions": "^2.0.3",
     "icalendar": "^0.7.1"
-  },
-  "devDependencies": {
-    "eslint": "^4.12.0",
-    "eslint-plugin-promise": "^3.6.0"
   },
   "engines": {
     "node": "8"
