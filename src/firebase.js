@@ -1,13 +1,17 @@
-import Vue from 'vue'
-import VueFire from 'vuefire'
 import firebase from 'firebase/app'
 import 'firebase/database'
 
-import config from '@/../firebaseconfig'
+const pid = process.env.VUE_APP_FB_PROJECT
 
+const config = {
+  projectID: pid,
+  storageBucket: `${pid}.appspot.com`,
+  authDomain: `${pid}.firebaseapp.com`,
+  apiKey: process.env.VUE_APP_FB_API_KEY,
+  databaseURL: `https://${pid}.firebaseio.com`,
+  messagingSenderId: process.env.VUE_APP_FB_SEND_ID
+}
 const fb = firebase.initializeApp(config)
-
-Vue.use(VueFire)
 
 export default {
   timetable: {

@@ -42,18 +42,23 @@ export default {
       drawer: false,
       menu: [
         {
-					text: 'Dark Mode', action: 'brightness_4',
-					click: () => this.$emit('dark')
+          text: 'Dark Mode',
+          action: 'brightness_4',
+          click: () => this.$emit('dark')
         },
         {
-					text: 'Source', action: 'open_in_new',
+          text: 'Source',
           target: '_blank',
-          click, href: 'https://github.com/OpenSUTD/sutd-timetable'
-				},
+          action: 'open_in_new',
+          click,
+          href: 'https://github.com/OpenSUTD/sutd-timetable'
+        },
         {
-					text: 'Back to v1', action: 'restore',
-          click, href: 'https://sutd-timetable.herokuapp.com'
-				}
+          text: 'Back to v1',
+          action: 'restore',
+          click,
+          href: 'https://sutd-timetable.herokuapp.com'
+        }
       ],
       links: [
         { name: 'Main', action: 'dashboard' },

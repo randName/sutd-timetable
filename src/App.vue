@@ -2,7 +2,7 @@
   <v-app :dark="dark">
     <NavBar @dark="dark = !dark"/>
     <v-content>
-      <router-view/>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
