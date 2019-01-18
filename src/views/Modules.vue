@@ -51,7 +51,7 @@ const MOD_GROUPS = [
   [/^50/, 'ISTD']
 ]
 
-const f = (s) => ((k) => s.test(k.code))
+const f = (s) => (k) => s.test(k.code)
 
 export default {
   data () {

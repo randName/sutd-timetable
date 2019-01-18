@@ -72,13 +72,14 @@ export default {
         return m.sections ? [
           { header },
           ...m.sections.map((value) => {
+            if (!term[value]) return null
             const name = term[value].name
             return {
               value,
               chip: `${m.code}: ${name}`,
               text: `${name} (${header})`
             }
-          }),
+          }).filter((i) => i),
           { divider }
         ] : []
       }))

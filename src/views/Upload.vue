@@ -112,7 +112,8 @@ export default {
     return {
       processed: {},
       snack: { show: false, text: '' },
-      GBL: SAMS + GBL, SAMS,
+      GBL: SAMS + GBL,
+      SAMS,
       sending: false,
       mobile: false,
       clikd: false,
@@ -124,7 +125,7 @@ export default {
   },
   methods: {
     snackBar (text, color = 'error') {
-      this.snack = {show: true, text, color}
+      this.snack = { show: true, text, color }
     },
     upload () {
       this.sending = true
@@ -136,7 +137,7 @@ export default {
       t.modules.forEach((m) => { mods[m.code.replace('.', '-')] = m })
       Promise.all([
         ref.child('modules').update(mods),
-        ref.child('groups').update({[label]: t.sections}),
+        ref.child('groups').update({ [label]: t.sections }),
         ref.child('sections').child(t.term).update(t.schedules)
       ]).then(() => {
         this.$set(this.$root, 'selected', t.sections)
