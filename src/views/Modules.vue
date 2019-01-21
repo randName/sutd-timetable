@@ -51,8 +51,6 @@ const MOD_GROUPS = [
   [/^50/, 'ISTD']
 ]
 
-const f = (s) => (k) => s.test(k.code)
-
 export default {
   data () {
     return {
@@ -70,7 +68,12 @@ export default {
     modGroups () {
       const m = this.$root.timetable.modules || {}
       return MOD_GROUPS.map(([s, title]) => {
-        const modules = Object.values(m).filter(f(s))
+        const modules = Object.values(m)
+          .filter((k) => s.test(k.code))
+          .map((k) => {
+            const sections = (k.sections || []).filter((n) => this.term[n])
+            return sections.length ? { ...k, sections } : null
+          }).filter((i) => i)
         return { title, modules, active: false }
       })
     }
