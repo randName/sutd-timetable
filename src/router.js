@@ -1,27 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Main from '@/views/Main'
-import Upload from '@/views/Upload'
-import Modules from '@/views/Modules'
-
 Vue.use(Router)
 
 export const routes = [
   {
     path: '/main',
     name: 'Main',
-    component: Main
+    component: () => import(/* webpackChunkName: "main" */ '@/views/Main')
   },
   {
     path: '/upload',
     name: 'Upload',
-    component: Upload
+    component: () => import(/* webpackChunkName: "uper" */ '@/views/Upload')
   },
   {
     path: '/mods',
     name: 'Modules',
-    component: Modules
+    component: () => import(/* webpackChunkName: "mods" */ '@/views/Modules')
   },
   {
     path: '*',
