@@ -6,7 +6,7 @@ Fancy new serverless version.
 Pull requests welcome!
 
 ## Todo
-- Everything
+- Nothing
 
 ## FAQ
 - [Where is my timetable?](#where-is-my-timetable)
@@ -28,3 +28,11 @@ Submit an issue. See above note if you do not have a GitHub account.
 
 ### I was late because the timetable was wrong!
 Not a question. If you suspect there was a bug that caused it, see the answer to the question above.
+
+## Install
+Note: if you are just using the timetable, you don't need to install anything! This is for developing the site.
+```
+npm install
+npm run serve
+```
+
