@@ -1,7 +1,7 @@
 # SUTD Timetable
 A .ics generator for timetables.
 
-# This fork is [no longer maintained](/../../issues/3)
+# This fork is [no longer maintained](/../../issues/19)
 # Please go over to [OpenSUTD/sutd-timetable](https://github.com/OpenSUTD/sutd-timetable)
 
 Fancy new serverless version.
