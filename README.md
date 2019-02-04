@@ -1,9 +1,10 @@
 # SUTD Timetable
 A .ics generator for timetables.
 
-Fancy new serverless version.
+# This fork is [no longer maintained](/../../issues/3)
+# Please go over to [OpenSUTD/sutd-timetable](https://github.com/OpenSUTD/sutd-timetable)
 
-Pull requests welcome!
+Fancy new serverless version.
 
 ## Todo
 - Nothing
@@ -35,4 +36,4 @@ Note: if you are just using the timetable, you don't need to install anything! T
 npm install
 npm run serve
 ```
-
+You will need to set up a Firebase account and copy the [authentication configuration](https://firebase.google.com/docs/web/setup)
