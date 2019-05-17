@@ -1,4 +1,4 @@
-import { parse, setDay, addDays } from 'date-fns/esm'
+import { parse, setDay, addDays, addHours } from 'date-fns/esm'
 
 const MOD_SELECT = 'div[id^="win0divDERIVED_REGFRM1_DESCR20"]'
 const ROW_SELECT = 'tr[id^="trCLASS_MTG_VW"]'
@@ -11,7 +11,12 @@ const WEEKDAYS = { Mo: 1, Tu: 2, We: 3, Th: 4, Fr: 5 }
 const counter = (c, v) => { c[v] = (c[v] || 0) + 1; return c }
 
 const parseTime = (t, b) => {
-  const d = parse(t, 'HH:mm', b)
+  // There is an issue with the date-fns library that prevents proper parsing
+  // of AM/PM (HH:mmA). This sansAA nonsense and manual addition of 12h is a stopgap fix.
+  const sansAA = t.slice(0, t.length - 2)
+  let d = parse(sansAA, 'HH:mm', b)
+
+  if (t.endsWith('PM')) d = addHours(d, 12);
   if (!isNaN(d.getTime())) { return d }
   return parse(t, 'HH:mmaa', b)
 }
