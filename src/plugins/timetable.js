@@ -13,10 +13,18 @@ const counter = (c, v) => { c[v] = (c[v] || 0) + 1; return c }
 const parseTime = (t, b) => {
   // There is an issue with the date-fns library that prevents proper parsing
   // of AM/PM (HH:mmA). This sansAA nonsense and manual addition of 12h is a stopgap fix.
-  const sansAA = t.slice(0, t.length - 2)
-  let d = parse(sansAA, 'HH:mm', b)
+  // Additionall, the .GBL file does not standardize between 12h and 24h formats, thus
+  // we handle both.
+  let d;
+  if (t.endsWith('AM') || t.endsWith('PM')) {
+    const sansAA = t.slice(0, t.length - 2);
+    d = parse(sansAA, 'HH:mm', b)
+    if (t.endsWith('PM')) d = addHours(d, 12);
+  }
+  else {
+    d = parse(t, 'HH:mm', b)
+  }
 
-  if (t.endsWith('PM')) d = addHours(d, 12);
   if (!isNaN(d.getTime())) { return d }
   return parse(t, 'HH:mmaa', b)
 }
