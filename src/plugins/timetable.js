@@ -13,7 +13,7 @@ const counter = (c, v) => { c[v] = (c[v] || 0) + 1; return c }
 const parseTime = (t, b) => {
   // There is an issue with the date-fns library that prevents proper parsing
   // of AM/PM (HH:mmA). This sansAA nonsense and manual addition of 12h is a stopgap fix.
-  // Additionall, the .GBL file does not standardize between 12h and 24h formats, thus
+  // Additionally, the .GBL file does not standardize between 12h and 24h formats, thus
   // we handle both.
   let d;
   if (t.endsWith('AM') || t.endsWith('PM')) {
@@ -83,11 +83,21 @@ export default function (soup) {
     parsed.modules.push({ code, title, sections })
   })
 
-  const fd = new Date(Math.min(...dates))
+  const fd = new Date(
+    Math.min( ...dates.filter((d) => !isNaN(d)) )
+  )
   parsed.term = fd.getFullYear() + '-' + fd.getMonth() / 4
 
   const f = Object.keys(freshie.reduce(counter, {}))
   parsed.freshmore = f.length === 1 ? f[0] : null
+
+  // remove waitlisted modules
+  const waitlistedCodes = Object.keys(schedules)
+    .filter((code) => !schedules[code].schedule[0].start)
+  parsed.sections = parsed.sections.filter((code) => !waitlistedCodes.includes(code))
+  waitlistedCodes.forEach((code) => {
+    delete schedules[code];
+  })
 
   parsed.sections.sort()
   return Object.assign(parsed, { schedules, length: parsed.modules.length })
