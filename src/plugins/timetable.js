@@ -1,4 +1,5 @@
 import { parse, setDay, addDays, addHours } from 'date-fns/esm'
+console.log('sure')
 
 const MOD_SELECT = 'div[id^="win0divDERIVED_REGFRM1_DESCR20"]'
 const ROW_SELECT = 'tr[id^="trCLASS_MTG_VW"]'
@@ -19,11 +20,13 @@ const parseTime = (t, b) => {
   if (t.endsWith('AM') || t.endsWith('PM')) {
     const sansAA = t.slice(0, t.length - 2);
     d = parse(sansAA, 'HH:mm', b)
-    if (t.endsWith('PM')) d = addHours(d, 12);
+    if (t.endsWith('PM') && !t.startsWith('12')) d = addHours(d, 12);
   }
   else {
     d = parse(t, 'HH:mm', b)
   }
+
+  console.log(d, t)
 
   if (!isNaN(d.getTime())) { return d }
   return parse(t, 'HH:mmaa', b)
