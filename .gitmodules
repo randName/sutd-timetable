@@ -1,0 +1,3 @@
+[submodule "guide_to_sutd_timetable"]
+	path = guide_to_sutd_timetable
+	url = https://github.com/huixiang01/guide_to_sutd_timetable.git
