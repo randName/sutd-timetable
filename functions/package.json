@@ -6,8 +6,8 @@
     "deploy": "firebase deploy --only functions"
   },
   "dependencies": {
-    "firebase-admin": "~6.0.0",
-    "firebase-functions": "^2.0.3",
+    "firebase-admin": "^8.9.2",
+    "firebase-functions": "^3.3.0",
     "icalendar": "^0.7.1"
   },
   "engines": {
